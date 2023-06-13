@@ -709,39 +709,55 @@ Let $\epsilon\in(0,1)$ and $(\mc Q, d)$ be a metric space with $q,p,y,z\in\mc Q$
 \label{tbl:dists}
 \end{center}
 \end{table}
+%%
+%\begin{table}
+%	\begin{center}
+%		\begin{tabular}{c||c|c|c|c|c}
+%			Case&metric space&$y$ & $q$ & $p$ & $z$ \\ 
+%			\hline 
+%			\hline 
+%			(a) & $(\R, |\cdot|)$ & $0$ & $1-3\epsilon$ &  $1-\epsilon$  &  $2-3\epsilon$ \\
+%			(b) & $(\R^3, \norm)$ & $(\epsilon/2,\epsilon\sqrt{15}/2,0)$ & $(0,(5\epsilon-2)/\sqrt{15},\sqrt{11/15-2\epsilon/3 -2\epsilon^2/3})$ &  $(-\epsilon/2,\epsilon\sqrt{15}/2,0)$  &  $(0,0,0)$ \\
+%		\end{tabular}
+%		\caption{Realizations of the distances in \autoref{tbl:dists}.}
+%		\label{tbl:value}
+%	\end{center}
+%\end{table}
 %
 \begin{enumerate}[label=(\alph*)]
 \item 
-	For $\alpha \in [\frac12,1]$ it holds
+	For $\alpha \in [\frac12,1]$, we have, using l'Hôpital's rule,
 	\begin{align*}
 	&\lim_{\epsilon\searrow0}\frac{\ol yq^{2\alpha} - \ol yp^{2\alpha} - \ol zq^{2\alpha} + \ol zp^{2\alpha}}{ \ol yz^{2\alpha-1}\, \ol qp} 
 	\\&= 
 	\lim_{\epsilon\searrow0}\frac{(1-\epsilon)^{2\alpha} - (1-3\epsilon)^{2\alpha} - (1-2\epsilon)^{2\alpha} + 1}{ (2\epsilon)(2-3\epsilon)^{2\alpha-1}}
 	\\&=
-	\lim_{\epsilon\searrow0} 2\alpha\frac{-(1-\epsilon)^{2\alpha-1} +3(1-2\epsilon)^{2\alpha-1} +2(1-3\epsilon)^{2\alpha-1}}{ 2(2-3\epsilon)^{2\alpha-1}+2\epsilon(2\alpha-1)(2-3\epsilon)^{2\alpha-2}}
+	\lim_{\epsilon\searrow0} 2\alpha\frac{-(1-\epsilon)^{2\alpha-1} + 3(1-3\epsilon)^{2\alpha-1} + 2(1-2\epsilon)^{2\alpha-1}}{ 2(2-3\epsilon)^{2\alpha-1}-6\epsilon(2\alpha-1)(2-3\epsilon)^{2\alpha-2}}
 	\\&=8\alpha2^{-2\alpha}
 	\eqfs
 	\end{align*}
 	Thus, the constant $8\alpha2^{-2\alpha}$ in \autoref{thm:power_inequ} is optimal.
 \item	
-	For $\alpha >1$ it holds
+	For $\alpha >1$, we have, using l'Hôpital's rule,
 	\begin{align*}
 	&\lim_{\epsilon\searrow0}\frac{\ol yq^{2\alpha} - \ol yp^{2\alpha} - \ol zq^{2\alpha} + \ol zp^{2\alpha}}{ \ol yz^{2\alpha-1}\, \ol qp} 
 	\\&= 
-	\lim_{\epsilon\searrow0}\frac{ - 2\epsilon^{2\alpha-1} + 2(1-\epsilon)^{2\alpha-1} + 2(2\epsilon)^{2\alpha-1}}{ 2^{2\alpha-1}\epsilon^{2\alpha-2}}
+	\lim_{\epsilon\searrow0} \frac{1 -\epsilon^{2\alpha} - (1-\epsilon)^{2\alpha} + (2\epsilon)^{2\alpha}}{ (2\epsilon)^{2\alpha-1}} 
+	\\&=
+	\frac{2\alpha}{2\alpha-1} \lim_{\epsilon\searrow0} \frac{ - \epsilon^{2\alpha-1} + (1-\epsilon)^{2\alpha-1} + 2	(2\epsilon)^{2\alpha-1}}{ 2^{2\alpha-1}\epsilon^{2\alpha-2}}
 	\\&=
 	\infty
 	\eqfs
 	\end{align*}
 	Thus, there is no power inequality in the form of \autoref{thm:power_inequ} for $\alpha > 1$.
 \item
-	For $\alpha \in (0,\frac12)$ it holds
+	For $\alpha \in (0,\frac12)$, we have
 	\begin{align*}
-	\lim_{\epsilon\searrow0}\frac{\ol yq^{2\alpha} - \ol yp^{2\alpha} - \ol zq^{2\alpha} + \ol zp^{2\alpha}}{ \ol yz^{2 \alpha-1}\, \ol qp} 
-	&= 
-	\lim_{\epsilon\searrow0}\frac{(2\epsilon)^{2\alpha} - \epsilon^{2\alpha} - 1 + 1}{2\epsilon} 
+	&\lim_{\epsilon\searrow0}\frac{\ol yq^{2\alpha} - \ol yp^{2\alpha} - \ol zq^{2\alpha} + \ol zp^{2\alpha}}{ \ol yz^{2 \alpha-1}\, \ol qp} 
+	\\&= 
+	\lim_{\epsilon\searrow0}\frac{(2\epsilon)^{2\alpha} - \epsilon^{2\alpha} - 1 + 1}{\epsilon} 
 	\\&=
-	\lim_{\epsilon\searrow0} \frac12(2^{2\alpha}-1)\epsilon^{2\alpha-1}
+	\lim_{\epsilon\searrow0} (2^{2\alpha}-1)\epsilon^{2\alpha-1}
 	\\&=\infty
 	\eqfs
 	\end{align*}
