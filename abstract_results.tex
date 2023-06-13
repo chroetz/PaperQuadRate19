@@ -1,0 +1,311 @@
+\section{Abstract Results}\label{sec:abstract_results}
+%
+In this section, we prove rates of convergence for the Fréchet mean in a very general setting, see section \ref{ssec:ares:generalsetting}. For rates in probability \autoref{thm:abstr_rate_prob} is stated in section \ref{ssec:ares:inprob} and for rates in expectation \autoref{thm:abstr_rate_exp} is stated in section \ref{ssec:ares:inexpec}. The proofs can be found in appendix \autoref{app:proofs:1and2}. Some remarks on further extensions are given in section \ref{ssec:ares:extensions}.
+%
+%
+%
+\subsection{Setting}\label{ssec:ares:generalsetting}
+%
+%
+Here we define an \textit{Abstract Setting} in which we will state our most general results. This setting of the generalized Fréchet mean is similar to what is used in \cite{huckemann11, huckemann18}.
+
+Let $\mc Q$ be a set, which is called \textit{descriptor space}. Let $(\mc Y, \Sigma_{\mc Y})$ be a measurable space, which is called \textit{data space}. Let $Y$ be a $\mc Y$-valued random variable. Let $\mf c \colon \mc Y \times \mc Q \to \R$ be a function such that $y\to \mf c (y,q)$ is measurable for every $q\in\mc Q$. We call $\mf c$ \emph{cost function}. Define $F \colon \mc Q \to \R\eqcm q\mapsto \Ex*{\mf c(Y, q)}$, assuming that $\Ex*{\abs{\mf c(Y, q)}} < \infty$ for all $q\in\mc Q$. The function $F$ is called \textit{objective function}. 
+Let $n\in\N$. Let $Y_1, \dots, Y_n$ be independent copies of $Y$. Define $F_n \colon \mc Q \to \R\eqcm q\mapsto \frac1n \sum_{i=1}^n \mf c(Y_i, q)$. We call $F_n$ \textit{empirical objective function}. Let $\mf l \colon \mc Q \times \mc Q \to [0,\infty)$ be a function such that $\mf l(m,q)$ measures the \textit{loss} of choosing $q$ given that the true value is $m$. 
+
+We want to bound $\mf l(m, m_n)$ for $m\in\argmin_{q\in\mc Q} F(q)$ and $m_n\in\argmin_{q\in\mc Q} F_n(q)$.
+%
+\index[inot]{$\mc Q$}
+\index[inot]{$\mc Y$}
+\index[inot]{$\Sigma_{\mc Y}$}
+\index[inot]{$\mf c$}
+\index[inot]{$F$}
+\index[inot]{$Y_i$}
+\index[inot]{$F_n$}
+\index[inot]{$\mf l$}
+\index[inot]{$m$}
+\index[inot]{$m_n$}
+%
+%
+%
+\subsection{Rate of Convergence in Probability}\label{ssec:ares:inprob}
+%
+%
+For our result on convergence rates in probability, we make some assumptions, which are listed in the following.
+We denote the "closed" ball with center $o\in\mc Q$ of radius $r>0$ in the set $\mc Q$ with respect to an arbitrary distance function $d \colon \mc Q \times \mc Q \to [0 ,\infty)$ as
+\begin{equation*}
+	\ball_r(o, d) := \cb{q\in\mc Q \colon d(o, q) \leq r}
+	\index[inot]{$\ball_r(o, d)$}
+	\eqfs
+\end{equation*}
+%
+\begin{assumptions}
+\theoremContentInNewLine
+\begin{enumerate}[label=\environmentEnumerateLabel]
+\assitem{ass:ex}{Existence}
+	It holds $\Ex*{\abs{\mf c(Y, q)}} < \infty$ for all $q\in\mc Q$.
+	There are $m_n\in\argmin_{q\in\mc Q} F_n(q)$ measurable and $m\in\argmin_{q\in\mc Q} F(q)$.
+\assitem{ass:gr}{Growth}
+	There are constants $\gamma > 0$ and $c_{\ms g}>0$ such that 
+	$F(q)-F(m) \geq c_{\ms g} \mf l(m,q)^\gamma$ for all $q\in\mc Q$.
+	\index[inot]{$\gamma$}\index[inot]{$c_{\ms g}$}
+\assitem{ass:wquad}{Weak Quadruple}
+	There are a function $\mf a \colon \mc Y \times \mc Y \to [0,\infty)$ measurable and a pseudo-metric $\mf b \colon \mc Q \times \mc Q \to [0,\infty)$, such that,
+	for all $p,q\in\mc Q$, $y,z\in\mc Y$, it holds
+	\begin{equation*}
+		\olc yq- \olc zq -\olc yp+\olc zp \ \leq \ \mf a(y,z)\, \mf b(q,p)
+		\eqcm
+	\end{equation*}
+	where we use the notation  $\olc yq :=\mf c(y,q)$.\index[inot]{$\olc yq$}
+	We call $\mf a$ the \textit{data distance} and $\mf b$ the \textit{descriptor metric}.
+	\index[inot]{$\mf a$}
+	\index[inot]{$\mf b$}
+\assitem{ass:mom}{Moment}
+	Let $\zeta \geq 1$. Set
+	\begin{equation*}
+		\mf M(\zeta) :=
+		\begin{cases}
+			\Ex*{\mf a(Y\pr,Y)^\zeta}\eqcm &\text{ if } \zeta\geq 2\eqcm\\
+			\Ex*{\mf a(Y\pr,Y)^2}^{\frac{\zeta}{2}}\eqcm &\text{ if } \zeta\leq 2\eqcm
+		\end{cases}
+	\end{equation*}
+	where $Y\pr$ is an independent copy of $Y$. It holds $\mf M(\zeta)  < \infty$.
+	\index[inot]{$\mf M(\zeta)$}
+	\index[inot]{$\zeta$}
+	\index[inot]{$Y\pr$}
+\assitem{ass:ent}{Entropy}
+	There are $\alpha, \beta > 0$ with $\frac\alpha\beta < \gamma$ such that
+	\begin{equation*}
+		\sqrt{\log N(\ball_\delta(m, \mf l), \mf b, r)} \leq c_{\ms e} \frac{\delta^\alpha}{r^\beta}
+	\end{equation*}
+	for a constant $c_{\ms e}>0$ and all $\delta, r > 0$.
+	\index[inot]{$\alpha$}\index[inot]{$\beta$}\index[inot]{$c_{\ms e}$}
+\end{enumerate}
+\end{assumptions}
+%
+Here
+\begin{equation*}
+	N(A, \mf b, r) = \min\cbOf{k \in \N \,\middle|\, \exists q_1,\dots,q_k\in\mc Q\colon A\subset \bigcup_{j=1}^k \ball_r(q_j, \mf b) }\eqcm
+	\index[inot]{$N(Q, d, r)$}
+\end{equation*}
+is the \textit{covering number} of $A \subset \mc Q$ with respect to $\mf b$-balls $\ball_r(\cdot, \mf b)$ of radius $r$.
+\assu{ass:ent}{Entropy} is essentially the same condition as in \cite{legouic18}, but written down for the setting of the generalized Fréchet mean instead of the classical Fréchet mean in metric spaces.
+
+We shortly discuss other assumptions before stating the theorem for rates of convergence in probability.
+
+The measurability assumptions can be weakened by using the \textit{outer expectation}, see \cite{vaart96}. 
+
+In \cite{barrio07}, the \assu{ass:gr}{Growth} condition is called \textit{margin condition}. It is called \textit{low noise assumption} in \cite{legouic18}.
+If \assu{ass:gr}{Growth} holds for every distribution of $Y$ and we are in the traditional setting of the (not generalized) Fréchet mean, it implies that the metric space $\mc Q$ has nonpositive curvature:
+Assume that $(\mc Q, d)$ is a complete \textit{geodesic space} \cite[Definition 1.1]{sturm03}, i.e., every pair of points $y_1, y_2$ has a \textit{mid-point} $m$, i.e., $\ol {y_1}m=\ol {y_2}m = \frac12 \ol {y_1}{y_2}$, where we use the notation $\ol qp := d(q,p)$. \index[inot]{$\ol qp$}
+Set $\mc Y = \mc Q$, $\mf c = d^2$, and $\mf l = d$.
+If $\Prof{Y=y_1} = \Prof{Y=y_2} = \frac12$ with $y_1, y_2 \in \mc Q$, the Fréchet mean $m\in\mc Q$ of $Y$ is the mid-point between $y_1$ and $y_2$.
+If we assume that the growth condition holds for every distribution of $Y$, in particular, for every uniform 2-point distribution, with $c_{\ms g} = 1$ and $\gamma=2$, then
+\begin{equation*}
+	\frac12 \ol{y_1}q^2 + \frac12 \ol{y_2}q^2 - \frac12 \ol{y_1}m^2- \frac12 \ol{y_2}m^2 \geq \ol mq^2
+	\eqfs
+\end{equation*}
+As $m$ is the mid-point between $y_1$ and $y_2$, we obtain
+\begin{equation*}
+	\ol mq^2 \leq \frac12 \ol{y_1}q^2 + \frac12 \ol{y_2}q^2 - \frac14 \ol{y_1}{y_2}^2
+	\eqfs
+\end{equation*}
+This inequality implies that the space $(\mc Q, d)$ has nonpositive curvature \cite[Definition 2.1]{sturm03}. Such spaces are called \textit{Hadamard spaces}. Aside from the \assu{ass:gr}{Growth} condition they also fulfill the quadruple inequality, which we discuss in section \ref{ssse:quad:npc}.
+
+The \assu{ass:wquad}{Weak Quadruple}-condition will be discussed in detail in \autoref{sec:quadruple}. Among other things, we will show that it holds in a nice way in all Hadamard spaces, which include the Euclidean spaces.
+
+The following theorem states rates of convergence for the estimator $m_n$ to the true value $m$ measured with respect to the loss function $\mf l$.
+%
+%
+\begin{theorem}[Convergence rate in probability]\label{thm:abstr_rate_prob}
+	In the \textit{Abstract Setting} of section \ref{ssec:ares:generalsetting}, assume that following conditions hold:
+	\assu{ass:ex}{Existence}, \assu{ass:gr}{Growth}, \assu{ass:wquad}{Weak Quadruple}, \assu{ass:mom}{Moment}, \assu{ass:ent}{Entropy}.
+	Define
+	\begin{equation*}
+		\eta_{\beta,n} := 
+		\begin{cases} 
+			n^{-\frac12} & \text{ for }\beta < 1\eqcm\\
+			n^{-\frac12} \log(n+1) & \text{ for } \beta = 1\eqcm\\
+			n^{-\frac1{2\beta}} & \text{ for } \beta > 1\eqfs
+		\end{cases} 
+		\index[inot]{$\eta_{\beta,n}$}
+	\end{equation*}
+	Then, for all $t > 0$, it holds
+	\begin{equation*}
+		\PrOf{\eta_{\beta,n}^{-\frac{1}{\gamma-\frac{\alpha}{\beta}}} \mf l (m, m_n) \geq t} \leq 
+		c \, \mf M(\zeta)\, t^{-\zeta(\gamma-\frac\alpha\beta)}
+	\end{equation*}
+	where $c > 0$ depends on $\alpha, \beta, \gamma, c_{\ms e}, c_{\ms g}, \zeta$.
+\end{theorem}
+%
+The proof can be found in appendix \autoref{app:proofs:1and2}.
+
+Without loss of generality, one can choose $\gamma=1$ by using the loss $\mf l\pr = \mf l^\gamma$. This is consistent with the result: If \assu{ass:gr}{Growth} and \assu{ass:ent}{Entropy} are fulfilled with $\mf l, \alpha, \beta, \gamma$, then they are also fulfilled with $\mf l\pr = l^\gamma, \alpha\pr = \frac{\alpha}{\gamma}, \beta\pr = \beta, \gamma\pr = 1$, which gives the same result.
+We keep this redundancy in the parameters of the theorem for convenience.
+
+A more common way of stating rates of convergence in probability is the $\bigOp$-notation, as in the following corollary. Note that the $\bigOp$-result is asymptotic and, thus, weaker than the non-asymptotic \autoref{thm:abstr_rate_prob}.
+%
+\begin{corollary}\label{cor:Op}
+	In the \textit{Abstract Setting} of section \ref{ssec:ares:generalsetting}, assume that following conditions hold:
+	\assu{ass:ex}{Existence}, \assu{ass:wquad}{Weak Quadruple}, \assu{ass:gr}{Growth}, \assu{ass:mom}{Moment} with $\zeta=1$, \assu{ass:ent}{Entropy}.
+	Then
+	\begin{equation*}
+		\mf l (m, m_n) = \bigOp\brOf{\eta_{\beta,n}^{\frac{1}{\gamma-\frac{\alpha}{\beta}}}}
+	\end{equation*}
+	with $\eta_{\beta,n}$ as in \autoref{thm:abstr_rate_prob}.
+\end{corollary}
+%
+It is possible to weaken the assumptions in \autoref{cor:Op}. In particular, we can restrict the \assu{ass:gr}{Growth} and \assu{ass:ent}{Entropy} conditions to hold only in a neighborhood of $m$ if we already know that $\mf l(m_n,m) \in \smallop(1)$.
+
+In \autoref{thm:abstr_rate_prob}, the probability of large losses decays polynomially. If the exponent $\zeta(\gamma-\frac\alpha\beta)$ is strictly  greater than 1, we can integrate the tail probabilities to obtain a bound on the expectation of the loss.
+%
+\begin{corollary}\label{cor:probtoexpec}
+	Let $\kappa \geq 1$.
+	In the \textit{Abstract Setting} of section \ref{ssec:ares:generalsetting}, assume that following conditions hold:
+	\assu{ass:ex}{Existence}, \assu{ass:wquad}{Weak Quadruple}, \assu{ass:gr}{Growth}, \assu{ass:mom}{Moment} with $\zeta > \kappa(\gamma - \frac\alpha\beta)^{-1}$, \assu{ass:ent}{Entropy}. Set $\xi := \zeta(\gamma-\frac\alpha\beta)\kappa^{-1}$. 
+	Then
+	\begin{align*}
+		\eta_{\beta,n}^{-\frac{\kappa}{\gamma-\frac{\alpha}{\beta}}} \Ex{\mf l (m, m_n)^\kappa} 
+		&\leq 
+		c\pr \frac{\xi}{\xi-1} \mf M(\zeta)^{\frac1\xi}
+		\eqfs
+	\end{align*}
+\end{corollary}
+%
+%
+The proof can be found in appendix \autoref{app:proofs:1and2}.
+
+\autoref{cor:probtoexpec} may require unnecessarily high moments as $\xi$ needs to be \textit{strictly} larger than 1. In the next section, we present a more direct approach to rates in expectation, that requires weaker moment conditions, at least in some settings.
+%
+%
+%
+\subsection{Rate of Convergence in Expectation}\label{ssec:ares:inexpec}
+%
+%
+For obtaining rates in expectation directly, we need slightly modified, stronger assumptions.
+%
+\begin{assumptions}
+\theoremContentInNewLine
+\begin{enumerate}[label=\environmentEnumerateLabel]
+	\assitem{ass:squad}{Strong Quadruple}
+		Define $\dot{\mc Q} := \mc Q \setminus \ball_0(m, \mf l) = \cb{q\in\mc Q\colon \mf l(m, q) > 0}$.\index[inot]{$\dot{\mc Q}$}\index[inot]{$\ball_0(m, \mf l)$}
+		There are functions $\mf b_m \colon \dot{\mc Q} \times \dot{\mc Q} \to [0,\infty)$ (possibly depending on $m$) and $\mf a \colon \mc Y \times \mc Y \to [0,\infty)$ with $\mf a$ measurable and $\xi\in(0,\gamma)$, such that,
+		for all $p,q\in\dot{\mc Q}$, $y,z\in\mc Y$, it holds
+		\begin{equation*}
+			\frac{\olc yq- \olc ym- \olc zq + \olc zm}{\mf l(m,q)^\xi} - \frac{\olc yp- \olc ym- \olc zp + \olc zm}{\mf l(m,p)^\xi} \leq \mf a(y,z) \, \mf b_m(q,p)
+			\eqcm
+			\index[inot]{$\mf b_m$}\index[inot]{$\mf a$}
+		\end{equation*}
+		Assume that $\mf b_m$ is a pseudo-metric on $\dot{\mc Q}$.
+		We call $\mf a$ the \textit{data distance} and $\mf b_m$ the \textit{strong quadruple metric} at $m$.
+		\index[inot]{$\xi$}
+	\assitem{ass:smom}{Strong Moment}
+		For $\zeta>0$, set
+		\begin{equation*}
+			\mf M(\zeta) :=
+			\begin{cases}
+				\Ex*{\mf a(Y\pr,Y)^\zeta}\eqcm &\text{ if } \zeta\geq 2\eqcm\\
+				\Ex*{\mf a(Y\pr,Y)^2}^{\frac{\zeta}{2}}\eqcm &\text{ if } \zeta\leq 2\eqcm
+			\end{cases}
+			\index[inot]{$\mf M(\zeta)$}
+		\end{equation*}
+		where $Y\pr$ is an independent copy of $Y$.
+		Let $\kappa\geq \gamma-\xi$ and assume $\mf M\brOf{\frac{\kappa}{\gamma-\xi}} < \infty$.
+		\index[inot]{$\kappa$}
+	\assitem{ass:sent}{Strong Entropy}
+		It holds $D := \diam(\dot{\mc Q}, \mf b_m) < \infty$ and there is $\beta > 0$ such that
+		\begin{equation*}
+			\sqrt{\log N(\dot{\mc Q}, \mf b_m, r)} \leq c_{\ms e} \br{\frac{D}{r}}^\beta
+		\end{equation*}
+		for all $r \in (0, D)$.
+		\index[inot]{$D$}
+		\index[inot]{$\beta$}
+	\end{enumerate}
+\end{assumptions}
+%
+For later use in the application to Hilbert spaces, section \ref{ssec:app:hilbert}, and for \autoref{thm:abstr_rate_exp}, we state the entropy part of \autoref{thm:abstr_rate_exp} in a more general way than in \autoref{thm:abstr_rate_prob}. To this end, we need to introduce different measures of entropy. 
+%
+\begin{definition}[Measures of Entropy]\label{chaining:def_entropy}
+\theoremContentInNewLine
+\begin{enumerate}[label=\environmentEnumerateLabel]
+\item 
+	Given a set $\mc Q$ an \emph{admissible sequence} is an increasing
+	sequence $(\mc A_k)_{k\in\N_0}$ of partitions of $\mc Q$ such that $\mc A_0 = \mc Q$ and $\ms{card}(\mc A_k) \leq 2^{2^k}$ for $k\geq 1$.
+	
+	By an increasing sequence of partitions we mean that every set of $\mc A_{k+1}$ is
+	contained in a set of $\mc A_k$. We denote by $A_k(q)$ the unique
+	element of $\mc A_k$ which contains $q\in\mc Q$.
+\item
+	Let $(\mc Q, \mf b)$ be a pseudo-metric space.
+	Define 
+	\begin{equation*}
+		\gamma_2(\mc Q, \mf b) := \inf \sup_{q\in\mc Q}\sum_{k=0}^\infty 2^{\frac k2} \diam(A_k(q), \mf b)\eqcm
+	\end{equation*}
+	where the infimum is taken over all admissible sequences in $\mc Q$ and
+	\begin{equation*}
+		\diam(A, \mf b) := \sup_{q,p\in A} \mf b(q,p)
+	\end{equation*}
+	for $A\subset \mc Q$.
+	\index[inot]{$\diam(A, \mf b)$}
+	\index[inot]{$\gamma_2(\mc Q, \mf b)$}
+\item 
+	Let $(Q, \mf b)$ be a pseudo-metric space and $n \in \N$.
+	Define 
+	\begin{equation*}
+		\entrn(Q, \mf b) :=  \inf_{\epsilon > 0} \br{\epsilon \sqrt{n} + \int_\epsilon^\infty \!\! \sqrt{\log N(Q, \mf b, r)}\dl r} 
+		\eqfs
+	\end{equation*}
+	\index[inot]{$\entrn(Q, \mf b)$}
+\end{enumerate}
+\end{definition}
+%
+Items (i) and (ii) are basic definitions form \cite{talagrand14}. Item (iii) is just a convenient notation.
+%
+\begin{theorem}[Convergence rate in expectation]\label{thm:abstr_rate_exp}
+	In the \textit{Abstract Setting} of section \ref{ssec:ares:generalsetting}, assume that following conditions hold:
+	\assu{ass:ex}{Existence}, \assu{ass:gr}{Growth}, \assu{ass:squad}{Strong Quadruple}, \assu{ass:smom}{Strong Moment}.
+	Then, it holds
+	\begin{equation*}
+		\Ex*{\mf l(m ,m_n)^\kappa}
+		\ \leq \ 
+		c n^{-\frac{\kappa}{2(\gamma-\xi)}} \mf M\brOf{\frac{\kappa}{\gamma-\xi}} \min\brOf{\entrn(\mc Q, \mf b_m), \gamma_2(\mc Q, \mf b_m)}^{\frac{\kappa}{\gamma-\xi}}
+		\eqcm
+	\end{equation*}
+	where $c>0$ depends only on $\kappa,\gamma,\xi,c_{\ms g}$.
+	
+	If additionally \assu{ass:sent}{Strong Entropy} holds, then
+	\begin{equation*}
+		\Ex*{\mf l(m ,m_n)^\kappa}
+		\ \leq \
+		C \, \mf M\brOf{\frac{\kappa}{\gamma-\xi}} \,  D^{\frac{\kappa}{\gamma-\xi}} \,  \eta_{\beta,n}^{\frac{\kappa}{\gamma-\xi}}
+		\eqcm
+	\end{equation*}
+	where 
+	\begin{equation*}
+		\eta_{\beta,n} := 
+		\begin{cases} 
+			n^{-\frac12} & \text{ for }\beta < 1\eqcm\\
+			n^{-\frac12} \log(n+1) & \text{ for } \beta = 1\eqcm\\
+			n^{-\frac1{2\beta}} & \text{ for } \beta > 1\eqcm
+		\end{cases} 
+	\end{equation*}
+	and $C>0$ depends only on $\kappa,\beta,\gamma,\xi,c_{\ms g}$.
+\end{theorem}
+The proof can be found in appendix \autoref{app:proofs:1and2}.
+
+As in \autoref{thm:abstr_rate_prob} the statement contains some redundancy. E.g., by using the loss $\tilde {\mf l} = \mf l^\xi$ we set $\xi=1$ without loss of generality. Then the growth exponent and the resulting rate of convergence will scale accordingly.
+%
+%
+%
+%
+%
+\subsection{Further Extensions}\label{ssec:ares:extensions}
+%
+In general $M := \argmin_{q\in\mc Q} \Ex{\mf c(Y, q)}$ is some subset of $\mc Q$. One can also extend the main theorems of this paper to deal with a the whole set of Fréchet means and Fréchet mean estimators. To do that, the \assu{ass:gr}{Growth} condition has to be stated as growth of the minimal distance to $M$. Furthermore, some of the statements and assumptions made in the theorems and proofs have to be modified so that the hold uniformly over all $m\in M$. Additionally, one has to think about the right notion of convergence for sets. We found that those results hard to read without significantly increasing insight into the problem, which is why we chose to stick with unique Fréchet means and only remark that an extension to Fréchet mean sets is possible.
+
+One can also consider $\varepsilon\text{-}\argmin$-sets, i.e., the sets of elements which minimize a function up to an $\varepsilon > 0$. If one chooses $m_n \in \varepsilon_n\text{-}\argmin_{q\in\mc Q} F_n(q)$ with $\varepsilon_n \to 0$ fast enough, the convergence rate is of the same as for the absolute minimizer.
+%
+%
+%
+%
+%
+%

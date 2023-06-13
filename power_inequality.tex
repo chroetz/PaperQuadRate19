@@ -1,0 +1,1722 @@
+%
+Let $(\mc Q, d)$ be a metric space. Use the short notation $\ol qp := d(q,p)$.
+Let $q,p,y,z\in\mc Q$, $\alpha\in[\frac12,1]$. 
+Assume
+\begin{equation*}
+	\olt yq - \olt yp - \olt zq + \olt zp \leq 2 \, \ol yz\, \ol qp
+	\eqfs
+\end{equation*}
+The goal of this section is to prove 
+\begin{equation*}
+	\ol yq^{2\alpha} - \ol yp^{2\alpha} - \ol zq^{2\alpha} + \ol zp^{2\alpha} \leq 8 \alpha 2^{-2\alpha} \, \ol yz^{2\alpha-1}\, \ol qp
+	\eqfs
+\end{equation*}
+%
+%
+%
+\subsection{Arithmetic Form}
+%
+\autoref{thm:power_inequ} will be proven in the form of \autoref{con:ana}. 
+%
+\begin{lemma}\label{con:ana}
+	Let $a,b,c\geq0$, $r,s\in[-1,1]$, and $\alpha\in[\frac12, 1]$.
+	Then
+	\begin{align*}
+		&a^{2\alpha}-c^{2\alpha}-\br{a^2-2rab+b^2}^\alpha+\br{c^2-2scb+b^2}^\alpha 
+		\\&\leq 
+		8 \alpha 2^{-2\alpha} b \max(ra - sc, |a-c|)^{2\alpha-1}
+		\eqfs
+	\end{align*}
+\end{lemma}
+%
+The advantage of using \autoref{con:ana} to prove \autoref{thm:power_inequ} is, that we do not need to consider a system of additional conditions for describing that the real values in the inequality are distances, which have to fulfill the triangle inequality. The disadvantage is, that we loose the possibility for a geometric interpretation of the proof.
+%
+\begin{lemma}\label{lmm:power_implies}
+	\autoref{con:ana} implies \autoref{thm:power_inequ}.
+\end{lemma}
+%
+\begin{proof}
+	Three points from an arbitrary metric space can be embedded in the Euclidean plane so that the distances are preserved.
+	Thus, the cosine formula of Euclidean geometry can be applied to the three points $y,p,q\in\mc Q$: It holds
+	\begin{equation*}
+		\ol yq^2 = \ol yp^2 + \ol qp^2 - 2 s \,\ol yp\, \ol qp\eqcm
+	\end{equation*}
+	where $s := \cos(\measuredangle ypq)$ with the angle $\measuredangle ypq$ in the Euclidean plane.
+	Similarly
+	\begin{equation*}
+		\ol zq^2 = \ol zp^2 + \ol qp^2 - 2 r \,\ol zp\, \ol qp
+		\eqcm
+	\end{equation*}
+	where $r := \cos(\measuredangle zpq)$. Thus,
+	\begin{align*}
+		&
+		\ol yq^{2\alpha} - \ol yp^{2\alpha} - \ol zq^{2\alpha} + \ol zp^{2\alpha}
+		\\&=
+		\br{\ol yp^2 + \ol qp^2 - 2 s \,\ol yp\, \ol qp}^\alpha
+		-
+		\br{\ol zp^2 + \ol qp^2 - 2 r \,\ol zp\, \ol qp}^\alpha
+		- \ol yp^{2\alpha}
+		+ \ol zp^{2\alpha}
+		\\&=
+		\br{c^2 + b^2 - 2 s cb}^\alpha
+		-
+		\br{a^2 + b^2 - 2 r ab}^\alpha
+		- c^{2\alpha}
+		+ a^{2\alpha}
+		\eqcm
+	\end{align*}
+	where $a:=\ol zp$, $c:=\ol yp$, $b:=\ol qp$.
+	Hence, \autoref{con:ana} yields
+	\begin{align}\label{eq:arith:intermediate}
+		\ol yq^{2\alpha} - \ol yp^{2\alpha} - \ol zq^{2\alpha} + \ol zp^{2\alpha}
+		\leq
+		8 \alpha 2^{-2\alpha} b \max(ra - sc, |a-c|)^{2\alpha-1}
+		\eqfs
+	\end{align}
+	The assumption of \autoref{thm:power_inequ} states $\olt yq - \olt yp - \olt zq + \olt zp \leq 2 \, \ol yz\, \ol qp$.
+	This implies
+	\begin{equation*}
+		2b \br{ra-sc}
+		=
+		\br{c^2 + b^2 - 2 scb}
+		-
+		\br{a^2 + b^2 - 2 rab}
+		- c^{2}
+		+ a^{2}
+		\leq 
+		2 b\,
+		\ol yz
+		\eqfs
+	\end{equation*}
+	Therefore, $ra-sc \leq \ol yz$ (or $b=0$, but then $q=p$ and \autoref{thm:power_inequ} becomes trivial).
+	Furthermore, the triangle inequality implies $|a-c| = |\ol zp-\ol yp| \leq \ol yz$.
+	Thus, we obtain
+	\begin{equation}\label{eq:arith:maxbound}
+		\max(ra - sc, |a-c|) \leq\ol yz
+		\eqfs
+	\end{equation}
+	Finally, \eqref{eq:arith:intermediate} and \eqref{eq:arith:maxbound} together yield
+	\begin{align*}
+		\ol yq^{2\alpha} - \ol yp^{2\alpha} - \ol zq^{2\alpha} + \ol zp^{2\alpha}
+		\leq
+		8 \alpha 2^{-2\alpha}  \,\ol qp\, \ol yz^{2\alpha-1}
+		\eqfs
+	\end{align*}
+\end{proof}
+%
+The remaining part of this section is dedicated to proving \autoref{con:ana}.
+
+The proof of \autoref{con:ana} can be described as \textit{brute force}. We will distinguish many different cases, i.e., certain bounds on $a,b,c,r,s$, e.g., $a\leq c$ and $a> c$. In each case, we try to simplify the inequality step by step until we can solve it easily. Mostly, the simplification consists of taking some derivative and showing that the derivative is always negative (or always positive). Then we only need to show the inequality at one extremal point. This process may have to be iterated. It is often not clear immediately which derivative to take in order to simplify the inequality. Even after finishing the proof there seems to be no deeper reason for distinguishing the cases that are considered. Thus, unfortunately, the proof does not create a deeper understanding of the result.
+%
+%
+%
+\subsection{First Proof Steps and Outline of the Remaining Proof}
+%
+We want to show \autoref{con:ana} to prove \autoref{thm:power_inequ}.
+We refer to the left hand side of the inequality, $a^{2\alpha}-c^{2\alpha}-\br{a^2-2rab+b^2}^\alpha+\br{c^2-2scb+b^2}^\alpha $, as LHS. By RHS we, of course, mean the right hand side, $8 \alpha 2^{-2\alpha} b \max(ra - sc, |a-c|)^{2\alpha-1}$.
+
+For $\max(ra - sc, |a-c|)=0$ we have $a=c$ and $r\leq s$. Thus, LHS $\leq 0$. If $\max(ra - sc, |a-c|)>0$, LHS and RHS are continuous in all parameters. Thus, it is enough to show the inequality on a dense set. In particular, we can and will ignore certain special cases in the following which might introduce technical problems, e.g., "$0^0$".
+
+We have to distinguish the cases $|a-c|=\max(ra - sc, |a-c|)$ and $ra - sc=\max(ra - sc, |a-c|)$. We further distinguish $a\geq c$ and $c \geq a$.
+%
+\begin{lemma}[$ra - sc$ vs $|a-c|$]\label{lmm:srbound}
+	Let $a,b,c\geq0$, $r,s\in[-1,1]$, and $\alpha\in[\frac12, 1]$.
+	Then
+	\begin{align*}
+		&ra - sc \geq a-c
+		\quad\Leftrightarrow\quad 
+		s 
+		\leq
+		(r-1) \frac ac+1
+		\quad\Leftrightarrow\quad 
+		r \geq 
+		(s-1)\frac ca +1
+		\eqcm
+\\
+		&ra - sc \geq c-a
+		\quad\Leftrightarrow\quad 
+		s 
+		\leq
+		(r+1) \frac ac -1
+		\quad\Leftrightarrow\quad 
+		r \geq 
+		(s+1)\frac ca -1
+		\eqfs
+	\end{align*}
+\end{lemma}
+\begin{proof}
+It holds
+	\begin{align*}
+	&
+		ra - sc \geq a-c
+		\quad\Leftrightarrow\quad
+		ra - a+c \geq sc
+		\quad\Leftrightarrow\quad
+		\frac{a(r-1)+c}{c} \geq s
+\eqcm\\&
+		ra - sc \geq c-a
+		\quad\Leftrightarrow\quad
+		ra - c+a \geq sc
+		\quad\Leftrightarrow\quad
+		\frac{a(r+1)-c}{c} \geq s
+\eqcm\\&
+		ra - sc \geq a-c
+	\quad	\Leftrightarrow\quad
+		ra \geq a-c+sc
+		\quad\Leftrightarrow\quad
+		r \geq (s-1)\frac ca +1
+\eqcm\\&
+		ra - sc \geq c-a
+		\quad\Leftrightarrow\quad
+		ra  \geq c-a+sc
+		\quad\Leftrightarrow\quad
+		r \geq (s+1)\frac ca -1
+\eqfs
+	\end{align*}
+\end{proof}
+%
+%
+%
+%
+\subsubsection{The Case $|a-c| \leq ra-sc$}
+%
+Consider the case $ra-sc \geq |a-c|$. The next lemma shows convexity in $r$ of the function "LHS minus RHS". This means, we only have to check values of $r$ on the border of its domain.
+%
+\begin{lemma}[Convexity in $r$]\label{lmm:ddr}
+	Let $a,b,c\geq0$, $s,r\in[-1,1]$, $\alpha\in[\frac12,1]$.
+	Assume $ra - sc \geq 0$.
+	Define 
+	\begin{align*}
+		F(r,s) 
+		:= 
+		&\,a^{2\alpha}-c^{2\alpha}-\br{a^2-2rab+b^2}^\alpha+\br{c^2-2scb+b^2}^\alpha 
+		\\&-
+		8 \alpha 2^{-2\alpha} b (ra - sc)^{2\alpha-1}
+		\eqfs
+	\end{align*}
+	Then
+	\begin{equation*}
+		\partial_r^2 F(r,s) \geq 0
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+Note, neither $\partial_s^2 F(r,s) \geq 0$ nor $\partial_s^2 F(r,s) \leq 0$ for all $a,b,c,s,r$.
+%
+\begin{proof}
+	Define
+	\begin{equation*}
+		\ell(r,s) := a^{2\alpha}-c^{2\alpha}-\br{a^2-2rab+b^2}^\alpha+\br{c^2-2scb+b^2}^\alpha 
+		\eqfs
+	\end{equation*}
+	It holds
+	\begin{align*}
+		\partial_r \ell(r,s) &= 2ab\alpha\br{a^2-2rab+b^2}^{\alpha-1}\eqfs
+	\end{align*}
+	Define $h(r,s) := 8 \alpha 2^{-2\alpha} b \br{ra - sc}^{2\alpha-1}$. It holds
+	\begin{align*}
+		\partial_r h(r,s) &= 8 \alpha (2\alpha-1) 2^{-2\alpha} b a \br{ra - sc}^{2\alpha-2}\eqfs
+	\end{align*}
+	It holds $F(r,s) = \ell(r,s)-h(r,s)$.
+	It holds
+	\begin{align*}
+		f(r) :=	 \frac{	\partial_r \ell(r,s)-\partial_r h(r,s)}{2ab\alpha} &= \br{a^2-2rab+b^2}^{\alpha-1} - (2\alpha-1) \br{\frac{ra - sc}{2}}^{2\alpha-2}
+	\end{align*}
+	and 
+	\begin{align*}
+		\partial_r f(r) 
+		&= 
+		-2ab(\alpha-1) \br{a^2-2rab+b^2}^{\alpha-2} 
+		- \frac12 a(2\alpha-1)(2\alpha-2) \br{\frac{ra - sc}{2}}^{2\alpha-3} 
+		\eqfs
+	\end{align*}
+	It holds $2ab \br{a^2-2rab+b^2}^{\alpha-2} \geq 0$ and $(\alpha-1) \leq 0$. Thus,
+	\begin{equation*}
+		-2ab(\alpha-1) \br{a^2-2rab+b^2}^{\alpha-2} \geq 0\eqfs
+	\end{equation*}
+	It holds $\frac12 a(2\alpha-1) \br{\frac{ra - sc}{2}}^{2\alpha-3} \geq 0$ and  $(2\alpha-2)\leq 0$. Thus, $-\frac12 a(2\alpha-1)(2\alpha-2) \br{\frac{ra - sc}{2}}^{2\alpha-3} \geq 0$. Hence,	$\partial_r f(r) \geq 0$. Hence, $\partial_r^2 F(r,s) \geq 0$.
+\end{proof}
+%
+%
+%
+%
+%
+\subsubsection{The Case $|a-c| \geq ra-sc$}\label{ssec:acgreasc}
+%
+In the case $|a-c| \geq ra-sc$, the RHS does not depend on $s$ or $r$. Thus, we maximize the LHS with respect to $r$ and $s$ and only need to show the inequality for this maximized term.
+
+Define
+\begin{equation*}
+	\ell(r,s) := a^{2\alpha}-c^{2\alpha}-\br{a^2-2rab+b^2}^\alpha+\br{c^2-2scb+b^2}^\alpha 
+	\eqfs
+\end{equation*}
+It holds
+\begin{equation*}
+	\max_{s\geq s_0, r\leq r_0} \ell(r,s) = \ell(r_0,s_0)
+	\eqfs
+\end{equation*}
+Distinguish the two cases $a\geq c$ and $a\leq c$.\\
+\underline{Case 1: $a\geq c$.} For fixed $r\in[-1,1]$, set $s = s_{\ms{min}}(r) = (r-1) \frac ac+1$, cf \autoref{lmm:srbound}. Define
+\begin{align*}
+	f(r) &:= \ell(r,s_{\ms{min}}(r)) 
+	\\&= a^{2\alpha}-c^{2\alpha}-\br{a^2-2rab+b^2}^\alpha+\br{c^2-2rab+2ab-2cb+b^2}^\alpha
+	\eqfs
+\end{align*}
+Then
+\begin{equation*}
+	\frac{f\pr(r)}{2ab\alpha} = \br{a^2-2rab+b^2}^{\alpha-1} - \br{c^2-2rab+2ab-2cb+b^2}^{\alpha-1}
+	\eqfs
+\end{equation*}
+\underline{Case 1.1: $a^2 \leq c^2+2ab-2cb$.} Then
+\begin{align*}
+	a^2-2rab+b^2 &\leq c^2-2rab+2ab-2cb+b^2\eqcm\\
+	\br{a^2-2rab+b^2}^{\alpha-1} &\geq \br{c^2-2rab+2ab-2cb+b^2}^{\alpha-1}
+	\eqfs
+\end{align*}
+Thus, $f\pr(r)\geq0$. In this case, we need to show
+\begin{equation*}
+	a^{2\alpha}-c^{2\alpha}-|a-b|^{2\alpha}+|c-b|^{2\alpha} = f(1) \leq 8\alpha 2^{-2\alpha} b (a-c)^{2\alpha-1}
+	\eqfs
+\end{equation*}
+\underline{Case 1.2: $a^2 \geq c^2+2ab-2cb$.} Then
+\begin{align*}
+	a^2-2rab+b^2 &\geq c^2-2rab+2ab-2cb+b^2\eqcm\\
+	\br{a^2-2rab+b^2}^{\alpha-1} &\leq \br{c^2-2rab+2ab-2cb+b^2}^{\alpha-1}\eqfs
+\end{align*}
+Thus, $f\pr(r)\leq0$. The relevant values are $r = r_{\ms{min}} = 1-2\frac ca$, with $s = s_{\ms{min}}(r) = -1$. In this case, we need to show
+\begin{equation*}
+	a^{2\alpha}-c^{2\alpha}-\br{(a-b)^2+4cb}^{\alpha}+(c+b)^{2\alpha} = f(r_{\ms{min}}) \leq 8\alpha 2^{-2\alpha} b (a-c)^{2\alpha-1}
+	\eqfs
+\end{equation*}
+\underline{Case 2: $a\leq c$.}  For fixed $r\in[-1,1]$, set $s = s_{\ms{min}}(r) = (r+1) \frac ac-1$. Define
+\begin{align*}
+	f(r) &:= \ell(r,s_{\ms{min}}(r)) 
+	\\&= a^{2\alpha}-c^{2\alpha}-\br{a^2-2rab+b^2}^\alpha+\br{c^2-2rab-2ab+2cb+b^2}^\alpha
+	\eqfs
+\end{align*}
+Then 
+\begin{equation*}
+	\frac{f\pr(r)}{2ab\alpha} = 
+	\br{a^2-2rab+b^2}^{\alpha-1} - \br{c^2-2rab-2ab+2cb+b^2}^{\alpha-1}
+	\eqfs
+\end{equation*}
+\underline{Case 2.1: $a^2 \leq c^2-2ab+2cb$.} Then
+\begin{align*}
+	a^2-2rab+b^2 &\leq c^2-2rab-2ab+2cb+b^2\eqcm\\
+	\br{a^2-2rab+b^2}^{\alpha-1} &\geq \br{c^2-2rab-2ab+2cb+b^2}^{\alpha-1}\eqfs
+\end{align*}
+Thus, $f\pr(r)\geq0$. The critical value is $r = r_{\ms{max}} = 1$, with $s = s_{\ms{min}}(r) = 2\frac ac-1$. In this case, we need to show
+\begin{equation*}
+	a^{2\alpha}-c^{2\alpha}-|a-b|^{2\alpha}+\br{(c+b)^2-4ab}^{\alpha} = f(1) \leq 8\alpha 2^{-2\alpha} b (c-a)^{2\alpha-1}
+	\eqfs
+\end{equation*}
+\underline{Case 2.2: $a^2 \geq c^2-2ab+2cb$.} This cannot happen for $a\leq c$.
+%
+\begin{remark}
+Assume $a\geq c$. Then
+\begin{align*}
+	a^2 \geq c^2+2ab-2cb
+	\quad\Leftrightarrow\quad
+	a^2-c^2 \geq 2b(a-c)
+	\quad\Leftrightarrow\quad
+	a+c \geq 2b
+	\eqfs
+\end{align*}
+\end{remark}
+%
+%
+\subsubsection{Outline}
+%
+\begin{remark}[What we need to show]\label{rmk:outline}
+	Define
+	\begin{align*}
+		F(r,s) 
+		:= 
+		&a^{2\alpha}-c^{2\alpha}-\br{a^2-2rab+b^2}^\alpha+\br{c^2-2scb+b^2}^\alpha 
+		\\&-
+		8 \alpha 2^{-2\alpha} b (ra - sc)^{2\alpha-1}
+		\eqfs
+	\end{align*}
+	\begin{enumerate}[label=(\roman*)]
+	\item 
+		For the case $a\geq c$, we need $F(1,s) \leq 0$ for all $s\in[-1,1]$ (cf \autoref{lmm:ddr}, includes  case 1.1 of section \ref{ssec:acgreasc}) and $F(1-2\frac ca, -1) \leq 0$ (case 1.2 of section \ref{ssec:acgreasc}).
+		Note $r= 1-2\frac ca, s=-1$ means $ra-sc = a-c$.
+	\item	
+		For the case $a \leq c$, we need $F(1,s) \leq 0$ for all $s\in[-1,2\frac ac-1]$  (cf \autoref{lmm:ddr}, includes case 2.1 of section \ref{ssec:acgreasc}).
+		Note $r= 1, s=2\frac ac-1$ means $ra-sc = c-a$.
+	\end{enumerate}
+	The part $F(1-2\frac ca, -1) \leq 0$ for $a\geq c$ is discussed in section \ref{ssec:rascleqac}.
+	The different case for $F(1,s) \leq 0$ ($a\leq c$ and $a\geq c$) are covered in the following way:
+	\begin{enumerate}[label=(\alph*)]
+	\item 
+	$b \geq 2sc$: \autoref{lmm:rascMergingLemma} (Merging Lemma) + \autoref{lmm:tightpowerbound} (Tight Power Bound)
+	\item
+	$b \leq 2sc$ and $sc \leq a-b$: \autoref{lmm:merging:asc} (Merging Lemma) + \autoref{lmm:tightpowerbound} (Tight Power Bound)
+	\item
+	$b \leq 2sc$ and $sc \geq a-b$ and $a \geq c$: \autoref{lmm:rascgeqacandageqc} 
+	\item 
+	$b \leq 2sc$ and $sc \geq a-b$ and $a \leq c$, $sc \leq 2a-c$ and $b \leq 2a-2sc$: \autoref{lmm:bleqasc}
+	\item
+	$b \leq 2sc$ and $sc \geq a-b$ and $a \leq c$, $sc \leq 2a-c$ and $b \geq 2a-2sc$ and $a \leq b$ : \autoref{lmm:bgeqascandaleqb}
+	\item
+	$b \leq 2sc$ and $sc \geq a-b$ and $a \leq c$, $sc \leq 2a-c$ and $b \geq 2a-2sc$ and $a \geq b$ : \autoref{lmm:bgeqascandageqb}
+	\end{enumerate}
+\end{remark}
+%
+The proofs consist of distinguishing many different cases and applying simple analysis methods in each case.
+Nonetheless, finding the poofs is often quite hard, as the inequalities are usually very tight and the right steps necessary for the proof are hard to guess. 
+
+As intermediate steps we can, in some cases, use two lemmas: the Tight Power Bound, see section \ref{ssec:tightpowerbound}, and the Merging Lemma, see \ref{ssec:merginglemma}.
+The remaining cases that cannot be solved via Tight Power Bound and Merging Lemma will be discussed in sections \ref{ssec:rascgeqac} and \ref{ssec:rascleqac}.
+%
+%
+%
+\subsection{Tight Power Bound}\label{ssec:tightpowerbound}
+%
+Following lemma gives one very useful inequality in three different forms. It gives a hint to why the power $\dots^{2\alpha-1}$ comes up in the RHS of \autoref{con:ana}.
+%
+\begin{lemma}[Tight Power Bound]\label{lmm:tightpowerbound}
+	Let $x,y\geq0$.
+	\begin{enumerate}[label=\environmentEnumerateLabel]
+	\item 
+		If  $a\in[1,2]$, $x\geq y$, then
+		\begin{equation*}
+			2^a x^{a-1}y \quad\leq\quad (x+y)^a-(x-y)^a \quad\leq\quad 2a x^{a-1}y \eqfs
+		\end{equation*}
+	\item 
+		If  $a\in[1,2]$, then
+		\begin{equation*}
+			(x+y)^a-|x-y|^a \quad\leq\quad 2a\min(xy^{a-1},x^{a-1}y)\eqfs
+		\end{equation*}
+	\item 
+		If  $a\in[1,2]$, $x\geq y$, then
+		\begin{equation*}
+			(x+y)^{a-1} (x-y) \quad\leq\quad x^a - y^a \quad\leq\quad a (x-y) \br{\frac{x+y}{2}}^{a-1}
+			\eqfs
+		\end{equation*}
+	\end{enumerate}
+\end{lemma}
+%
+Note that this result is slightly stronger than the application of the mean value theorem to the function $x \mapsto x^a$, which yields $x^a - y^a \leq a (x-y) z^{a-1}$ for all $x \geq y \geq 0$ and $a > 0$, where $z \in [y,x]$.
+%
+\begin{proof}
+	Assume $x\geq y$.
+	Set $z = \frac yx \in[0,1]$. Define
+	\begin{equation*}
+		f(z) = \frac{(1+z)^a-(1-z)^a}{z}
+		\eqfs
+	\end{equation*}
+	If we can show $f(z) \leq 2a$, then
+	\begin{align*}
+		&&(1+z)^a-(1-z)^a &\leq 2a z\\
+		\Rightarrow && (x+zx)^a-(x-zx)^a &\leq 2a x^a z\\
+		\Rightarrow && (x+y)^a-(x-y)^a &\leq 2a x^{a-1} y
+		\eqfs
+	\end{align*}
+	It holds 
+	\begin{equation*}
+		f\pr(z) = \frac {g(z)}{z^2}
+		\eqcm
+	\end{equation*}
+	where
+	\begin{equation*}
+		g(z) = az \br{(1+z)^{a-1}+(1-z)^{a-1}}-\br{(1+z)^{a}-(1-z)^{a}}
+		\eqfs
+	\end{equation*}
+	It holds
+	\begin{equation*}
+		g\pr(z) = az(a-1)\br{(1+z)^{a-2}-(1-z)^{a-2}} \leq 0\eqfs
+	\end{equation*}
+	Thus, $g(z)\leq g(0) = 0$.
+	Thus, $f\pr(z)\leq0$.
+	Thus, for all $z_0 \in [0,1]$,
+	\begin{equation*}
+		f(z_0) 
+		\leq 
+		\lim_{z\searrow 0}f(z) 
+		\stackrel{\ms{L'H}}{=} 
+		\lim_{z\searrow 0}\frac{a(1+z)^{a-1}+a(1-z)^{a-1}}{1} 
+		= 
+		2a
+		\eqcm
+	\end{equation*}
+	where $\ms{L'H}$ indicates the use of L'Hospital's rule. 
+	Furthermore, $f(z_0) \geq f(1) = 2^a$, which implies the lower bound. 
+	This finishes the proof for (i). The other parts follow immediately.
+\end{proof}
+%
+%
+%
+\subsection{Merging Lemma}\label{ssec:merginglemma}
+%
+In many cases (i.e., with additional assumption on $a,b,c,r$ or $s$), we prove the inequality of \autoref{con:ana} by applying first a merging lemma to the LHS to reduce the four summands to two summands of a specific form. Then we apply the Tight Power Bound. The Merging Lemma is discussed in this section.
+%
+\subsubsection{Simple Merging Lemma}
+%
+\begin{lemma}[Simple Merging Lemma]\label{lmm:merging:simple}
+	Let $\alpha\in[\frac12,1]$, $b\geq0$, $a,c\in\R$.
+	Then
+	\begin{equation*}
+		|a|^{2\alpha}-|c|^{2\alpha}-|a-b|^{2\alpha}+|c-b|^{2\alpha} \leq 
+		2^{1-2\alpha} \bigg(
+							(a-c + b)^{2\alpha}  -  |a-c - b|^{2\alpha}
+						\bigg) \indOf{a-c>0}
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof}
+	For $\tilde \alpha\geq 1$, the function $\R\to\R,\, x\mapsto |x|^{\tilde\alpha}-|x-1|^{\tilde\alpha}$ is increasing.
+	It holds $2\alpha\geq1$. Thus, if $a\leq c$, then
+	\begin{equation*}
+		|a|^{2\alpha}-|a-b|^{2\alpha}\leq |c|^{2\alpha}-|c-b|^{2\alpha} 
+		\eqfs
+	\end{equation*}
+	This shows the inequality for the case $a\leq c$.
+	
+	Set $q:= a-b$ and define
+	\begin{equation*}
+		g(b) :=  |q+b|^{2\alpha}-|c|^{2\alpha}-|q|^{2\alpha}+|c-b|^{2\alpha} - 2\br{\br{\frac{q-c}{2}+b}^{2\alpha}-\br{\frac{q-c}{2}}^{2\alpha}}
+		\eqfs
+	\end{equation*}
+	It holds $g(0)=0$
+	and
+	\begin{equation*}
+		\frac{g\pr(b)}{2\alpha} = \sgn(q+b)|q+b|^{2\alpha-1}-\sgn(c-b)|c-b|^{2\alpha-1} -
+						2\br{\frac{q-c}{2}+b}^{2\alpha-1}
+		\eqfs
+	\end{equation*}
+	\underline{Case 1: $\sgn(q+b) = +1$, $\sgn(c-b)=+1$}:
+		\begin{equation*}
+			\frac{g\pr(b)}{2\alpha} = (q+b)^{2\alpha-1}-(c-b)^{2\alpha-1} -
+							2\br{\frac{q-c}{2}+b}^{2\alpha-1}
+			\eqcm
+		\end{equation*}
+		\begin{equation*}
+			(q+b)^{2\alpha-1}-(c-b)^{2\alpha-1} \leq \br{q+b-(c-b)}^{2\alpha-1}\leq 2\br{\frac{q-c}{2}+b}^{2\alpha-1}
+			\eqfs
+		\end{equation*}
+	\underline{Case 2: $\sgn(q+b) = -1$, $\sgn(c-b)=-1$}:
+		\begin{equation*}
+			\frac{g\pr(b)}{2\alpha} = (b-c)^{2\alpha-1}-(-q-b)^{2\alpha-1}
+							-2\br{\frac{q-c}{2}+b}^{2\alpha-1}
+			\eqcm
+		\end{equation*}
+		\begin{equation*}
+			(b-c)^{2\alpha-1}-(-q-b)^{2\alpha-1} \leq \br{b-c-(-q-b)}^{2\alpha-1}\leq 2\br{\frac{q-c}{2}+b}^{2\alpha-1}
+			\eqfs
+		\end{equation*}
+	\underline{Case 3: $\sgn(q+b) = +1$, $\sgn(c-b)=-1$}:
+		\begin{equation*}
+			\frac{g\pr(b)}{2\alpha} = (q+b)^{2\alpha-1}+(b-c)^{2\alpha-1} -
+									2\br{\frac{q-c}{2}+b}^{2\alpha-1}
+									\eqcm
+		\end{equation*}
+		\begin{equation*}
+			(q+b)^{2\alpha-1}+(b-c)^{2\alpha-1} \leq 2\br{\frac{q-c}{2}+b}^{2\alpha-1}
+			\eqfs
+		\end{equation*}
+	\underline{Case 4: $\sgn(q+b) = -1$, $\sgn(c-b)=+1$}:
+		\begin{equation*}
+			\frac{g\pr(b)}{2\alpha} = -(-q-b)^{2\alpha-1}-(c-b)^{2\alpha-1} -
+									2\br{\frac{q-c}{2}+b}^{2\alpha-1}
+									\eqcm
+		\end{equation*}
+		\begin{equation*}
+			-(-q-b)^{2\alpha-1}-(c-b)^{2\alpha-1} \leq 0
+			\eqfs
+		\end{equation*}
+	\underline{Together:}
+	In every case, we have $g\pr(b) \leq 0$ and $g(0)=0$. Thus, $g(b) \leq 0$.
+\end{proof}
+%
+%
+%
+\subsubsection{$ra-sc$--Merging Lemma}
+%
+\begin{lemma}
+	Let $\alpha\in[0,1]$.
+	\theoremContentInNewLine
+	\begin{enumerate}[label=\environmentEnumerateLabel]
+	\item 
+		Let $b,c\geq0$, $s\in[-1,1]$.
+		Assume $2sc \leq b$.
+		Then
+		\begin{equation*}
+			-c^{2\alpha}+(c^2 - 2 s c b+b^2)^\alpha \leq 
+			-|sc|^{2\alpha}+|sc-b|^{2\alpha}
+			\eqfs
+		\end{equation*}
+	\item
+		Let $a,b\geq0$, $r\in[-1,1]$.
+		Assume $2ra \geq b$.
+		Then
+		\begin{equation*}
+			a^{2\alpha}-(a^2 - 2 r a b+b^2)^\alpha \leq 
+			|ra|^{2\alpha}-|ra-b|^{2\alpha}
+			\eqfs
+		\end{equation*}
+	\end{enumerate}
+\end{lemma}
+%
+\begin{proof}
+	The function $t \mapsto (t+1)^\alpha-t^\alpha$, $t\geq0$ is non-increasing for all $\alpha\in[0,1]$.
+	It holds $0\leq s^2c^2\leq c^2$ and $x := -2 s c b+b^2 \geq 0$. Thus,
+	\begin{equation*}
+		\br{c^2+x}^\alpha-\br{c^2}^\alpha \leq \br{(sc)^2+x}^\alpha-\br{(sc)^2}^\alpha
+		\eqfs
+	\end{equation*}
+	Thus, 
+	\begin{equation*}
+		(c^2-2 s c b+b^2)^\alpha -c^{2\alpha}\leq |-sc+b|^{2\alpha}-|sc|^{2\alpha}
+		\eqfs
+	\end{equation*}
+	For the second part, set $x:=2rab-b^2$, $y := a^2-x\geq0$, $\tilde y := |ra|^2-x\geq 0$. The condition $2ra\geq b$ implies $x\geq 0$.
+	Thus, as before,
+	\begin{equation*}
+		a^{2\alpha}-(a^2 - 2 r a b+b^2)^\alpha 
+		=
+		(y+x)^\alpha-y^\alpha 
+		\leq 
+		(\tilde y+x)^\alpha-\tilde y^\alpha 
+		=
+		|ra|^{2\alpha}-|ra-b|^{2\alpha}
+		\eqfs
+	\end{equation*}
+\end{proof}
+%
+\begin{lemma}[$ra-sc$--Merging Lemma]\label{lmm:rascMergingLemma}
+	Let $\alpha\in[\frac12,1]$.
+	Let $a,b,c\geq0$, $r,s\in[-1,1]$.
+	\theoremContentInNewLine
+	\begin{enumerate}[label=\environmentEnumerateLabel]
+	\item 
+		Assume $2ra \geq b$, $s\in\cb{-1,1}$.
+		Then
+		\begin{align*}
+			&a^{2\alpha}-c^{2\alpha}-(a^2-2rab+b^2)^{\alpha} + (c^2 - 2 s c b + b^2)^\alpha
+			\\& \leq 2^{1-2\alpha} \bigg((ra - s c + b)^{2\alpha}-\abs{ra - s c - b}^{2\alpha}\bigg) \ind_{ra-sc>0}
+			\eqfs
+		\end{align*}	
+	\item 
+		Assume $b \geq 2sc$, $r\in\cb{-1,1}$.
+		Then
+		\begin{align*}
+			&a^{2\alpha}-c^{2\alpha}-(a^2-2rab+b^2)^{\alpha} + (c^2 - 2 s c b + b^2)^\alpha 
+			\\&\leq 2^{1-2\alpha} \bigg((ra - s c + b)^{2\alpha}-\abs{ra - s c - b}^{2\alpha}\bigg)\ind_{ra-sc>0}
+			\eqfs
+		\end{align*}	
+	\item 
+		Assume $2ra \geq b \geq 2sc$.
+		Then
+		\begin{align*}
+			&a^{2\alpha}-c^{2\alpha}-(a^2-2rab+b^2)^{\alpha} + (c^2 - 2 s c b + b^2)^\alpha 
+			\\&\leq 2^{1-2\alpha} \br{(ra - s c + b)^{2\alpha}-\abs{ra - s c - b}^{2\alpha}}\ind_{ra-sc>0}
+			\eqfs
+		\end{align*}	
+	\end{enumerate}
+\end{lemma}
+%
+\begin{proof}
+	The lemma above and the simple merging lemma imply
+	\begin{align*} 
+		&a^{2\alpha}-c^{2\alpha}-(a^2-2rab+b^2)^{\alpha} + (c^2 - 2 s c b + b^2)^\alpha 
+		\\&\leq 
+		(ra)^{2\alpha}-(sc)^{2\alpha}-(ra-b)^{2\alpha} + (sc-b)^{2\alpha}
+		\\&\leq 
+		2^{1-2\alpha} \br{(ra - s c + b)^{2\alpha}-\abs{ra - s c - b}^{2\alpha}}\ind_{ra-sc>0}
+		\eqfs
+	\end{align*}	
+\end{proof}
+%
+%\begin{lemma}
+%	Let $\alpha\in[0,1]$.
+%	\theoremContentInNewLine
+%	\begin{enumerate}[label=\environmentEnumerateLabel]
+%	\item 
+%		Let $b,c\geq0$, $s\in[-1,1]$.
+%		Then
+%		\begin{equation*}
+%			(c^2 - 2 s c b+b^2)^\alpha \leq 
+%			(c+b)^{2\alpha}
+%			\eqfs
+%		\end{equation*}
+%	\item
+%		Let $a,b\geq0$, $r\in[-1,1]$.
+%		Then
+%		\begin{equation*}
+%			-(a^2 - 2 r a b+b^2)^\alpha \leq 
+%			-|a-b|^{2\alpha}
+%			\eqfs
+%		\end{equation*}
+%	\end{enumerate}
+%\end{lemma}
+%%
+%\begin{proof}
+%	easy
+%\end{proof}
+%%
+%\begin{lemma}[$a+c$--Merging Lemma]
+%	Let $\alpha\in[\frac12,1]$.
+%	Let $a,b,c\geq0$, $r,s\in[-1,1]$.
+%	\theoremContentInNewLine
+%	\begin{enumerate}[label=\environmentEnumerateLabel]
+%	\item 
+%		Then
+%		\begin{equation*}
+%			a^{2\alpha}-c^{2\alpha}-(a^2-2rab+b^2)^{\alpha} + (c^2 - 2 s c b + b^2)^\alpha \leq 
+%			a^{2\alpha}-c^{2\alpha}-|a-b|^{2\alpha} + (c^2 - 2 s c b + b^2)^\alpha 
+%			\eqfs
+%		\end{equation*}
+%	\item
+%		Then
+%		\begin{equation*}
+%			a^{2\alpha}-c^{2\alpha}-(a^2-2rab+b^2)^{\alpha} + (c^2 - 2 s c b + b^2)^\alpha \leq 2^{1-2\alpha} \bigg((a + c + b)^{2\alpha}-\abs{a + c - b}^{2\alpha}\bigg)
+%			\eqfs
+%		\end{equation*}	
+%	\end{enumerate}
+%	
+%\end{lemma}
+%%
+%\begin{proof}
+%	Merging Lemma and lemma above.
+%\end{proof}
+%
+%
+%
+\subsubsection{$a-sc$--Merging Lemma}
+%
+\autoref{lmm:rascMergingLemma} covers the case $\frac12 b \geq sc$.
+The following lemma covers  $\frac12 b \leq sc$  under the additional restriction $sc \leq a-b$.
+%
+\begin{lemma}[$a-sc$--Merging Lemma]\label{lmm:merging:asc}
+	Let $\alpha\in[\frac12,1]$.
+	Let $a,b,c\geq0$, $s\in[-1,1]$.
+	Assume $\frac12 b \leq sc\leq a-b$.
+	Then
+	\begin{equation*}
+		a^{2\alpha}-c^{2\alpha}-(a-b)^{2\alpha}+(c^2 - 2 s c b + b^2)^\alpha \leq 2^{1-2\alpha} \bigg(
+			(a - s c + b)^{2\alpha}  -  (a - s c - b)^{2\alpha}
+		\bigg)
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof}
+	Set $\delta:=a-b$.
+	Define
+	\begin{align*}
+		f(\delta) 
+		= &\,(\delta+b)^{2\alpha}-c^{2\alpha}-\delta^{2\alpha}+(c^2 - 2 s c b + b^2)^\alpha -
+		\\&2 \br{
+					\br{\frac{\delta - s c}{2} + b}^{2\alpha}  -  \br{\frac{\delta - s c}{2}}^{2\alpha}
+				}
+		\eqfs
+	\end{align*}
+	Then
+	\begin{equation*}
+		\frac{f\pr(\delta)}{2\alpha} =
+		(\delta+b)^{2\alpha-1}-\delta^{2\alpha-1} 
+		- \br{\frac{\delta - s c}{2} + b}^{2\alpha-1}
+		+ \br{\frac{\delta - s c}{2}}^{2\alpha-1}
+		\eqfs
+	\end{equation*}
+	It holds
+	\begin{align*}
+		\delta+b &\geq  \delta\eqcm\\
+		\frac{\delta - s c}{2} &\leq  \frac{\delta - s c}{2} + b\eqcm\\
+		(\delta+b) + \frac{\delta - s c}{2} &= \delta +\br{\frac{\delta - s c}{2} + b}\eqfs
+	\end{align*}
+	Thus,
+	\begin{equation*}
+		(\delta+b)^{2\alpha-1}
+		+ \br{\frac{\delta - s c}{2}}^{2\alpha-1}
+		\leq
+		\delta^{2\alpha-1} 
+		+\br{\frac{\delta - s c}{2} + b}^{2\alpha-1}
+		\eqfs
+	\end{equation*}
+	Thus, $f\pr(\delta) \leq 0$.\\ 
+	The next lemma shows $f(sc) \leq 0$. Thus, $f(\delta) \leq 0$ for all $\delta \geq sc$.
+\end{proof}
+%
+\begin{lemma}
+	Let $x,a,b,c \geq 0$.
+	Assume $b \leq 2x$, $x+b \geq c$, $x\leq c$.
+	Then
+	\begin{equation*}
+		(x+b)^{2\alpha}+(c^2 - 2 x b + b^2)^\alpha \leq c^{2\alpha}+x^{2\alpha} + 2 b^{2\alpha} 
+		\eqfs
+	\end{equation*}	
+\end{lemma}
+%
+\begin{proof}
+	Define
+	\begin{align*}
+		g(x) &:=(x+b)^{2\alpha}+(c^2 - 2 x b + b^2)^\alpha - c^{2\alpha}-x^{2\alpha} - 2 b^{2\alpha} \eqcm
+		\\
+		h(x) &:= \frac{g\pr(x)}{2\alpha}
+		=
+		(x+b)^{2\alpha-1}-x^{2\alpha-1}-b(c^2 - 2 x b + b^2)^{\alpha -1}
+		\eqfs
+	\end{align*}
+	It holds
+	\begin{equation*}
+		h\pr(x)
+		=
+		(2\alpha-1)(x+b)^{2\alpha-2}-(2\alpha-1)x^{2\alpha-2}+2(\alpha -1) b^2(c^2 - 2 x b + b^2)^{\alpha -2}
+		\eqfs
+	\end{equation*}
+	As $2\alpha-2 \leq 0$ and $2\alpha-1 \geq 0, (2\alpha-1)(x+b)^{2\alpha-2}-(2\alpha-1)x^{2\alpha-2}\leq 0$.
+	As $\alpha-1\leq0$, $2(\alpha -1) b^2(c^2 - 2 x b + b^2)^{\alpha -2} \leq 0$.
+	Thus, $h\pr(x)\leq0$. \\
+	It holds $x\geq x_{\ms{min}} := \max(\frac b2, c-b)$. For checking $h(x_{\ms{min}}) \leq 0$ and $g(x_{\ms{min}}) \leq 0$, we distinguish $x_{\ms{min}} = c-b$ and $x_{\ms{min}} = \frac b2$.\\
+	\underline{Case 1, $c-b\leq\frac b2$:}\\
+	If $c-b\leq\frac b2$, then $c\leq \frac32 b \leq (1+\sqrt{3})b$, $c^2 -2cb-2b^2\leq0$, and
+	\begin{align*}
+		h\brOf{c-b} 
+		&= 
+		c^{2\alpha-1}-(c-b)^{2\alpha-1}-b(c^2 - 2 (c-b) b + b^2)^{\alpha -1}
+		\\&= 
+		c^{2\alpha-1}-(c-b)^{2\alpha-1}-b(c^2 - 2 c b - b^2)^{\alpha -1}
+		\\&\leq 
+		b^{2\alpha-1}-b(c^2 - 2 c b - b^2)^{\alpha -1}
+		\\&\leq 
+		b \br{\br{b^2}^{\alpha-1}-\br{c^2 - 2 c b - b^2}^{\alpha -1}}
+	\end{align*}
+	And, thus, $h\brOf{c-b}  \leq 0$ as $c^2 -2cb-2b^2\leq0$.
+	Furthermore,
+	\begin{align*}
+		g\brOf{c-b} 
+		&=
+		-(c-b)^{2\alpha}+(c^2 - 2 c b-b^2)^\alpha 
+		- 2 b^{2\alpha} 
+		\\&=
+		-(c-b)^{2\alpha}+(c^2 - 2 c b-2b^2+b^2)^\alpha 
+				- 2 b^{2\alpha} 
+		\\&\leq 
+		-(c-b)^{2\alpha}+b^{2\alpha }
+		- 2 b^{2\alpha} 
+		\\&=
+		-(c-b)^{2\alpha}
+		- b^{2\alpha} 
+		\\&\leq
+		0
+		\eqfs
+	\end{align*}
+	Thus, $g(x)\leq 0$ for all valid $x$.\\
+	\underline{Case 2, $c-b\geq\frac b2$:}\\
+	If $c-b\geq\frac b2$, then $c\geq b$ and
+	\begin{align*}
+		h\brOf{\frac b2} 
+		&= 
+		\br{\frac32 b}^{2\alpha-1}-\br{\frac12 b}^{2\alpha-1}-b(c^2)^{\alpha -1}
+		\\&\leq 
+		\br{\br{\frac32}^{2\alpha-1}-\br{\frac12}^{2\alpha-1}} b^{2\alpha-1}-b(c^2)^{\alpha -1}
+		\\&\leq 
+		b^{2\alpha-1}-b(c^2)^{\alpha -1}
+		\\&\leq 
+		b^{2\alpha-1}-b(b^2)^{\alpha -1}
+		\\&\leq
+		0\eqcm
+	\end{align*}
+	\begin{align*}
+		g\brOf{\frac b2} 
+		&=
+		\br{\frac32b}^{2\alpha}-c^{2\alpha}-\br{\frac12b}^{2\alpha}+c^{2\alpha}
+				- 2 b^{2\alpha} 
+		\\&\leq 
+		\br{\br{\frac94}^\alpha-\br{\frac12}^\alpha-2} b^{2\alpha}
+		\\&\leq 
+		0
+		\eqfs
+	\end{align*}
+	Thus, $g(x)\leq 0$ for all valid $x$.
+\end{proof}
+%
+%
+%
+%
+\subsection{Application of Tight Power Bound and Merging Lemma} \label{ssec:apply}
+%
+Whenever a Merging Lemma holds, we apply it as a first step and then use the Tight Power Bound, \autoref{lmm:tightpowerbound}, to obtain
+\begin{align*}
+	&a^{2\alpha}-c^{2\alpha}-(a^2-2rab+b^2)^{\alpha} + (c^2 - 2 s c b + b^2)^\alpha 
+	\\&\leq 
+	2^{1-2\alpha} \br{(ra - s c + b)^{2\alpha}-\abs{ra - s c - b}^{2\alpha}}
+	\\& \leq 
+	4\alpha 2^{1-2\alpha} (ra - s c)^{2\alpha-1} b
+	\eqfs
+\end{align*}	
+In particular, we have finished the proof of \autoref{con:ana} in following cases:
+\begin{itemize}
+\item $ra\geq sc$ and $s, r \in \cb{-1,1}$: \autoref{lmm:merging:simple},
+\item $2ra \geq b$ and $s\in\cb{-1,1}$; or $b \geq 2sc$ and $r\in\cb{-1,1}$; or  $2ra \geq b \geq 2sc$: \autoref{lmm:rascMergingLemma}, 
+\item $\frac12 b \leq sc\leq a-b$ and $r=1$: \autoref{lmm:merging:asc}.
+\end{itemize}
+%
+%
+%
+\subsection{The Case $ra-sc\geq |a-c|$} \label{ssec:rascgeqac}
+%
+\subsubsection{The Case $a\geq c$}
+%
+First we prove to simple lemmas, before we solve this case.
+%
+\begin{lemma}\label{lmm:f1}
+	Let $a\geq b\geq 0 $, $d \geq c \geq 0$, and $\alpha\in[0,1]$.
+	Then
+	\begin{equation*}
+		a^\alpha-b^\alpha-c^\alpha+d^\alpha \leq 2^{1-\alpha}(a-b-c+d)^{\alpha}
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof}
+	As $a\geq b$, $d\geq c$, $\alpha\leq 1$,
+	\begin{equation*}
+		a^\alpha-b^\alpha + d^\alpha-c^\alpha \leq (a-b)^\alpha + (d-c)^\alpha \eqfs
+	\end{equation*}
+	Furthermore, by concavity of $x \mapsto x^\alpha$,
+	\begin{equation*}
+		(a-b)^\alpha + (d-c)^\alpha
+		\leq
+		2^{1-\alpha}(a-b+d-c)^\alpha
+		\eqfs
+	\end{equation*}
+\end{proof}
+%
+\begin{lemma}\label{lmm:f2}
+	Let $a\geq b\geq c \geq d\geq 0$, $a+d\geq b+c$, and $\alpha\in[0,1]$.
+	Then
+	\begin{equation*}
+		a^\alpha-b^\alpha-c^\alpha+d^\alpha \leq (a-b-c+d)^{\alpha}
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof}
+	Define $f(x,y) = x^\alpha+y^\alpha-(x+y)^\alpha$ for $x,y\geq0$.
+	Then $\partial_xf(x,y) = \alpha(x^{\alpha-1}-(x+y)^{\alpha-1}) \geq 0$ and similarly $\partial_yf(x,y) \geq 0$.
+	Set $\delta := a-b$ and $\epsilon := c-d$. The assumptions ensure $\delta\geq\epsilon\geq0$.
+	Then, 
+	\begin{equation*}
+		f(b,\delta) \geq f(b,\epsilon) \geq f(d,\epsilon)
+		\eqfs
+	\end{equation*}
+	Thus,
+	\begin{align*}
+		0 
+		&\geq 
+		f(d,\epsilon) - f(b,\delta) 
+		\\&= 
+		d^\alpha+\epsilon^\alpha-(d+\epsilon)^\alpha
+		-b^\alpha-\delta^\alpha+(b+\delta)^\alpha
+		\\&=
+		d^\alpha+\epsilon^\alpha-c^\alpha
+		-b^\alpha-\delta^\alpha+a^\alpha
+		\eqfs
+	\end{align*}
+	With this we get
+	\begin{align*}
+		d^\alpha-c^\alpha-b^\alpha+a^\alpha
+		&\leq
+		\delta^\alpha-\epsilon^\alpha
+		\\&\leq 
+		(\delta-\epsilon)^\alpha
+		\\&=
+		(a-b-c+d)^\alpha
+		\eqfs
+	\end{align*}
+\end{proof}%
+%
+For $a\geq c$, the remaining case is solved by following lemma.
+%
+\begin{lemma}\label{lmm:rascgeqacandageqc}
+	Let $\alpha\in[0,1]$.
+	Let $a,b,c\geq0$, $s\in[-1,1]$.
+	Assume $\frac12 b \leq sc$, $sc \geq a-b$, and $a\geq c$.
+	Then
+	\begin{equation*}
+		a^{2\alpha}-c^{2\alpha}-(a-b)^{2\alpha}+(c^2 - 2 s c b + b^2)^\alpha 
+		\leq 
+		2 b^\alpha (a-sc)^{\alpha}
+		\leq 
+		2 b (a-sc)^{2\alpha-1}
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof}
+	Because $a \geq c$ and $\frac12 b \leq sc$, we have $a-b \geq a-2sc \geq a-2c \geq -c$. Hence, $a^2 \geq \max(c^2, (a-b)^2)$.
+	Thus, applying either \autoref{lmm:f1} (if $c^2 - 2 s c b + b^2$ is larger then either $c^2$ or $(a-b)^2$) or \autoref{lmm:f2} yields
+	\begin{align*}
+		&a^{2\alpha}-c^{2\alpha}-(a-b)^{2\alpha}+(c^2 - 2 s c b + b^2)^\alpha 
+		\\&\leq 
+		2^{1-\alpha}
+		\br{a^{2}-c^{2}-(a-b)^{2}+(c^2 - 2 s c b + b^2)}^\alpha 
+		\\&=
+		2 b^\alpha (a-sc)^{\alpha}
+		\eqfs
+	\end{align*}
+	The condition $0 \leq a-sc \leq b$ implies
+	\begin{equation*}
+		2 b^\alpha (a-sc)^{\alpha}
+		\leq 
+		2 b (a-sc)^{2\alpha-1}
+		\eqfs
+	\end{equation*}
+\end{proof}
+%
+%
+%
+\subsubsection{The Case $a\leq c$}
+%
+For the case $c\geq a$, we only need $ra - sc \geq c-a$	(for $r=1$), i.e., $sc \leq 2a - c$.
+Assume $c\geq a$, $sc \geq a-b$, $\frac12b \leq sc$, and $sc \leq 2a - c$.
+Then 
+\begin{align*}
+	c^2 &\geq c^2-2scb+b^2 \geq (a-b)^2\\
+	c^2 &\geq a^2 \geq (a-b)^2
+\end{align*}
+We distinguish $\frac12 b \leq a-sc$ and $\frac12 b \geq a-sc$.
+%
+\begin{lemma}[$\frac12 b\leq a-sc$]\label{lmm:bleqasc}
+	Let $\alpha\in[0,1]$.
+	Let $a,b,c\geq0$, $s\in[-1,1]$.
+	Assume $\frac12 b \leq sc$, $sc \geq a-b$, $c\geq a$, $sc \leq 2a - c$, and $\frac12 b\leq a-sc$.
+	Then
+	\begin{equation*}
+		a^{2\alpha}-c^{2\alpha}-(a-b)^{2\alpha}+(c^2 - 2 s c b + b^2)^\alpha 
+		\leq  
+		2 b^\alpha (a-sc)^{\alpha}
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof}
+	The conditions imply
+	\begin{equation*}
+		\max\brOf{\frac 12 b,\, a-b} \leq sc \leq \min\brOf{a-\frac12b,\, 2a-c}
+		\eqfs
+	\end{equation*}
+	In particular, $\frac 12 b \leq a-\frac12b$, and $a-b \leq 2a-c$. Thus, $a+b \geq c \geq a \geq b$.
+	
+	Fix $a,b,c \geq 0$.
+	Assume $c \geq a$. Let $x \in[0,a)$. Then $a-x>0$ and $c^2 - 2 x b + b^2 >0$.
+	Define 
+	\begin{equation*}
+		f(x) := a^{2\alpha}-c^{2\alpha}-(a-b)^{2\alpha}+(c^2 - 2 x b + b^2)^\alpha  - 2 b^\alpha (a-x)^{\alpha}
+		\eqfs
+	\end{equation*}
+	It holds
+	\begin{equation*}
+		\frac{f\pr(x) }{2 \alpha b} = -(c^2 - 2 x b + b^2)^{\alpha-1}  + b^{\alpha-1} (a-x)^{\alpha-1}
+		\eqfs
+	\end{equation*}
+	Furthermore,
+	\begin{align*}
+		&a-c\leq 0 \leq (c-b)^2
+		\\\Rightarrow\qquad&
+		2ab-2cb \leq 0 \leq c^2+b^2-2cb
+		\\\Rightarrow\qquad&
+		xb \leq 2ab-cb \leq c^2+b^2-cb \leq c^2+b^2 -ab
+		\\\Rightarrow\qquad&
+		ab -xb \leq c^2-2xb + b^2
+		\\\Rightarrow\qquad&
+		b^{\alpha-1} (a-x)^{\alpha-1} \geq (c^2 - 2 x b + b^2)^{\alpha-1}
+		\\\Rightarrow\qquad&
+		f\pr(x) \geq 0\eqfs
+	\end{align*}
+	We define
+	\begin{equation*}
+		g(c) := f(a-\frac12b) = a^{2\alpha}-c^{2\alpha}-(a-b)^{2\alpha}+(c^2 - 2 a b + 2 b^2)^\alpha  - 2^{1-\alpha} b^{2\alpha}
+		\eqfs
+	\end{equation*}
+	Thus,
+	\begin{equation*}
+		\frac{g\pr(c)}{2\alpha c} = -c^{2\alpha-2}+\br{c^2 - 2 a b + 2 b^2}^{\alpha-1} \geq 0
+		\eqfs
+	\end{equation*}
+	Define
+	\begin{align*}
+		h (a,b) &:= 
+		g(a+b) 
+		\\&= 
+		a^{2\alpha}-(a+b)^{2\alpha}-(a-b)^{2\alpha}+(a^2  + 3 b^2)^\alpha  - 2^{1-\alpha} b^{2\alpha}
+		\\&=
+		a^{2\alpha}-(a+b)^{2\alpha}-(a-b)^{2\alpha}+(a^2  + 3 b^2)^\alpha  - 2\br{\frac{b^2}{2}}^{\alpha}
+		\eqfs
+	\end{align*}
+	The next lemma shows $h(a,b) \leq 0$ for $a\geq b$. Thus, $g(c) \leq 0$. Thus, $f(x) \leq 0$.
+\end{proof}
+%
+\begin{lemma}
+	Let $\alpha\in[0, 1]$, $a,b\geq0$. Assume $a\geq b$.
+	Then
+	\begin{equation*}
+		a^{2\alpha}+(a^2  + 3 b^2)^\alpha \leq (a+b)^{2\alpha} + (a-b)^{2\alpha} + 2\br{\frac{b^2}{2}}^{\alpha}
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof}
+	Set $x =\frac{b}{a} \in [0,1]$. Define
+	\begin{equation*}
+		f(\alpha,x) = 1+\br{1+3x^2}^\alpha-\br{1+x}^{2\alpha}-\br{1-x}^{2\alpha}-2\br{\frac{x^2}2}^\alpha
+		\eqfs
+	\end{equation*}
+	It holds
+	\begin{align*}
+		\frac{\partial_\alpha f(\alpha, x)}{\alpha} &= \br{1+3x^2}^\alpha \log\brOf{1+3x^2}-\br{1+x}^{2\alpha}\log\brOf{(1+x)^2}
+		\\&\hphantom{=}
+		-\br{1-x}^{2\alpha}\log\brOf{(1-x)^2}-2\br{\frac{x^2}2}^\alpha\log\brOf{\frac{x^2}2}
+		\\&=:g(x,\alpha)\eqcm
+	\end{align*}
+	\begin{align*}
+		\frac{\partial_\alpha g(\alpha, x)}{\alpha} &=
+		\br{1+3x^2}^\alpha \log\brOf{1+3x^2}^2-\br{1+x}^{2\alpha}\log\brOf{(1+x)^2}^2
+		\\&\hphantom{=}
+		-\br{1-x}^{2\alpha}\log\brOf{(1-x)^2}^2-2\br{\frac{x^2}2}^\alpha\log\brOf{\frac{x^2}2}^2
+		\\&\leq
+		\br{1+3x^2}^\alpha \log\brOf{1+3x^2}^2-\br{1+x}^{2\alpha}\log\brOf{(1+x)^2}^2
+		\\&=:h(x,\alpha)
+		\eqfs
+	\end{align*}
+	For $x\in[0,1]$, it holds $1+3x^2 \leq (1+x)^2$. Thus,
+	\begin{equation*}
+		\br{\frac{1+3x^2}{(1+x)^2}}^\alpha \leq 1 \leq \br{\frac{\log\brOf{(1+x)^2}}{\log\brOf{1+3x^2}}}^2
+		\eqfs
+	\end{equation*}
+	Thus,
+	\begin{equation*}
+		\br{1+3x^2}^\alpha \log\brOf{1+3x^2}^2 \leq \br{1+x}^{2\alpha}\log\brOf{(1+x)^2}^2
+	\end{equation*}
+	Thus, $h(x,\alpha) \leq 0$ and $\partial_\alpha g(\alpha,x) \leq 0$. Thus, $g(\alpha,x) \geq g(1,x)$ and
+	\begin{align*}
+		g(1,x) &= 
+		\br{1+3x^2} \log\brOf{1+3x^2}-\br{1+x}^{2}\log\brOf{(1+x)^2}
+		\\&\hphantom{=}
+		-\br{1-x}^{2}\log\brOf{(1-x)^2}-2\br{\frac{x^2}2}\log\brOf{\frac{x^2}2}
+		\\&=:\ell(x)
+		\eqfs
+	\end{align*}
+	The next lemma shows $\ell(x) \geq 0$.
+	Thus, $g(\alpha,x) \geq g(1,x) \geq 0$. Thus $\partial_\alpha f(\alpha,x) \geq 0$. Thus, $f(\alpha,x) \leq f(1,x)$ and
+	\begin{equation*}
+		f(1,x) = 1+\br{1+3x^2}-\br{1+x}^{2}-\br{1-x}^{2}-2\br{\frac{x^2}2} = 0
+		\eqfs
+	\end{equation*}
+	Thus, $f(\alpha, x) \leq 0$.
+\end{proof}
+%
+\begin{lemma}
+	Let $x \in \R$.
+	Define
+	\begin{align*}
+		f(x) &:= \br{1+3x^2} \log\brOf{1+3x^2}-\br{1+x}^{2}\log\brOf{(1+x)^2}
+				\\&\hphantom{=}-\br{1-x}^{2}\log\brOf{(1-x)^2}-x^2\log\brOf{\frac{x^2}2}
+				\eqfs
+	\end{align*}
+	Then
+	\begin{equation*}
+		f(x) \geq 0
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof}
+	Let us first calculate some derivatives:
+	\begin{align*}
+		f(x) &= x^2 \log\brOf{\frac{2\br{1+3x^2}^3}{x^2\br{1-x^2}^2}} - 4 x \log\brOf{\frac{1+x}{1-x}} + \log\brOf{\frac{1+3x^2}{\br{1-x^2}^2}}
+		\eqcm
+		\\
+		f\pr(x) &= 2 x \log\brOf{\frac{2\br{1+3x^2}^3}{x^2\br{1-x^2}^2}} - 4 \log\brOf{\frac{1+x}{1-x}}\eqcm
+		\\
+		f\prr(x) &= 2 \log\brOf{\frac{2\br{1+3x^2}^3}{x^2\br{1-x^2}^2}} - \frac{12}{1+3x^2}\eqcm
+		\\
+		f\prrr(x) &= \frac{4\br{9x^4+24x^2-1}}{x(1-x)(1+x)\br{3x^2+1}^2}\eqcm
+		\\
+		f^{(4)}(x) &= \frac{4\br{81x^8+324x^6-186x^4+36x^2+1}}{x^2\br{1-x^2}^2\br{3x^2+1}^3}
+		\eqfs
+	\end{align*}
+	We consider the cases $x \in [0,\frac1{10}]$ and  $x \in [\frac1{10},1]$ separately, and start with the latter.
+	For $x_0 \in (0,1)$, define
+	\begin{equation*}
+		g_{x_0}(x) := f(x_0) + f\pr(x_0)\br{x-x_0} + \frac12f\prr(x_0)\br{x-x_0}^2 + \frac16f\prrr(x_0)\br{x-x_0}^3
+		\eqfs
+	\end{equation*}
+	Then the Taylor-Expansion for $x\in(0,1)$ is
+	\begin{equation*}
+		f(x) = g_{x_0}(x) + \frac{1}{24} f^{(4)}(\xi(x,x_0)) \br{x-x_0}^4
+		\eqcm
+	\end{equation*}
+	with suitable $\xi(x,x_0)$.
+	One can show that $81x^4+324x^3-186x^2+36x^1+1 > 0$ for all $x\geq 0$. In particular, $f^{(4)}(x) \geq 0$ for $x \in[0,1]$.
+	Thus,
+	\begin{equation*}
+		f(x) \geq  g_{x_0}(x)
+		\eqfs
+	\end{equation*}
+	We use $x_0 = \frac13$:
+	\begin{align*}
+		f\brOf{\frac13} &= \frac{10}{3} \log(3) - \frac{47}{9}\log(2)\eqcm
+		\\
+		f\pr\brOf{\frac13} &= 2\log(3) - \frac{10}{3}\log(2)\eqcm
+		\\
+		f\prr\brOf{\frac13} &= -9+2\log(2)+6\log(3)\eqcm
+		\\
+		f\prrr\brOf{\frac13} &= \frac{27}{2}
+		\eqfs
+	\end{align*}
+	One can show that $g_{\frac13}(x) \geq 0$ for $x \geq \frac1{10}$. Thus, $f(x)\geq 0$ for $x \in [\frac1{10},1]$.
+	
+	The case $x \in [0,\frac1{10}]$ is left.
+	One can show
+	\begin{align*}
+		 4 \log\brOf{\frac{1+x}{1-x}}  \leq 10x \leq 2 x \log\brOf{\frac{2\br{1+3x^2}^3}{x^2\br{1-x^2}^2}}
+	\end{align*}
+	for $x \in [0,\frac1{10}]$.
+	This implies $f\pr(x) \geq 0$. Together with $f(0)=0$, this yields $f(x)\geq 0$ for $x \in [0,\frac1{10}]$.
+\end{proof}
+%
+\begin{lemma}[$\frac12 b\geq a-sc$ and $a \leq b$]\label{lmm:bgeqascandaleqb}
+	Let $\alpha\in[\frac12,1]$.
+	Let $a,b,c\geq0$, $s\in[-1,1]$.
+	Assume 
+	\begin{equation*}
+		0 \leq c - a \leq a -sc \leq \frac b2 \leq sc \leq 2a-c \leq a \leq c
+	\end{equation*}
+	and
+	$a \leq b$.
+	Then
+	\begin{equation*}
+		a^{2\alpha}-c^{2\alpha}-|a-b|^{2\alpha}+(c^2 - 2 s c b + b^2)^\alpha 
+		\leq 
+		2 b (a-sc)^{2\alpha-1}
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof} 
+	Define
+	\begin{equation*}
+		f(a,b,y,w) := a^{2\alpha}-(y+a)^{2\alpha}-(b-a)^{2\alpha}+((y+a)^2 - 2 w b + b^2)^\alpha - 2 b (a-w)^{2\alpha-1}
+		\eqfs
+	\end{equation*}
+	It holds
+	\begin{equation*}
+		\partial_y f(a,b,y,w) = -2\alpha(y+a)^{2\alpha-1}+\alpha\br{2(y+a)}\br{(y+a)^2 - 2 w b + b^2}^{\alpha-1}
+		\eqfs
+	\end{equation*}
+	Because of $\frac{b}2 \leq w$, we have
+	\begin{equation*}
+		(y+a)^2 \geq  (y+a)^2 - 2 w b + b^2
+		\eqfs
+	\end{equation*}
+	Thus $\partial_y f(a,b,y,w) \geq 0$.
+	Thus, for $y\in[0,a-w]$, it holds $f(a,b,y,w) \leq f(a,b,a-w,w)$. It holds
+	\begin{align*}
+		&f(a,b,a-w,w) 
+		\\&= a^{2\alpha}-(2a-w)^{2\alpha}-(b-a)^{2\alpha}+((2a-w)^2 - 2 w b + b^2)^\alpha - 2 b (a-w)^{2\alpha-1} 
+		\\&=: g(a,b,w)
+		\eqcm
+	\end{align*}
+	\begin{align*}
+		&\partial_b g(a,b,w) 
+		\\&= -2\alpha(b-a)^{2\alpha-1}+2\alpha(b-w)((2a-w)^2 - 2 w b + b^2)^{\alpha-1} - 2 (a-w)^{2\alpha-1} 
+		\\&\leq  2\alpha h(a,b,w)
+		\eqcm
+	\end{align*}
+	\begin{equation*}
+		h(a,b,w) = -(b-a)^{2\alpha-1}+(b-w)((2a-w)^2 - 2 w b + b^2)^{\alpha-1} -  (a-w)^{2\alpha-1}
+		\eqfs
+	\end{equation*}
+	The conditions $0\leq a-w \leq \frac b2 \leq w$ and $a \leq b$ imply $w \leq a \leq b$. It holds,
+	\begin{align*}
+		&\partial_a^2 h(a,b,w) \\= &-(2\alpha-1)(2\alpha-2)(b-a)^{2\alpha-3}\\&+4(\alpha-1)(\alpha-2)(2a-w)^2(b-w)((2a-w)^2 - 2 w b + b^2)^{\alpha-3} \\&-  (2\alpha-1)(2\alpha-2)(a-w)^{2\alpha-3} \\\geq&0
+		\eqcm
+	\end{align*}
+	\begin{align*}
+		h(w,b,w) 
+		&=
+		-(b-w)^{2\alpha-1}+(b-w)((2w-w)^2 - 2 w b + b^2)^{\alpha-1} -  (w-w)^{2\alpha-1}
+		\\&=
+		-(b-w)^{2\alpha-1}+(b-w)^{2\alpha-1} = 0
+		\eqcm
+	\end{align*}
+	\begin{equation*}
+		h(b,b,w) =-(b-b)^{2\alpha-1}+(b-b)((2b-w)^2 - 2 w b + b^2)^{\alpha-1} -  (b-b)^{2\alpha-1} \leq 0
+		\eqfs
+	\end{equation*}
+	Thus, $h(a,b,w) \leq 0$ for all $a \in [w,b]$.
+	Thus, $\partial_b g(a,b,w) \leq 0$.
+	The conditions for $g$ are $0 \leq a-w \leq \frac b2 \leq w \leq a \leq b$.
+	As $a \leq b$ and $\frac b2 \leq w$, we have $a \leq 2 w$ and thus $a \geq 2a-2w$.
+	\begin{align*}
+		g(a,a,w) 
+		&= a^{2\alpha}-(2a-w)^{2\alpha}-(a-a)^{2\alpha}+((2a-w)^2 - 2 w a + a^2)^\alpha -
+		\\&\qquad 2 a (a-w)^{2\alpha-1}
+		\\&=
+		a^{2\alpha}-(2a-w)^{2\alpha}+(5 a^2 - 6 a w + w^2)^\alpha - 2 a (a-w)^{2\alpha-1}
+		\eqfs
+	\end{align*}
+	Set $w = a - y$, $y\in[0,a]$. It holds
+	\begin{align*}
+		\ell(a,y) &:= a^{2\alpha}+(5 a^2 - 6 a (a-y) + (a-y)^2)^\alpha - (a+y)^{2\alpha} - 2 a y^{2\alpha-1}
+		\\&= 
+		a^{2\alpha}+(4 a y + y^2)^\alpha - (a+y)^{2\alpha} - 2 a y^{2\alpha-1}
+		\eqfs
+	\end{align*}
+	It holds $g(a,a,w) = \ell(a,y)$.
+	Under the condition $0 \leq y \leq a$, it holds$\ell(a,y) \leq 0$, cf next lemma.
+\end{proof}
+%
+\begin{lemma}
+		Let $\alpha\in[\frac12, 1]$, $a,y\geq0$.
+		Assume $y \leq a$.
+		Then
+		\begin{equation*}
+			a^{2\alpha} + (4 a y + y^2)^\alpha 
+			\leq
+			(a+y)^{2\alpha} + 2 a y^{2\alpha-1}
+			\eqfs
+		\end{equation*}
+\end{lemma}
+%
+\begin{proof}
+	For $y\leq a$ define
+	\begin{equation*}
+		g(a,y) := 2a^{2\alpha-1} + 4^\alpha y^\alpha a^{\alpha-1} - 2(a+y)^{2\alpha-1} - 2y^{2\alpha-1}
+		\eqfs
+	\end{equation*}
+	It holds
+	\begin{equation*}
+		\partial_a g(a,y) = 2(2\alpha-1)a^{2\alpha-2} + 4^\alpha(\alpha-1) y^\alpha a^{\alpha-2} - 2(2\alpha-1)(a+y)^{2\alpha-2}
+		\eqcm
+	\end{equation*}
+	\begin{equation*}
+		\partial_y \partial_a g(a,y) = 4^\alpha (\alpha-1) \alpha y^{\alpha-1} a^{\alpha-2} - 2(2\alpha-1)(2\alpha-2)(a+y)^{2\alpha-3}
+		\eqfs
+	\end{equation*}
+	Set $z := \frac{y}{a} \in[0,1]$. Then
+	\begin{equation*}
+	 \frac{\partial_y \partial_a g(a,y)}{a^{2\alpha-3}} =  (\alpha-1) \br{4^\alpha \alpha z^{\alpha-1} - 4(2\alpha-1)(1+z)^{2\alpha-3}}
+	 \eqfs
+	\end{equation*}
+	One can show
+	\begin{equation*}
+		\frac{4^\alpha \alpha}{4(2\alpha-1)} \geq 1 \geq \frac{\br{1+z}^{2\alpha-3}}{z^{\alpha-1}}
+		\eqcm
+	\end{equation*}
+	\begin{equation*}
+		4^\alpha \alpha z^{\alpha-1} \geq 4(2\alpha-1) \br{1+z}^{2\alpha-3}
+		\eqfs
+	\end{equation*}
+	Thus, $\partial_y \partial_a g(a,y) \leq 0$. Thus, $\partial_a g(a,y) \leq \partial_a g(a,0)$
+	\begin{equation*}
+		\partial_a  g(a,0) = 2(2\alpha-1)a^{2\alpha-2} - 2(2\alpha-1)(a)^{2\alpha-2} = 0
+	\end{equation*}
+	Thus, $\partial_a g(a,y) \leq 0$. Thus, $g(a,y) \leq g(y,y)$, and
+	\begin{equation*}
+		g(y,y) = \br{2 + 4^\alpha - 2^{2\alpha} - 2}y^{2\alpha-1} = 0
+		\eqfs
+	\end{equation*}
+	Thus,  $g(a,y) \leq 0$. It holds
+	\begin{align*}
+		&a^{2\alpha} + (4 a y + y^2)^\alpha - (a+y)^{2\alpha} - 2 a y^{2\alpha-1}
+		\\&\leq 
+		a^{2\alpha} + (4 a)^\alpha y^\alpha +y^{2\alpha} - (a+y)^{2\alpha} - 2 a y^{2\alpha-1}
+		\\&=:f(a,y)
+		\eqcm
+	\end{align*}
+	\begin{equation*}
+		\partial_a f(a,y) = 2\alpha a^{2\alpha-1} + 4^\alpha \alpha y^\alpha a^{\alpha-1} - 2\alpha(a+y)^{2\alpha-1} - 2y^{2\alpha-1}
+		\leq \alpha g(a,y) \leq 0
+		\eqfs
+	\end{equation*}
+	Thus,
+	\begin{equation*}
+		f(a,y) \leq f(y,y) = \br{1+5^\alpha-4^\alpha-2} y^{2\alpha} \leq 0
+		\eqfs
+	\end{equation*}
+\end{proof}
+%
+\begin{lemma}[$\frac12 b\geq a-sc$ and $a \geq b$]\label{lmm:bgeqascandageqb}
+	Let $\alpha\in[\frac12,1]$.
+	Let $a,b,c\geq0$, $s\in[-1,1]$.
+	Assume 
+	\begin{equation*}
+		0 \leq c - a \leq a -sc \leq \frac b2 \leq sc \leq 2a-c \leq a \leq c
+	\end{equation*}
+	and
+	$a \geq b$.
+	Then
+	\begin{equation*}
+		a^{2\alpha}-c^{2\alpha}-(a-b)^{2\alpha}+(c^2 - 2 s c b + b^2)^\alpha 
+		\leq 
+		2 b (a-sc)^{2\alpha-1}
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof}
+	Define
+	\begin{equation*}
+		f(a,b,c,w) := a^{2\alpha}-c^{2\alpha}-(a-b)^{2\alpha}+(c^2 - 2 w b + b^2)^\alpha 
+			- 2 b (a-w)^{2\alpha-1}
+			\eqfs
+	\end{equation*} 
+	It holds
+	\begin{equation*}
+		\partial_c f(a,b,c,w) =2\alpha\br{-c^{2\alpha-1}+c(c^2 - 2 w b + b^2)^{\alpha-1}}
+		\eqfs
+	\end{equation*} 
+	Because of $2w \geq b$, it holds $\partial_c f(a,b,c,w) \leq 0$.
+	\begin{equation*}
+		f(a,b,a,w) = -(a-b)^{2\alpha}+(a^2 - 2 w b + b^2)^\alpha - 2 b (a-w)^{2\alpha-1}
+		\eqfs
+	\end{equation*}
+	Set $x := a-w$.
+	The conditions for $x$ are $0 \leq x \leq \frac b2 \leq w$ and $b \leq x+w$. Define
+	\begin{equation*}
+		g(x,b,w) := -(x+w-b)^{2\alpha}+((x+w)^2 - 2 w b + b^2)^\alpha - 2 b x^{2\alpha-1}
+		\eqfs
+	\end{equation*}
+	It holds
+	\begin{equation*}
+		\partial_w g(x,b,w) =-2\alpha(x+w-b)^{2\alpha-1}+2\alpha(x+w-b)((x+w)^2 - 2 w b + b^2)^{\alpha-1} 
+		\eqfs
+	\end{equation*}
+	It holds
+	\begin{equation*}
+		(x+w-b)^2 - \br{(x+w)^2 - 2 w b + b^2} = -2 b x \leq 0
+		\eqfs
+	\end{equation*}
+	Thus,
+	\begin{equation*}
+		-2\alpha(x+w-b)^{2\alpha-2} + 2\alpha\br{(x+w)^2 - 2 w b + b^2}^{\alpha-1} \leq 0
+		\eqfs
+	\end{equation*}
+	As $a \geq b$ and thus $x+w-b \geq 0$, $\partial_w g(x,b,w) \leq 0$.
+	It holds $w \geq b-x \geq \frac b2$ and 
+	\begin{equation*}
+		g(x,b,b-x)
+		=
+		(2 x b)^\alpha - 2 b x^{2\alpha-1}
+		\leq 0
+	\end{equation*}
+	because $x\leq b$.
+\end{proof}
+%
+%
+%
+%
+\subsection{The Case $|a-c| \geq ra-sc$}\label{ssec:rascleqac}
+%
+\begin{lemma}[Case 1.2]
+	Let $\alpha\in[\frac12,1]$.
+	Let $a,b,c\geq0$.
+	Assume $a \geq c$ and $a+c\geq 2b$.
+	Then 
+	\begin{equation*}
+		a^{2\alpha}-c^{2\alpha}-\br{(a-b)^2+4cb}^{\alpha}+(c+b)^{2\alpha} \leq 8\alpha 2^{-2\alpha} b (a-c)^{2\alpha-1}
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+This lemma follows from the next two lemmas, which split the proof of this inequality into two cases.
+%
+\begin{lemma}[Case 1.2, Merging]
+	Let $\alpha\in[\frac12,1]$.
+	Let $a,b,c\geq0$.
+	Assume $a \geq b+c$.
+	Then 
+	\begin{equation*}
+		a^{2\alpha}-c^{2\alpha}-\br{(a-b)^2+4cb}^{\alpha}+(c+b)^{2\alpha} 
+		\leq 
+		2^{1-2\alpha} \br{	(a-c + b)^{2\alpha}  -  (a-c - b)^{2\alpha}}
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof}	
+	Set $\delta := a-b \geq c \geq 0$ and define
+	\begin{equation*}
+		f(b) := (\delta+b)^{2\alpha}-c^{2\alpha}-\br{\delta^2+4cb}^{\alpha}+(c+b)^{2\alpha} -2^{1-2\alpha} \br{	(\delta-c + 2b)^{2\alpha}  -  (\delta-c)^{2\alpha}}
+		\eqfs
+	\end{equation*}
+	Then
+	\begin{equation*}
+		\frac{f\pr(b)}{2\alpha} =
+		(\delta+b)^{2\alpha-1}-2c\br{\delta^2+4cb}^{\alpha-1}+(c+b)^{2\alpha-1} -2^{2-2\alpha} (\delta-c + 2b)^{2\alpha-1}
+		\eqcm
+	\end{equation*}
+	\begin{align*}
+		\frac{f\pr(b)}{2\alpha} 
+		\leq 
+		(\delta+2b+c)^{2\alpha-1}- (\delta+2b-c)^{2\alpha-1} - 2c\br{\delta^2+4cb}^{\alpha-1} =: g(c)
+		\eqcm
+	\end{align*}
+	\begin{align*}
+		g\pr(c) 
+		&= (2\alpha-1)(\delta+2b+c)^{2\alpha-2}+ (2\alpha-1)(\delta+2b-c)^{2\alpha-2} - 
+		\\&\qquad 2\br{\delta^2+4cb}^{\alpha-1} -8cb(\alpha-1)\br{\delta^2+4cb}^{\alpha-2}
+		\eqcm
+	\end{align*}
+	\begin{align*}
+		&g\prr(c)\\ &= (2\alpha-1)(2\alpha-2)(\delta+2b+c)^{2\alpha-3}- 
+		(2\alpha-1)(2\alpha-2)(\delta+2b-c)^{2\alpha-3}  - A\eqcm
+	\end{align*}
+	where
+	\begin{align*}
+		A := &\,2(4b)(\alpha-1)\br{\delta^2+4cb}^{\alpha-2} 
+		8b(\alpha-1)\br{\delta^2+4cb}^{\alpha-2}
+		+\\&\qquad
+		8cb(4b)(\alpha-1)(\alpha-2)\br{\delta^2+4cb}^{\alpha-3}
+		\\=&
+		16b(\alpha-1)\br{\delta^2+4cb}^{\alpha-3} 
+		\br{\delta^2+4cb + 2cb(\alpha-2)}
+		\eqfs
+	\end{align*}
+	Thus, 	$g\prr(c) \geq 0$.
+	It holds $0 \leq c \leq \delta$ and
+	\begin{equation*}
+		g(0) =
+		(\delta+2b)^{2\alpha-1}- (\delta+2b)^{2\alpha-1}-0=0
+		\eqcm
+	\end{equation*}
+	\begin{equation*}
+		g(\delta) = (2\delta+2b)^{2\alpha-1}- (2b)^{2\alpha-1} - 2\delta\br{\delta^2+4\delta b}^{\alpha-1} =: h(\delta)\eqcm
+	\end{equation*}
+	\begin{equation*}
+		h\pr(\delta) = 2(2\alpha-1)(2\delta+2b)^{2\alpha-2}-2\br{\delta^2+4\delta b}^{\alpha-1}-2\delta(\alpha-1)(2\delta+4b)\br{\delta^2+4\delta b}^{\alpha-2}\eqfs
+	\end{equation*}
+	For $\alpha\in[\frac12,1]$, we have
+	\begin{align*}
+		&\br{\delta^2+4\delta b}^{\alpha-1}+\delta(\alpha-1)(2\delta+4b)\br{\delta^2+4\delta b}^{\alpha-2}
+		\\&=
+		\br{\delta^2+4\delta b}^{\alpha-2}\br{\delta^2+4\delta b+\delta (\alpha-1)(2\delta+4b)}
+		\\& \geq 
+		\br{\delta^2+4\delta b}^{\alpha-2}\br{\delta^2+4\delta b+ -\delta(1\delta+2b)}
+		\geq0 
+		\eqfs
+	\end{align*}
+	Thus, 
+	\begin{equation*}
+	h\pr(\delta) \leq 0
+	\eqfs
+	\end{equation*}
+	It holds
+	\begin{equation*}
+		h(0) = (2b)^{2\alpha-1}- (2b)^{2\alpha-1} - 0 = 0
+		\eqfs
+	\end{equation*}
+	Thus, $h(\delta)\leq 0$, thus, $g(b=\delta) \leq 0$, thus $g(b) \leq 0$, thus $f\pr(b)\leq 0$
+	\begin{equation*}
+		f(0) = (\delta)^{2\alpha}-c^{2\alpha}-\br{\delta}^{2\alpha}+(c)^{2\alpha} -2^{1-2\alpha} \br{	(\delta-c)^{2\alpha}  -  (\delta-c)^{2\alpha}} =0
+		\eqfs
+	\end{equation*}
+	Thus, $f(b) \leq 0$.
+\end{proof}
+%
+\begin{lemma}[Case 1.2, $b\geq a-c$]
+	Let $\alpha\in[\frac12,1]$.
+	Let $a,b,c\geq0$.
+	Assume $b \geq a-c \geq 2\max(0, b-c)$.
+	Then 
+	\begin{equation*}
+		a^{2\alpha}-c^{2\alpha}-\br{(a-b)^2+4cb}^{\alpha}+(c+b)^{2\alpha} 
+		\leq 
+		2 b^{2\alpha-1} (a-c)
+		\leq
+		2 b (a-c)^{2\alpha-1}
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof}
+	As $b\geq a-c$ and $2\alpha-1 \in[0,1]$, it holds $b^{2\alpha-1} (a-c) \leq b (a-c)^{2\alpha-1}$.
+	Define
+	\begin{equation*}
+		f(a) := a^{2\alpha}-c^{2\alpha}-\br{(a-b)^2+4cb}^{\alpha}+(c+b)^{2\alpha}  -2 b^{2\alpha-1} (a-c)
+		\eqfs
+	\end{equation*}
+	It holds
+	\begin{align*}
+		f\pr(a) &= 	2\alpha a^{2\alpha-1}-2\alpha (a-b)\br{(a-b)^2+4cb}^{\alpha-1}-2 b^{2\alpha-1}
+		\\ {\scriptstyle a \geq b,c \text{ and } 2\alpha-2\leq 0} \qquad&\leq
+		2\alpha a^{2\alpha-1}-2\alpha (a-b)\br{a+b}^{2\alpha-2}-2 b^{2\alpha-1}
+		\\&=
+		2\br{\alpha a^{2\alpha-1}- \alpha \frac{a-b}{a+b}\br{a+b}^{2\alpha-1} - b^{2\alpha-1}}
+		\eqfs
+	\end{align*}
+	Set $x = \br{\frac{a-b}{a+b}}^{\frac{1}{2\alpha-1}} \leq 1$, $y = \alpha^{\frac{1}{2\alpha-1}} \leq 1$.
+	Then 
+	\begin{align*}
+		\alpha a^{2\alpha-1}- \alpha \frac{a-b}{a+b}\br{a+b}^{2\alpha-1} - b^{2\alpha-1}
+		&\leq
+		(ya)^{2\alpha-1}- \br{xya+xyb}^{2\alpha-1} - b^{2\alpha-1}
+		\\&\leq
+		\br{ya-xya-xyb}^{2\alpha-1} - b^{2\alpha-1}
+		\\&\leq
+		\br{ya-xya-xyb-b}^{2\alpha-1}
+		\\&=
+		\br{(y-xy)a-(xy+1)b}^{2\alpha-1}
+		\\&\leq
+		\br{a-b}^{2\alpha-1}
+		\\&\leq
+		0\eqfs
+	\end{align*}
+	Thus, $f\pr(a) \leq 0$. Thus, only need to show $f(b) \leq 0$.
+	Assume $b \geq c$. Then
+	\begin{align*}
+		f(b) 
+		&= 
+		b^{2\alpha}-c^{2\alpha}-\br{4cb}^{\alpha}+(c+b)^{2\alpha}  -2 b^{2\alpha-1} (b-c)
+		\\&=
+		-c^{2\alpha}-\br{4cb}^{\alpha}+(c+b)^{2\alpha}  - b^{2\alpha}+2 b^{2\alpha-1} c
+		\\&\leq
+		(c+b)^{2\alpha}- b^{2\alpha}-c^{2\alpha}-\br{4^\alpha-2}\br{cb}^{\alpha}
+		\\&= 
+		(c+b)^{2\alpha}-(b^\alpha-c^\alpha)^2-4^\alpha\br{cb}^{\alpha}
+		\eqfs
+	\end{align*}
+	Thus, the next lemma implies $f(b) \leq 0$.
+\end{proof}
+%
+\begin{lemma}\label{lmm:alpha_binom}
+	Let $\alpha\in[\frac12,1]$, $x,y\geq0$.
+	Then 
+	\begin{equation*}
+		(x+y)^{2\alpha}-(x^\alpha-y^\alpha)^2 \leq (4xy)^\alpha
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+We need two further lemmas before we prove this inequality.
+%
+\begin{lemma}\label{lmm:slogs}
+	For $s\in[0,\frac12]$ it holds
+	\begin{equation*}
+		\frac{1-s}{s} \leq \frac{\log(s)}{\log(1-s)}
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof}
+	Define
+	\begin{equation*}
+		f(s) := s\log(s) - (1-s)\log(1-s)
+		\eqfs
+	\end{equation*}
+	It hold
+	\begin{equation*}
+		f\prr(s) = \frac1s-\frac1{1-s} 
+		\eqfs
+	\end{equation*}
+	Thus, $f\prr(s) \geq 0$ for $s\leq\frac12$.
+	It holds $f(0)=f(\frac12)=0$.
+	Thus, $f(s) \leq 0$. Thus,
+	\begin{equation*}
+		s\log(s) \leq (1-s)\log(1-s)
+		\eqfs
+	\end{equation*}
+	Because of $\log(1-s) \leq 0$, thus implies 
+	\begin{equation*}
+		\frac{1-s}{s} \leq \frac{\log(s)}{\log(1-s)}
+		\eqfs
+	\end{equation*}
+\end{proof}
+%
+\begin{lemma}\label{lmm:abxfrac}
+	Let $a,b\geq0$, $x\in[1,2]$.
+	Define
+	\begin{equation*}
+		f(x) := \frac{a^{x}-b^{x}}{(a+b)^{x}}
+		\eqfs
+	\end{equation*}
+	Assume $a\geq b$.
+	Then $f\prr(x) \leq 0$.
+	In particular,
+	\begin{equation*}
+		\inf_{x\in[1,2]} f(x) = f(1) = f(2) = \frac{a^2-b^2}{(a+b)^2} = \frac{a-b}{a+b}
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof}
+	It holds
+	\begin{equation*}
+		f\prr(x) = \br{a+b}^{-x} \br{a^x \log\brOf{\frac{a}{a+b}}^2 - b^x \log\brOf{\frac{b}{a+b}}^2}
+		\eqfs
+	\end{equation*}
+	Set $s = \frac{b}{a+b}$. Then $1-s = \frac{a}{a+b}$. Then \autoref{lmm:slogs} implies
+	\begin{equation*}
+		\frac{a}{b} \leq \frac{\log\brOf{\frac{b}{a+b}}}{\log\brOf{\frac{a}{a+b}}}
+		\eqfs
+	\end{equation*}
+	Thus,
+	\begin{align*}
+		\br{\frac{a}{b}}^x \leq \br{\frac{a}{b}}^2 \leq \br{\frac{\log\brOf{\frac{b}{a+b}}}{\log\brOf{\frac{a}{a+b}}}}^2
+		\eqfs
+	\end{align*}
+	Thus,
+	\begin{equation*}
+		a^x \log\brOf{\frac{a}{a+b}}^2 \leq b^x \log\brOf{\frac{b}{a+b}}^2
+		\eqfs
+	\end{equation*}
+	Thus, $f\prr(x) \leq 0$.
+\end{proof}
+%
+\begin{proof}[of \autoref{lmm:alpha_binom}]
+	For $z\geq1$ define
+	\begin{equation*}
+		f(z) := \br{z+2+z^{-1}}^{\alpha}-z^\alpha-z^{-\alpha}
+		\eqfs
+	\end{equation*}
+	We will show that $f(z) \leq 4^\alpha-2$.
+	This implies
+	\begin{equation*}
+		\frac{(z+1)^{2\alpha}-z^{2\alpha}-1}{z^\alpha} \leq  4^\alpha-2
+		\eqfs
+	\end{equation*}
+	Thus,
+	\begin{equation*}
+		(z+1)^{2\alpha} \leq \br{ 4^\alpha-2}z^\alpha+z^{2\alpha}+1
+		\eqfs
+	\end{equation*}
+	By setting $z = \frac xy$  for $x\geq y$, we obtain
+	\begin{equation*}
+		(x+y)^{2\alpha}-(x^\alpha-y^\alpha)^2 \leq (4xy)^\alpha
+		\eqfs
+	\end{equation*}
+	The condition $x\geq y$ can be dropped because of symmetry.
+	It remains to show that $f(z) \leq 4^\alpha-2$ is indeed true.
+	It holds $f(1) = 4^\alpha-2$. To finish the proof, we will show $f\pr(z) \leq 0$. Define
+	\begin{equation*}
+		g(z) := (z^2-1)(z+2)^{2\alpha}-(z+1)^2(z^{2\alpha}-1)
+		\eqfs
+	\end{equation*}
+	Then
+	\begin{equation*}
+		f\pr(z) \frac{z^{\alpha+2}\br{z+2+z^{-1}}}{\alpha} = g(z)
+		\eqfs
+	\end{equation*}
+	We show $g(z) \leq 0$, and therefore $f\pr(z)\leq0$, by applying \autoref{lmm:abxfrac} with $a=z$, $b=1$, and $x=2\alpha$:
+	\begin{equation*}
+		\frac{z^{x}-1^{x}}{(z+1)^{x}} \geq \frac{z^{2}-1^{2}}{(z+1)^{2}}
+		\eqcm
+	\end{equation*}
+	which implies
+	\begin{equation*}
+		\br{z^{2\alpha}-1}(z+1)^{2} \geq \br{z^{2}-1}(z+1)^{2\alpha}
+		\eqfs
+	\end{equation*}
+\end{proof}
+%
+According to \autoref{rmk:outline}, we have now finally finished to proof of \autoref{con:ana} and therefore of \autoref{thm:power_inequ}.
+%
+%
+%
+%
+%

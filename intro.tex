@@ -1,0 +1,95 @@
+\section{Introduction}
+%
+%
+Let $\mc Q, \mc Y$ be sets, $Y$ a $\mc Y$-valued random variable, and $\mf c \colon \mc Y\times \mc Q \to \R$ a \textit{cost function}. Every element $m$ of the set  $\argmin_{q\in\mc Q}\Ex{\mf c(Y,q)}$ is called \textit{generalized Fréchet mean} or \textit{$\mf c$-Fréchet mean}.
+Given independent copies $Y_1, \dots, Y_n$ of $Y$, natural estimators of the generalized Fréchet mean are elements $m_n$ of  the set $\argmin_{q\in\mc Q}  \frac1n\sum_{i=1}^n \mf c(Y_i,q)$. 
+Our goal is to find suitable conditions for establishing convergence rates for such plug-in estimators. 
+
+The described setting generalizes the usual setting for \textit{Fréchet means}, where $\mc Q = \mc Y$ is a metric space with metric $d : \mc Q \times \mc Q \to [0, \infty)$ and $\mf c = d^2$, which has been introduced in \cite{frechet48}.
+
+The Fréchet mean has been investigated in many specific settings, often under a different name, e.g., center of mass or barycenter.
+In the context of Riemannian manifolds, it has been studied -- among others -- by \cite{bhattacharya03}.
+An asymptotic normality result for generalized Fréchet means on finite dimensional manifolds is shown in \cite{huckemann18}.
+For complete metric spaces of nonpositive curvature, called Hadamard spaces, \cite{sturm03} shows how some classical results of probability theory in Euclidean spaces (e.g., strong law of large numbers, Jensen's inequality) can be transferred to the Fréchet mean setting. An algorithm for calculating Fréchet means in Hadamard spaces is described in \cite{bacak14}.
+
+One important application of statistics in Hadamard spaces is the space phylogenetic trees. A phylogenetic tree represents the genetic relatedness of biological species. The geometry of the space of phylogenetic trees $T_m$ with $m$ leaves is studied in \cite{billera01}. In particular, it is shown that $T_m$ is a Hadamard space. There has been a lot of recent interest in statistics on $T_m$. E.g., \cite{barden18} show a central limit theorem for the Fréchet mean in $T_m$ and \cite{nye11} apply principal component analysis in that space.
+
+For general metric spaces \cite{ziezold77} shows consistency of the Fréchet mean estimator. This is extended to generalized Fréchet means in \cite{huckemann11}.
+
+The Fréchet mean estimator is a \textit{M-estimator}. Thus, we can build upon many classical and deep results from the M-estimation literature, see, e.g., \cite{vaart96, geer00, talagrand14}.
+Using such  M-estimation techniques, rates of convergence in probability for Fréchet means in general bounded metric spaces are obtained in \cite{petersen16}; in fact the authors  consider a more complex regression setting. In \cite{dubey17} results on the analysis of variance in metric spaces are shown. 
+
+Results on convergence rates in expectation, i.e, bounds on $\Ex{d(m,m_n)^2}$, seem to be rare in the literature on the Fréchet mean. Common are convergence rates in probability or exponential concentration. The latter also implies rates in expectation, but under rather strong assumptions. One publication that establishes rates in expectation more directly, for general cost functions in Euclidean spaces is \cite{banholzer17}.
+
+The recent article \cite{legouic18} provides nonasymptotic concentration rates in general bounded metric spaces. Its relation to our results will be discussed in the next subsection.
+
+\subsection{Our Contribution}
+
+Our contribution consists of three parts:
+\begin{enumerate}[label=(\alph*)]
+\item 
+We introduce a condition, which we call \textit{quadruple inequality}, that is used to establish convergence rates in probability and expectation for spaces with infinite diameter, see \autoref{thm:abstr_rate_prob}, \autoref{thm:abstr_rate_exp}, and \autoref{thm:abstr_weak_strong}.
+\item 
+We formulate our results in the setting of the generalized Fréchet mean with a cost-function $\mf c$ that is not restricted to being the square of a metric.
+\item 
+We prove a quadruple inequality for exponentiated metrics of Hadamard spaces, \autoref{thm:power_inequ}. We apply it to obtain rates of convergence for estimators of the Fréchet mean of an exponentiated metric.
+\end{enumerate}
+
+\cite{petersen16} and \cite{legouic18} show rates of convergence for metric spaces which have a finite diameter (or at least the support of the distribution of observations must be bounded). The proofs in both papers rely on \textit{empirical process theory}. In particular, they make use of \textit{symmetrization} and the \textit{generic chaining} to bound the supremum of an empirical process. But where \cite{legouic18} use that bound to be able to apply \textit{Talagrand's inequality} \cite{bousquet02}, \cite{petersen16} employ a \textit{peeling device} (also called \textit{slicing}; see, e.g., \cite{geer00}) to obtain rates. 
+As a consequence, \cite{legouic18} achieve stronger results (nonasymptotic exponential concentration instead of $\bigOp$-statements), but they rely more heavily on the boundedness of the metric.
+As our goal is to obtain results for spaces with infinite diameter, our proof technique is closer to \cite{petersen16}, i.e., we also apply a peeling device.
+
+A law of large numbers, such that the estimator of the Fréchet mean converges in probability to the true value, implies that the estimator eventually is in a subset with finite diameter. Thus, for asymptotic rates in probability as in \cite{petersen16}, it is not very restrictive to assume a finite diameter. Our motivation to directly deal with infinite diameter comes from our interest in nonasymptotic results and in rates in expectation (asymptotic or nonasymptotic).
+
+As \cite{petersen16} and \cite{legouic18}, we use the \textit{generic chaining}. Therefore we have entropy bounds as conditions of our theorems. These entropy bounds can be stated by requiring a bound on the \textit{covering numbers} 
+\begin{equation*}
+	N(Q, d, r) := \min\cbOf{k \in \N \,\middle|\, \exists q_1,\dots,q_k\in\mc Q\colon Q\subset \bigcup_{j=1}^k \ball_r(q_j) }\eqcm
+\end{equation*}
+where $(\mc Q, d)$ is a metric space, $Q \subset \mc Q$, and $r > 0$.
+To be more precise, in a metric space $(\mc Q, d)$, we require $\log N(\ball_\delta(m), d, r) \leq \br{\frac{C\delta}{r}}^D$ for some constants $C,D >0$ and all $0 < r < \delta$, which is the same assumption as in \cite{legouic18}.
+We note, that this requirement could be weakened by using the optimal bound on Rademacher (or Bernoulli) processes \cite{bednorz14} at the cost of a more complicated and less comprehensible condition.
+
+In the classical Fréchet mean case, where $(\mc Q, d)$ is a metric space and the cost function is $\mf c = d^2$, the empirical process that has to be bounded consists of functions of the form $y \mapsto d(y,q)^2$ for $q\in\mc Q$. To apply some classical empirical process results, one requires a Lipschitz condition on these functions. In \cite{petersen16} and \cite{legouic18} this \textit{Lipschitz condition} is fulfilled by
+\begin{equation}\label{eq:lipbound}
+	d(y,q)^2 - d(y,p)^2 \leq  2 \diam(\mc Q) d(q, p)
+\end{equation}
+for all $y,q, p \in \mc Q$. Thus, a finite diameter is required. We show, that one can instead require that 
+\begin{equation}\label{eq:nicequad}
+	d(y,q)^2 - d(y,p)^2 - d(z,q)^2 + d(z,p)^2 \leq  2 d(y, z) d(q, p)
+\end{equation}
+holds for all $y,z,q, p \in \mc Q$ and then bound the supremum of the empirical process even if $\diam(\mc Q) = \infty$. Equation \eqref{eq:nicequad} is a special instance of what we call \textit{quadruple inequality}.
+
+Roughly speaking, the transition from Lipschitz to quadruple condition removes certain squared terms and the right hand side by adding and subtracting further squared terms on the left hand side. This is related to the idea of defining the Fréchet mean as minimizer of $q \mapsto \Ex{d(Y, q)^2 - d(Y, o)^2}$ for an arbitrary fixed point $o\in\mc Q$ instead of $q \mapsto \Ex{d(Y, q)^2}$. Then, for existence of the Fréchet mean, only a first moment condition on $Y$ is required instead of a second moment condition, see \cite[Acknowledgement to Lutz Mattner]{sturm03}. 
+
+The inequality \eqref{eq:nicequad} does not hold in every metric space. But it characterizes Hadamard spaces among geodesic metric spaces, see \cite{berg08}. In Hadamard spaces, \eqref{eq:nicequad} is known as \textit{Reshetnyak’s quadruple inequality} \cite{sturm03} or \textit{quadrilateral inequality} \cite{berg08} and can be interpreted as generalization  of the Cauchy--Schwartz inequality to metric spaces \cite{berg08}. Note that our results are not restricted to geodesic metric spaces.
+
+In (subsets of) Hadamard spaces $(\mc Q, d)$, we can not only utilize the quadruple inequality with the squared metric $d^2$ \eqref{eq:nicequad}. But we show that for $d^a$ with $a \in [1,2]$, we also obtain a version of the quadruple inequality, namely
+\begin{equation}\label{eq:power}
+	d(y,q)^a - d(y,p)^a - d(z,q)^a + d(z,p)^a \leq  4a 2^{-a} d(y, z)^{a-1} d(q, p)
+	\eqcm
+\end{equation}
+for all $y,z,q, p \in \mc Q$, see \autoref{thm:power_inequ}.
+We show that the constant $4a 2^{-a}$ is optimal.
+Similar to equation \eqref{eq:lipbound}, one can easily show --- using the mean value theorem --- that 
+\begin{equation*}
+	d(y,q)^a - d(y,p)^a \leq  a \diam(\mc Q)^{a-1} d(q, p)
+\end{equation*}
+for $a > 0$, $q,p,y\in\mc Q$, where $(\mc Q, d)$ is an arbitrary metric space. The proof of equation \eqref{eq:power} is much more complicated, see appendix \autoref{app:power_inequality}.
+
+We state our convergence rate results in a general way, where observations live in a space $\mc Y$ and a cost function $\mf c \colon \mc Y \times \mc Q \to \R$ is minimized over $\mc Q$. The quadruple inequality then reads
+\begin{equation*}
+	\mf c(y,q) - \mf c(y,p) - \mf c(z,q) + \mf c(z,p) \leq  \mf a(y, z) \mf b(q, p)
+\end{equation*}
+for all $y,z \in \mc Y$ and $q, p \in \mc Q$ and an arbitrary function $\mf a \colon \mc Y \times \mc Y \to [0,\infty)$ and a pseudo-metric $\mf b \colon \mc Q \times \mc Q \to [0,\infty)$. This general formulation includes, among others, arbitrary bounded metric spaces, Hadamard spaces (including Euclidean and non-Euclidean spaces) with an exponentiated metric $d^a$, $a\in[1,2]$, and regression settings with $\mc Q \neq \mc Y$, where observations $(x,y) \in \mc Y$ are described by regression functions $(x \mapsto q(x)) \in \mc Q$.
+
+Furthermore, some trivial statements in appendix \autoref{app:quad_stab} show that the quadruple inequality is stable under many operations such as taking subsets, limits, or product spaces.
+
+We prove -- via a peeling device -- nonasymptotic rates of convergence in probability, \autoref{thm:abstr_rate_prob}. We do not achieve exponential concentration as \cite{legouic18}, but our results can be applied in cases where the cost function is not bounded by a finite constant, i.e., in metric spaces with infinite diameter. Furthermore, we show two ways of obtaining rates in expectation: One -- nonasymptotic -- under the assumption of a stronger version quadruple inequality, \autoref{thm:abstr_rate_exp}; the other -- asymptotic -- with a stricter entropy condition, \autoref{thm:abstr_weak_strong}.
+
+Aside from the application in Hadamard spaces (including the use of the power inequality, \autoref{thm:power_inequ}), we illustrate our results in different toy examples: Euclidean spaces and infinite dimensional Hilbert spaces. In (convex subsets of) Hilbert spaces the Fréchet mean is equal to the expectation. Thus, these examples are interesting as a benchmark, because we can compare results from our general Fréchet mean approach to exact results. In two additional examples, we apply our results to nonconvex subsets of Hilbert spaces and to Hadamard spaces.
+%
+%
+\subsection{Outline}
+%
+We start by presenting the convergence rates results of \autoref{thm:abstr_rate_prob} (rates in probability) and \autoref{thm:abstr_rate_exp} (rates in expectation) in the abstract setting in \autoref{sec:abstract_results}. The different versions of the quadruple inequality are discussed in \autoref{sec:quadruple}, including the power inequality, \autoref{thm:power_inequ}. This discussion concludes with the statement of \autoref{thm:abstr_weak_strong} (alternative route to rates in expectation). In \autoref{sec:applications}, we apply the abstract results in different settings: Euclidean spaces, infinite dimensional Hilbert spaces, nonconvex sets, and Hadamard spaces.
+%

@@ -1,0 +1,69 @@
+\documentclass{scrartcl}
+%
+\pdfoutput=1
+%
+\usepackage{imakeidx}
+\input{packages}
+%
+\usepackage[
+	backend=biber,
+	style=alphabetic,
+	citestyle=alphabetic 
+]{biblatex}
+\addbibresource{literature.bib}
+%
+\input{macros}
+\input{special_macros}
+%
+%
+%
+\indexsetup{noclearpage}
+\makeindex[name=inot,title=Index of Notation]
+\makeindex[name=iass,title=Index of Assumptions]
+%
+%
+%
+\begin{document}
+%
+%
+%
+\title{Convergence Rates for the Generalized Fréchet Mean via the Quadruple Inequality}
+\author{Christof Schötz\thanks{Institute of Applied Mathematics,
+Heidelberg University,
+Im Neuenheimer Feld 205,
+69120 Heidelberg, Germany,
+schoetz@math.uni-heidelberg.de}}
+%
+\maketitle
+%
+\section*{Abstract}
+\input{abstract}
+%
+\tableofcontents
+%
+\input{intro}
+\input{abstract_results}
+\input{quadruple}
+\input{application}
+\input{further_research}
+%\input{conclusion}
+
+\begin{appendices}
+\input{appendix}
+\end{appendices}
+%
+\phantomsection
+\addcontentsline{toc}{section}{Index of Notations}
+\printindex[inot]
+\phantomsection
+\addcontentsline{toc}{section}{Index of Assumptions}
+\printindex[iass]
+%
+\phantomsection
+\addcontentsline{toc}{section}{References}
+\printbibliography
+%
+%
+%
+\end{document}%
+%

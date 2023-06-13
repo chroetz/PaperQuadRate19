@@ -1,0 +1,295 @@
+\section{Quadruple Inequalities}\label{sec:quadruple}
+%
+Recall the definition of the weak and strong quadruple inequalities.
+Let $(\mc Q, \mf b)$ be a pseudo-metric space (\textit{descriptor space} with \textit{descriptor metric}), 
+$(\mc Y, \Sigma_{\mc Y})$ a measurable space (\textit{data space}), 
+$\mf c \colon \mc Y \times \mc Q \to \R$ such that $y\mapsto \mf c(y,q)$ is measurable for every $q\in\mc Q$ (\textit{cost function}),
+$\mf a \colon \mc Y \times \mc Y \to [0,\infty)$ measurable (\textit{data distance}),
+$m \in \mc Q$ (reference point, usually the Fréchet mean),
+$\mf l\colon \mc Q \times \mc Q \to [0,\infty)$ (\textit{loss}),
+$\xi > 0$ (\textit{rate parameter}),
+$\dot{\mc Q} = \cb{q\in\mc Q\colon \mf l(m, q) > 0}$
+$\mf b_m \colon \dot{\mc Q} \times \dot{\mc Q} \to [0,\infty)$ a pseudo-metric on $\dot{\mc Q}$ (\textit{strong quadruple metric} at $m$).
+We write $\olc yq :=\mf c(y,q)$.
+%
+\begin{enumerate}[label=(\alph*)]
+\item 
+The tuple $(\mc Q, \mc Y, \mf c, \mf a, \mf b)$ fulfills the \emph{(weak) quadruple inequality}
+	if and only if
+	for all $p,q\in\mc Q$, $y,z\in\mc Y$ it holds
+	\begin{equation*}
+		\olc yq- \olc zq -\olc yp+\olc zp \leq \mf a(y,z) \mf b(q,p)
+		\eqfs
+	\end{equation*}
+\item	
+	The tuple $(\mc Q, \mc Y, \mf c, \mf l^\xi, \mf a, \mf b_m)$ fulfills the \emph{strong quadruple inequality} at $m\in\mc Q$ 
+	if and only if
+	for all $p,q\in\dot{\mc Q}$, $y,z\in\mc Y$ it holds
+	\begin{equation*}
+		\frac{\olc yq- \olc ym- \olc zq + \olc zm}{\mf l(m,q)^\xi} - \frac{\olc yp- \olc ym- \olc zp + \olc zm}{\mf l(m,p)^\xi} \leq \mf a(y,z) \mf b_m(q,p)
+		\eqfs
+	\end{equation*}
+\end{enumerate}
+%
+There are a couple of trivial stability results for quadruple inequalities, see appendix \autoref{app:quad_stab}.
+
+In section \ref{ssec:bounded} we compare the quadruple inequality with a more common Lipschitz property. The simplest advantageous applications of the quadruple inequality are in inner product spaces and quasi-inner product spaces, as is discussed in section \ref{ssec:quad:ip}. In section \ref{ssec:pwer_inequality} we state the power inequality, \autoref{thm:power_inequ}. It allows to establish quadruple inequalities for exponentiated metrics. We conclude with \autoref{thm:abstr_weak_strong} in section \ref{ssec:weak_implies_strong}, which yields rates of convergence in expectation under the assumption of only a weak quadruple inequality instead of a strong one as in \autoref{thm:abstr_rate_exp}.
+%
+%
+\subsection{Bounded Spaces and Smooth Cost Function}\label{ssec:bounded}
+%
+Let $(\mc Q, d)$ be a metric space and use the notation $\ol qp = d(q,p)$.
+For obtaining convergence rates in probability for the Fréchet mean estimator, \cite{petersen16} use 
+\begin{equation*}
+	 \ol yq^2 - \ol yp^2 = \br{\ol yq - \ol yp}\br{\ol yq + \ol yp} \leq 2 \ol qp \diam(\mc Q)
+\end{equation*}
+for all $q,p,y\in\mc Q$.
+In the proof of \autoref{thm:abstr_rate_prob}, we have replaced this bound by the weak quadruple inequality, i.e.,
+\begin{equation*}
+	\olc yq - \olc yp - \olc zq + \olc zp \leq \mf a(y,z) \mf b(q,p)
+	\eqfs
+\end{equation*}
+This generalizes the results by \cite{petersen16} as for bounded metric spaces $(\mc Q, d)$ and cost function $\mf c = d^2$, the weak quadruple inequality holds with $\mf a(y,z) = 4 \diam(\mc Q)$ and $\mf b = d$:
+\begin{equation*}
+	\ol yq^2 - \ol yp^2 - \ol zq^2 + \ol zp^2 \leq \abs{\ol yq^2 - \ol yp^2} + \abs{\ol zq^2 - \ol zp^2} \leq 4 \ol qp \diam(\mc Q)
+	\eqfs
+\end{equation*}
+%
+More generally, if we can show Lipschitz continuity in the second argument of the cost function, i.e., $\olc yq - \olc yp \leq \mf a(y) \mf b(q,p)$, then the quadruple inequality holds with data distance $\mf a(y)+\mf a(z)$ and descriptor metric $\mf b$.
+But this might lead to an unnecessarily large bound. We will see in section \ref{ssse:quad:npc} that at least for certain metric spaces, we can find a bound via the quadruple inequality that does not involve the diameter of the space and, thus, allows for meaningful results in unbounded spaces.
+%
+%
+%
+\subsection{Relation to Inner Product and Cauchy--Schwartz Inequality}\label{ssec:quad:ip}
+%
+\subsubsection{Inner Product Space}\label{sssec:inner_product_space}
+%
+Let $(\mc Q, d)$ be a metric space such that $d$ comes from an inner product $\ip{\cdot}{\cdot}$ on $\mc Q$, i.e., $\mc Q$ is a subset of am inner product space and $d(y,q)^2 = \ip{y-q}{y-q}$. Use $\mc Y = \mc Q$ and the squared metric as cost function, $\mf c = d^2$. Then
+%
+\begin{align*}
+	\olc yq- \olc zq -\olc yp+\olc zp &= -2\ip{y-z}{q-p} \\&\leq 2\normof{q-p}\normof{y-z}
+	\eqfs
+\end{align*} 
+%
+Here the Cauchy--Schwartz inequality gives rise to an instance of the weak quadruple inequality.
+The very general framework that we impose also allows for a more flexible bound:
+If $\mc Q \subset \mb H$ is the subset of an infinite dimensional, separable Hilbert space $\mb H$, we can use a weighted Cauchy--Schwartz inequality:
+Let $s = (s_k)_{k\in\N} \subset (0,\infty)$. Then
+\begin{align*}
+	\olc yq- \olc zq -\olc yp+\olc zp \leq 2 \normof{y-z}_{s^{-1}} \normof{q-p}_s 
+	\eqcm
+\end{align*} 
+where $\normof{x}^2_s = \sum_{k=1}^\infty s_k^2 x_k^2$ with generalized Fourier coefficients $(x_k)_{k\in\N}$ with respect to a fixed orthonormal basis of $\mb H$.
+
+For the strong quadruple inequality, we set $\xi=1$, $\mf l(q,p) = \normof{q-p}$ and obtain
+\begin{align*}
+	&\frac{\olc yq- \olc ym- \olc zq + \olc zm}{\mf l(m,q)} - \frac{\olc yp- \olc ym- \olc zp + \olc zm}{\mf l(m,p)}
+	\\&=
+	-2\left\langle y-z, \frac{q-m}{\normof{q-m}}-\frac{p-m}{\normof{p-m}} \right\rangle
+	\\&\leq
+	2\normof{y-z} \normOf{\frac{q-m}{\normof{q-m}}-\frac{p-m}{\normof{p-m}}}
+	\eqfs
+\end{align*}
+Thus, the strong quadruple inequality hold with $\mf a(y,z) = 2\normof{y-z}$ and $\mf b_m(q,p) = \normOf{\frac{q-m}{\normof{q-m}}-\frac{p-m}{\normof{p-m}}}$. The pseudo-metric $\mf b_m$ first projects the points $q$ and $p$ onto the surface of unit ball around $m$ and then measures their Euclidean distance.
+
+The analogous result for the weighted Cauchy--Schwartz inequality is
+\begin{align*}
+	&\frac{\olc yq- \olc ym- \olc zq + \olc zm}{\mf l(m,q)} - \frac{\olc yp- \olc ym- \olc zp + \olc zm}{\mf l(m,p)}
+	\\&\leq
+	2\normof{y-z}_{s^{-1}} \normOf{\frac{q-m}{\normof{q-m}}-\frac{p-m}{\normof{p-m}}}_{s}
+	\eqfs
+\end{align*}
+%
+%
+%
+\subsubsection{Bregman Divergence}
+%
+Let $\mc Q\subset \R^r$ be a closed convex set. Let $\psi\colon\mc Q\to \R$ be a continuously differentiable and strictly convex function. The Bregman divergence $D_\psi \colon \mc Q \times \mc Q \to [0,\infty)$ associated with $\psi$ for points $y, q \in \mc Q$ is defined as $D_\psi(y,q) = \psi(y)-\psi(q)-\ip{\nabla \psi(q)}{y-q}$. It is the difference between the value of $\psi$ at point $y$ and the value of the first-order Taylor expansion of $\psi$ around point $q$ evaluated at point $y$. It is well-known, that the minimizer $m$ of $q \mapsto\Ex{D_\psi(Y,q)}$ for a random variable $Y$ with $\Ex{D_\psi(Y,q)}<\infty$ for all $q\in\mc Q$ is the expectation $m = \Ex{Y}$, see \cite[Theorem 1]{banerjee05}. The Bregman divergence $\mf c = D_\psi$ fulfills the weak quadruple inequality:
+\begin{align*}
+	D_\psi(y,q) - D_\psi(z,q) - D_\psi(y,p) +D _\psi(z,p) &= \ip{\nabla \psi(q)-\nabla \psi(p)}{y-z} \\&\leq \normof{\nabla \psi(q)-\nabla \psi(p)}\normof{y-z}
+	\eqfs
+\end{align*} 
+Similarly, we obtain a version of the strong quadruple inequality with  $\xi=1$, $\mf l(q,p) = \normof{q-p}$, 
+\begin{align*}
+	&\frac{\olc yq- \olc ym- \olc zq + \olc zm}{\mf l(m,q)} - \frac{\olc yp- \olc ym- \olc zp + \olc zm}{\mf l(m,p)}
+	\\&=
+	\left\langle y-z, \frac{\nabla \psi(q)-\nabla \psi(m)}{\normof{q-m}}-\frac{\nabla \psi(p)-\nabla \psi(m)}{\normof{p-m}} \right\rangle
+	\\&\leq
+	\normof{y-z} \normOf{\frac{\nabla \psi(q)-\nabla \psi(m)}{\normof{q-m}}-\frac{\nabla \psi(p)-\nabla \psi(m)}{\normof{p-m}}}
+	\eqfs
+\end{align*}
+%
+%
+%
+\subsubsection{Hadamard Spaces and Quasi-Inner Product}\label{ssse:quad:npc}
+%
+Let $(\mc Q, d)$ be a metric space. Use the notation $\ol qp := d(q,p)$. We use the squared metric as the cost function $\mf c(y,q) = d(y,q)^2 = \ol yq^2$.
+One particularly nice version of the weak quadruple inequality with this cost function is
+\begin{equation*}
+	\ol yq^2 - \ol yp^2 - \ol zq^2 + \ol zp^2 \leq 2 \,\ol yz\, \ol qp
+	\eqfs
+\end{equation*}
+Let us call this inequality the \textit{nice quadruple inequality}.
+As seen before, this holds for subsets of inner product spaces. It also plays an important role for geodesic metric spaces.
+In this section, we paraphrase some results of \cite{berg08}. In particular, we state that the nice quadruple inequality characterizes CAT(0)-spaces.
+
+Let $(\mc Q, d)$ be a metric space. A \textit{curve} is a continuous mapping $\gamma \colon [a,b] \to \mc Q$, where $[a,b]$ is a closed interval. The \textit{length} of the curve $\gamma \colon [a,b] \to \mc Q$ is
+%
+\begin{equation*}
+	L(\gamma) := \sup\cbOf{\sum_{i=1}^I d(\gamma(t_{i-1}), \gamma(t_i)) \,\Bigg\vert\, a = t_0 < t_1 < \dots < t_I = b, I\in\N}
+	\eqfs
+\end{equation*}
+%
+A curve $\gamma \colon [a,b] \to \mc Q$ is called a \textit{geodesic} if $L(\gamma) = d(\gamma(a),\gamma(b))$.
+A metric space is called \textit{geodesic}, if any two points $q,p\in\mc Q$ can be joined by a geodesic $\gamma \colon [a,b] \to \mc Q$ with $\gamma(a) = q, \gamma(b) = p$.
+A \textit{midpoint} of two points $q,p\in\mc Q$ is a point $m\in \mc Q$ such that $\ol qm = \ol pm = \frac12 \ol qp$.
+A complete metric space is a geodesic space if and only if all pairs of points have a midpoint, see \cite[Proposition 1.2]{sturm03}.
+Now, let $(\mc Q, d)$ be a geodesic metric space.
+For any triple of points $a,b,c\in\mc Q$ one can construct a \textit{comparison triangle} in the Euclidean plane with corners $a\pr, b\pr, c\pr \in \R^2$, such that $\ol ab = \normof{b\pr - a\pr}$, $\ol ac = \normof{c\pr - a\pr}$, and $\ol bc = \normof{c\pr - b\pr}$. A geodesic metric space  $(\mc Q, d)$ is called \textit{CAT(0)} if and only if for every triple of points $a,b,c\in\mc Q$ with comparison triangle $(a\pr, b\pr, c\pr)$ following condition holds: For every point $d$ on a geodesic connecting $a$ and $b$, it holds $\ol dc \leq \normof{c\pr - d\pr}$, where $d\pr \in \R^2$ is the point on the edge of the comparison triangle between $a\pr$ and $b\pr$ such that $\normof{d\pr- a\pr} = \ol ad$.
+A complete CAT(0)-space is called \textit{Hadamard space} or \textit{global NPC space} (\textbf{n}on\textbf{p}ositive \textbf{c}urvature).
+
+A metric space $(\mc Q, d)$ is said to fulfill the \textit{NPC-inequality} if and only if for all $y_1, y_2 \in \mc Q$ there exists a point $m\in\mc Q$ such that for all $q \in \mc Q$ it holds
+$\ol mq^2 \leq \frac12 \ol{y_1}q^2 + \frac12 \ol{y_2}q^2 - \frac14 \ol{y_1}{y_2}^2$. Then $m$ is the midpoint of $y_1$ and $y_2$.
+
+A characterization of CAT(0)-spaces can be found in \cite[Section 2]{sturm03}:
+	A metric space is CAT(0) if and only if it fulfills the NPC-inequality.
+
+Another characterization of CAT(0)-spaces by the nice quadruple inequality is given in \cite[Corollary 3]{berg08}:
+A geodesic space is CAT(0) if and only if it fulfills the nice quadruple inequality.
+	
+In \cite{berg08}, the authors define the \textit{quadrilateral cosine} for $q,p,y,z\in\mc Q$ as
+\begin{equation*}
+	\mr{cosq}\brOf{\vec{yz}, \vec{qp}} := \frac{\ol yq^2 - \ol yp^2 - \ol zq^2 + \ol zp^2}{-2 \,\ol yz\, \ol qp}\eqfs
+\end{equation*}
+Obviously, the statement $\mr{cosq}\brOf{\vec{yz}, \vec{qp}} \leq 1$ for all $q,p,y,z\in\mc Q$ is equivalent to the nice quadruple inequality. To further motivate this notation and compare it with inner product spaces, they introduce a \textit{quasilinearization} of the metric space and a \textit{quasi-inner product}:
+Define $\ip{\vec{yz}}{\vec{qp}}_d =	\mr{cosq}\brOf{\vec{yz}, \vec{qp}} \normof{\vec{yz}}_d \normof{\vec{qp}}_d$, where $\normof{\vec{yz}}_d := \ol yz$.
+Thus, the nice quadruple inequality can be viewed as the Cauchy--Schwartz inequality of the quasi-inner product. 
+%
+%
+%
+\subsection{Power Inequality}\label{ssec:pwer_inequality}
+%
+If the metric space $(\mc Q,d)$ fulfills the nice quadruple inequality, i.e, $\ol yq^2 - \ol yp^2 - \ol zq^2 + \ol zp^2 \leq 2 \,\ol yz\, \ol qp$, where $\ol yq = d(y,q)$, then $(\mc Q,d^a)$, $a\in[\frac12,1]$, also fulfills a weak quadruple inequality with a suitably adapted bound. The implications of this result for the estimators of the corresponding Fréchet means are discussed in section \ref{sssec:app:hadamard:pfm}.
+
+According to \cite{deza09}, the metric $d^a$ is called \textit{power transform metric} or \textit{snowflake transform metric}.
+%
+\begin{restatable}[Power Inequality]{theorem}{TheoremPowerIneqaulity}\label{thm:power_inequ}
+	Let $(\mc Q, d)$ be a metric space. Use the short notation $\ol qp := d(q,p)$.
+	Let $q,p,y,z\in\mc Q$, $a\in[\frac12,1]$. 
+	Assume
+	\begin{equation}\label{eq:nice_power_inequ}
+		\olt yq - \olt yp - \olt zq + \olt zp \leq 2 \, \ol yz\, \ol qp
+		\eqfs
+	\end{equation}
+	Then 
+	\begin{equation}\label{eq:nice_power_inequ_res}
+		\ol yq^{2a} - \ol yp^{2a} - \ol zq^{2a} + \ol zp^{2a} \leq 8 a 2^{-2a} \, \ol yz^{2a-1}\, \ol qp
+		\eqfs
+	\end{equation}
+\end{restatable}
+% 
+In particular, if the metric space $(\mc Q,d)$ fulfills the nice quadruple inequality and $a\in[\frac12,1]$, then the weak quadruple inequality for $\mf c = d^{2a}$ is fulfilled with $\mf a = 8 a 2^{-2a} d^{2a-1}$ and $\mf b = d$.
+
+Following the intermediate step \autoref{lmm:power_implies} (appendix \autoref{app:power_inequality}) in the proof of \autoref{thm:power_inequ}, one can easily show a similar result if the constant on the right hand side of equation \eqref{eq:nice_power_inequ} is larger than 2. Only the constant $8 a 2^{-2a}$ on the right hand side of equation \eqref{eq:nice_power_inequ_res} changes.
+
+The theorem applies to subsets of Hadamard spaces. But note that it is not required that $\mc Q$ is geodesic, but can consist of only the points $q,p,y,z$.  As a statement purely about metric spaces, it might be of interest outside the realm of statistics.  
+
+In \autoref{coro:probrates_power} (section \ref{ssse:quad:npc}) it is used to show rates of  convergence for the Fréchet mean estimator of the power transform metric $d^a$. There the asymmetry of the exponents of the factors on the right hand side of  \eqref{eq:nice_power_inequ_res} is essential for proving the result under weak assumption. 
+
+Unfortunately, the only proof of this statement that the author was able to derive (see appendix \ref{app:power_inequality}) is very long and does not give much insight into the problem as it mostly consists of distinguishing many cases and then using simple calculus. The author is convinced that a more appealing proof is possible.
+
+The concave function $[\frac12, 1] \to (0,\infty), a\mapsto8a2^{-2a}$ is maximal at $a_0 = (2\ln(2))^{-1} \approx 0.721$ with $8a_02^{-2a_0} = \frac{4}{\euler \ln(2)} \leq 2.123$. Thus, the constant factor in the bound is very close to 2, but 2 is not sufficient.
+
+In appendix \autoref{app:power_inequ_opti}, we show that $8a2^{-2a}$ is the optimal constant, and that we cannot extend \autoref{thm:power_inequ} to $a > 1$ or $a < \frac12$.
+
+It is not known to the author whether the nice quadruple inequality in $(\mc Q, d)$ does or does not imply the nice quadruple inequality in $(\mc Q, d^a)$ for $a \in (\frac12, 1)$, i.e.,
+\begin{equation*}
+	\ol yq^{2a} - \ol yp^{2a} - \ol zq^{2a} + \ol zp^{2a} \leq 2 \, \ol yz^{a}\, \ol qp^{a}
+	\eqfs
+\end{equation*}
+%
+%
+%
+\subsection{Weak Implies Strong}\label{ssec:weak_implies_strong}
+%
+The weak quadruple inequality is well justified as a condition: Aside from allowing to establish rates in probability (\autoref{thm:abstr_rate_prob}), it can be interpreted as a form of Cauchy--Schwartz inequality (section \ref{ssse:quad:npc}), it is fulfilled in a large class of metric spaces (bounded metric spaces, Hadamard spaces, appendix \autoref{app:quad_stab}), and the power inequality (\autoref{thm:power_inequ}) implies even more applications with a nice interpretation in statistics (section \ref{sssec:app:hadamard:pfm}).
+
+The case for the strong quadruple inequality, which we use in \autoref{thm:abstr_rate_exp} to establish rates in expectation, seems much weaker. 
+Although it can be established in Hilbert spaces, see section \ref{sssec:inner_product_space}, it is not directly clear whether we can have a suitable version for Hadamard spaces or a power inequality. 
+
+The next section examines the strong quadruple inequality in Hadamard spaces and concludes with a negative result. Thereafter, we discuss an approach to infer convergence rates in expectation when only assuming the weak quadruple inequality by showing that a weak quadruple inequality imply certain strong quadruple inequalities. This approach is executed to obtain \autoref{thm:abstr_weak_strong} for convergence rates in expectation, where the result holds only asymptotically, in contrast to \autoref{thm:abstr_rate_exp}.
+%
+%
+\subsubsection{Projection Metric}
+%
+In Euclidean spaces, we can take $\mf b_m(q,p) = \normOf{\frac{q-m}{\normof{q-m}}-\frac{p-m}{\normof{p-m}}}$ as the strong quadruple metric. This pseudo-metric can be written down only depending on the metric (not the norm or vector space operations) as
+\begin{equation*}
+	d_{m}^{\ms{proj}}(q,p) := \sqrt{\frac{\ol qp^2 - \br{\ol qm - \ol pm}^2}{\ol qm\, \ol pm}}\eqcm\quad  d_{m}^{\ms{proj}}(q,p) = \mf b_m(q,p)
+	\eqfs
+\end{equation*} 
+%
+The metric $d_{m}^{\ms{proj}}(q,p)$ can be defined in any metric space. Unfortunately, it does not yield a strong quadruple inequality in non-Euclidean Hadamard spaces in the same way as in Euclidean spaces. See appendix \autoref{app:dproj} for details.
+%
+%
+\subsubsection{Power Metric}
+%
+To establish rates of convergence in expectation for the $\mf c$-Fréchet mean, given that a weak quadruple inequality holds, we first show that some version of the strong quadruple inequality is implied by the weak one, \autoref{lmm:weak_implies_strong_power}. Unfortunately, we obtain a strong quadruple distance $\mf b_m$ such that the measure of entropy $\tsize(\mc Q, \mf b_m)$ might be infinite. To solve this problem, we define an increasing sequence of sets $\mc Q_n$ such that $\mc Q_n \subset \mc Q_{n+1}$ and $\bigcup_{n\in\N} \mc Q_n = \mc Q$
+with distances $\mf b_{m,n}$ such that the strong quadruple inequality is fulfilled on $\mc Q_n$ with strong quadruple distance $\mf b_{m,n}$, and $\tsize(\mc Q_n, \mf b_{m,n})$ is finite and can be suitably controlled in $n$. This allows us to prove an asymptotic result for the rate of convergence in expectation, \autoref{thm:abstr_weak_strong}.
+%
+\begin{lemma}\label{lmm:weak_implies_strong_power}
+Assume $(\mc Q, \mc Y, \mf a, \mf b, \mf c)$ fulfills the weak quadruple inequality.
+Let $\xi\in[0,1]$.
+Then
+\begin{equation}\label{eq:strquadpowerbound}
+	\frac{\olc yq - \olc ym - \olc zq + \olc zm}{\mf b(q,m)^{\xi}}
+	-
+	\frac{\olc yp - \olc ym - \olc zp + \olc zm}{\mf b(p,m)^{\xi}}
+	\leq
+	2^\xi\, \mf a(y,z)\, {\mf b}(q,p)^{1-\xi}
+\end{equation}
+for all $y,z,q,p,m \in \mc Q$ with $\mf b(q,m), \mf b(p,m) > 0$.
+\end{lemma}
+%
+See appendix \autoref{app:power_metric_bound} for a proof.
+%
+We would like to have $\xi$ large, i.e., close to 1, to obtain the same rate of convergence in expectation as in probability. We achieve that by defining sequences $\xi_n \nearrow 1$ and $\mc Q_n \nearrow \mc Q$, and control the entropy of $\mc Q_n$ with respect to $\mf b^{1-\xi_n}$.
+
+To state the result, we have to modify the \assu{ass:ent}{Entropy} and the \assu{ass:ex}{Existence} condition.
+Recall the definition of the objective function $F(q) = \Ex{\olc Yq}$ and the empirical objective function $F_n(q) = \frac1n \sum_{i=1}^n \olc{Y_i}q$.
+\begin{assumptions}
+\theoremContentInNewLine
+	\begin{enumerate}[label=\environmentEnumerateLabel]
+	\assitem{ass:ex2}{Existence'}
+		It holds $\Ex*{\abs{\mf c(Y, q)}} < \infty$ for all $q\in\mc Q$.
+		Let $o\in\mc Q$. Define $R_n := n$ and $\mc Q_n := \Ball{R_n}{o}{\mf b}$.
+		There are $m^{Q_n}_n \in \argmin_{q\in \mc Q_n} F_n(q)$ measurable and $m\in\argmin_{q\in\mc Q} F(q)$.
+		\index[inot]{$o$}
+		\index[inot]{$R_n$}
+		\index[inot]{$\mc Q_n$}
+		\index[inot]{$m^{Q_n}_n$}
+	\assitem{ass:se}{Small Entropy}
+		There are $\beta, c_{\ms e} > 0$ such that for $\delta > 0$ large enough
+		\begin{equation*}
+			\sqrt{\log N(\ball_\delta(o, \mf b), \mf b, r)} \leq c_{\ms e} \log\brOf{\frac{\delta}{r}}^\beta
+		\end{equation*}
+		for all $r > 0$.
+		\index[inot]{$\beta$}
+	\end{enumerate}
+\end{assumptions}
+%
+Note that the \assu{ass:se}{Small Entropy} condition is much stronger than \assu{ass:ent}{Entropy}, which we assumed in \autoref{thm:abstr_rate_prob}. In Euclidean subspaces $\mc Q \subset \R^b$, it holds \begin{equation*}
+N(r,\Ball{\delta}{0}{d},d) \leq \br{\frac{3 \delta}{r}}^b
+\end{equation*} for all $R>r>0$ \cite[section 4]{pollard90}. Thus, \assu{ass:se}{Small Entropy} is fulfilled in Euclidean spaces.
+%
+\begin{theorem}[Convergence rate in expectation]\label{thm:abstr_weak_strong}
+	In the \textit{Abstract Setting} of section \ref{ssec:ares:generalsetting} with loss $\mf l = \mf b$, where $\mf b$ is a pseudo-metric, and rate parameter $\xi=1$, assume that following conditions hold:
+	\assu{ass:ex2}{Existence'}, \assu{ass:gr}{Growth} with $\gamma>1$, \assu{ass:wquad}{Weak Quadruple}, \assu{ass:smom}{Strong Moment} with $\kappa > \gamma-1$, \assu{ass:se}{Small Entropy}.
+	Then
+	\begin{equation*}
+		\Ex*{\mf b(m, m^{Q_n}_n)^\kappa} = \bigO\brOf{\br{n^{-\frac12} \log(n)^\beta}^{\frac{\kappa}{\gamma-1}}}
+		\eqfs
+	\end{equation*}
+\end{theorem}
+%
+See appendix \autoref{app:proofs:1and2} for the proof.
+%

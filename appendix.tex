@@ -1,0 +1,900 @@
+%
+%
+\section{Proofs of Theorem 1, 2, and 4}\label{app:proofs:1and2}
+%
+%
+%
+%
+\subsection{Proof of \autoref{thm:abstr_rate_prob} and \autoref{cor:probtoexpec}}
+%
+%
+%
+Define
+\begin{equation*}
+	\Delta_n(\delta) := \sup_{q\in\mc Q\colon \mf l(m,q)\leq \delta} F(q)-F(m)-F_n(q)+F_n(m)
+	\eqfs
+\end{equation*}
+\index[inot]{$\Delta_n$}
+%
+Results similar to following Lemma are well known in the M-estimation literature. The proof relies on the \textit{peeling device}, see \cite{geer00}.
+%
+\begin{lemma}[Weak argmin transform]\label{lmm:weak:argmin}	
+	Assume \assu{ass:gr}{Growth}. Let $\zeta \geq 1$. Assume that there are constants $\xi\in(0,\gamma)$, $h_n\geq 0$ such that
+	$\Ex{\Delta_n(\delta)^\zeta} \leq \br{h_n \delta^\xi}^\zeta$	for all $\delta>0$. Then
+	\begin{equation*}
+		\PrOf{\mf l(m,m_n) \geq s}
+		\leq
+		c \br{h_n s^{-(\gamma-\xi)}}^\zeta
+		\eqcm
+	\end{equation*}
+	where $c > 0$ depends only on $c_{\ms g}, \gamma, \xi, \zeta$.
+\end{lemma}
+%
+\begin{proof}
+	Let $0 < a < b$.
+	If $\mf l(m, m_n) \in [a,b]$, we have
+	\begin{equation*}
+		c_{\ms g} a^\gamma 
+		\leq 
+		c_{\ms g} \mf l(m,m_n)^\gamma
+		\leq 
+		F(m_n)-F(m)
+		\leq 
+		F(m_n)-F(m)-F_n(m_n)+F_n(m)
+		\leq 
+		\Delta_n(b)
+		\eqfs
+	\end{equation*}
+	Let $s>0$. 
+	For $k\in \N_0$, set $a_k := s 2^{k}$. It holds
+	\begin{align*}
+		&\PrOf{\mf l(m,m_n) \geq s}
+		\\&\leq 
+		\sum_{k=0}^{\infty}\PrOf{\mf l(m, m_n) \in [a_k, a_{k+1}]}
+		\\&\leq 
+		\sum_{k=0}^{\infty} \PrOf{c_{\ms g} a_k^\gamma \leq \Delta_n(a_{k+1})}
+		\eqfs
+	\end{align*}
+	We use Markov's inequality and the bound on $\Ex{\Delta_n(\delta)^\zeta}$ to obtain
+	\begin{align*}
+		\PrOf{c_{\ms g} a_k^\gamma \leq \Delta_n(a_{k+1})}
+		&\leq
+		\frac{\EOf{ \Delta_n(a_{k+1})^\zeta}}{\br{c_{\ms g} a_k^\gamma}^\zeta} 
+		\\&\leq
+		\br{\frac{h_n a_{k+1}^\xi}{c_{\ms g} a_k^\gamma}}^\zeta
+		\\&=
+		\br{2 c_{\ms g}^{-1} h_n s^{-(\gamma-\xi)} 2^{-k(\gamma-\xi)}}^\zeta
+		\eqfs
+	\end{align*}
+	As $\gamma-\xi>0$, we get 
+	\begin{align*}
+		\PrOf{\mf l(m,m_n) \geq s}
+		&\leq
+		\br{2 c_{\ms g}^{-1} h_n s^{-(\gamma-\xi)}}^\zeta \sum_{k=0}^\infty 2^{-k\zeta(\gamma-\xi)}
+		\\&=
+		\br{2 c_{\ms g}^{-1} h_n s^{-(\gamma-\xi)}}^\zeta \frac{1}{1-2^{-\zeta(\gamma-\xi)}}
+		\eqfs
+	\end{align*}
+\end{proof}
+%
+\begin{lemma}\label{lmm:weak:close}	
+	Let $\zeta \geq 1$. Assume \assu{ass:mom}{Moment}, \assu{ass:wquad}{Weak Quadruple}, and \assu{ass:ent}{Entropy}.
+	Then
+	\begin{equation*}
+		\Ex{\Delta_n(\delta)^\zeta} 
+		\leq c\, \mf M(\zeta)\, \br{\delta^{\frac\alpha\beta}\, \eta_{\beta,n}}^\zeta
+	\end{equation*}
+	where $Y\pr$ is an independent copy of $Y$, $c > 0$ is a constant depending only on $\beta, c_{\ms e}, \zeta$, and
+	\begin{equation*}
+		\eta_{\beta,n} := 
+		\begin{cases} 
+			n^{-\frac12} & \text{ for }\beta < 1\eqcm\\
+			n^{-\frac12} \log(n+1) & \text{ for } \beta = 1\eqcm\\
+			n^{-\frac1{2\beta}} & \text{ for } \beta > 1\eqfs
+		\end{cases} 
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof}
+	Recall the notation $\olc yq := \mf c(y,q)$, $F(q) = \Ex{\olc Yq}$,  $F_n(q) = \frac1n \sum_{i=1}^n \olc {Y_i}q$.
+	Define
+	\begin{align*}
+		Z_i(q) 
+		&:= 
+		\frac1n \br{\Ex*{\olc Yq-\olc Ym}- \olc{Y_i}q+\olc{Y_i}m}
+		\eqfs
+	\end{align*}
+	Thus, $\Delta_n(\delta) = \sup_{q\in\ball_\delta(m, \mf l)}\sum_{i=1}^n Z_i(q)$.
+	The \assu{ass:mom}{Moment} condition together with the \assu{ass:wquad}{Weak Quadruple} condition imply that $Z_i$ are integrable.
+	Let $(Z_1\pr, \dots, Z_n\pr)$ be an independent copy of $(Z_1, \dots, Z_n)$, where $(Y_1\pr, \dots, Y_n\pr)$ is an independent copy of $(Y_1, \dots, Y_n)$.
+	By \assu{ass:wquad}{Weak Quadruple} it holds
+	\begin{align*}
+		&
+		n^2\br{Z_i(q)-Z_i(p)-Z_i\pr(q) +Z_i\pr(p)}^2 
+		\\&= 
+		\br{\olc{Y_i}q-\olc{Y_i}p-\olc{Y_i\pr}q+\olc{Y_i\pr}p}^2
+		\\&\leq 
+		\mf b(q,p)^2 \mf a(Y_i,Y_i\pr)^2
+		\eqfs
+	\end{align*}
+	Furthermore,
+	\begin{equation*}
+		\Ex*{\br{\frac1n\sum_{i=1}^n \mf a(Y_i,Y_i\pr)^2}^{\frac\zeta2}} \leq \mf M(\zeta)
+		\eqfs
+	\end{equation*}
+	Thus, \autoref{chaining:empproc} (appendix \autoref{app:chaining}) implies
+	\begin{equation*}
+		\Ex{\Delta_n(\delta)^\zeta} \leq c_1 \mf M(\zeta) \br{\frac1{\sqrt{n}} \entrn(\ball_\delta(m, \mf l), \mf b)}^\zeta\eqcm
+	\end{equation*}
+	where $\entrn$ is defined in \autoref{chaining:def_entropy}.
+	
+	%
+	%
+	%
+	To bound $\entrn(\ball_\delta(m, \mf l), \mf b)$ by applying \autoref{lmm:chaining:rate} (appendix \autoref{app:chaining}), we need to find an upper bound on $\diam(\ball_\delta(m, \mf l), \mf b)$.
+	Set $r_0 := (2 c_{\ms e} \delta^\alpha)^{\frac1\beta}$.
+	It fulfills $c_{\ms e} \frac{\delta^\alpha}{r_0^\beta} < \sqrt{\log(2)}$. Thus, \assu{ass:ent}{Entropy} implies $N(\ball_\delta(m, \mf l), \mf b, r_0) < 2$.
+	As the covering number is an integer, $N(\ball_\delta(m, \mf l), \mf b, r_0) = 1$, which implies, $\diam(\ball_\delta(m, \mf l), \mf b) \leq 2r_0 =: D_\delta$.
+	Rewriting the  \texttt{Entropy}-condition in terms of $D_\delta$ yields
+	\begin{equation*}
+	\sqrt{\log N(\ball_\delta(m, \mf l), \mf b, r)} \leq c_\beta \br{\frac{D_\delta}{r}}^\beta
+	\end{equation*}
+	for a constant $c_\beta > 0$ depending only on $\beta$ and $c_{\ms e}$.
+	%
+	%
+	%
+	
+	Together with \autoref{lmm:chaining:rate} (appendix \autoref{app:chaining}) we get
+	\begin{equation*}
+		\Ex{\Delta_n(\delta)^\zeta} \leq c \mf M(\zeta) \br{\delta^{\frac\alpha\beta} \eta_{\beta,n}}^\zeta
+	\end{equation*}
+	for a constant $c > 0$ depending only on $\beta, c_{\ms e}, \zeta$.
+\end{proof}
+%
+\begin{proof}[of \autoref{thm:abstr_rate_prob}]
+	Combine \autoref{lmm:weak:argmin} and \autoref{lmm:weak:close}.
+\end{proof}
+%
+\begin{proof}[of \autoref{cor:probtoexpec}]
+\autoref{thm:abstr_rate_prob} yields
+\begin{align*}
+	\eta_{\beta,n}^{-\frac{\kappa}{\gamma-\frac{\alpha}{\beta}}} \Ex{\mf l (m, m_n)^\kappa} 
+	&= 
+	\int_0^\infty 
+	\PrOf{\eta_{\beta,n}^{-\frac{1}{\gamma-\frac{\alpha}{\beta}}} \mf l (m, m_n) \geq t^{\frac1\kappa}} \dl t
+	\\&\leq 
+	\int_0^\infty \max\brOf{1, c\, \mf M(\zeta)\, t^{-\xi}} \dl t
+	\eqfs
+\end{align*}
+In general for $a > 1$, $b>0$, we have
+\begin{equation*}
+	\int \max(1, bt^{-a}) \dl t = \frac{a}{a-1} b^{\frac1a}
+	\eqfs
+\end{equation*}
+The proof is concluded by applying this statement and noting that $\xi > 1$.
+\end{proof}
+%
+%
+%
+%
+%
+%
+%
+\subsection{Proof of \autoref{thm:abstr_rate_exp}}
+%
+To state the next Lemma, which will be used to prove \autoref{thm:abstr_rate_exp}, we introduce an intermediate condition, which we call \assu{ass:clo}{Closeness}.
+%
+\begin{assumptions}
+\theoremContentInNewLine
+\begin{enumerate}[label=\environmentEnumerateLabel]
+\assitem{ass:clo}{Closeness}
+	There is $\xi \in (0, \gamma)$ and a random variable $H_n \geq 0$, such that
+	\begin{equation}
+		F(q) - F(m) - F_n(q) + F_n(m) \leq H_n \mf l(m, q)^\xi
+	\end{equation}
+	for all $q \in \mc Q$ almost surely.
+\end{enumerate}
+\end{assumptions}
+%
+\begin{lemma}\label{lmm:strong:growth}
+	Assume \assu{ass:clo}{Closeness} and \assu{ass:gr}{Growth}, and let $\kappa > 0$. Then, 
+	\begin{equation*}
+		\Ex*{\mf l(m,m_n)^{\kappa}} \leq c \Ex*{H_n^{\frac{\kappa}{\gamma-\xi}}}\eqcm
+	\end{equation*}
+	where $c >0$ depends only on $c_{\ms g}, \gamma, \xi, \kappa$.
+\end{lemma}
+%
+\begin{proof}
+	We use \assu{ass:gr}{Growth} and the fact that $m_n$ minimizes $F_n$ to obtain
+	\begin{align*}
+		c_{\ms g}\mf l(m,m_n)^\gamma 
+		&\leq
+		F(m_n)-F(m)
+		\\&\leq
+		F(m_n)-F(m)-F_n(m_n)+F_n(m)
+		\\&\leq
+		H_n \mf l(m, m_n)^\xi
+		\eqcm
+	\end{align*}
+	where we applied the \assu{ass:clo}{Closeness} condition in the last step. Thus,
+	\begin{equation*}
+		c_{\ms g} \mf l (m,m_n)^{\gamma-\xi} \leq H_n\eqcm
+	\end{equation*}
+	which implies the claimed inequality.
+\end{proof}
+%
+Define
+\begin{equation*}
+	X(q) :=  \frac{F_n(q)-F_n(m)-F(q)+F(m)}{\mf l(m, q)^\xi}\eqfs
+\end{equation*}
+%
+\begin{lemma}\label{lmm:strong:close}	
+	Let $\zeta \geq 1$.
+	Assume \assu{ass:smom}{Strong Moment} and \assu{ass:squad}{Strong Quadruple}.
+	Then
+	\begin{equation*}
+		\Ex*{\sup_{q\in\mc Q} \abs{X(q)}^\zeta} \leq c n^{-\frac\zeta2} \mf M(\zeta) \min\brOf{\entrn(\mc Q, \mf b_m), \gamma_2(\mc Q, \mf b_m)}^\zeta
+		\eqcm
+	\end{equation*}
+	where $c>0$ is a constant depending only on $\zeta$.
+	Additionally, assume \assu{ass:sent}{Strong Entropy}. Then
+	\begin{equation*}
+		\Ex*{\sup_{q\in\mc Q} \abs{X(q)}^\zeta} \leq  C \mf M(\zeta) D^\zeta \eta_{n,\beta}^\zeta
+		\eqcm
+	\end{equation*}
+	where $C>0$ is a constant depending only on $\zeta, \beta, c_{\ms e}$, and
+	\begin{equation*}
+		\eta_{\beta,n} := 
+		\begin{cases} 
+			n^{-\frac12} & \text{ for }\beta < 1\eqcm\\
+			n^{-\frac12} \log(n+1) & \text{ for } \beta = 1\eqcm\\
+			n^{-\frac1{2\beta}} & \text{ for } \beta > 1\eqfs
+		\end{cases} 
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof}
+	Define
+	\begin{align*}
+		Z_i(q) 
+		&:= 
+		\frac1n \frac{\olc{Y_i}q-\olc{Y_i}m-\Ex*{\olc Yq-\olc Ym}}{\mf l(m, q)^\xi}
+		\eqfs
+	\end{align*}
+	Thus, $X(q) = \sum_{i=1}^n Z_i(q)$.
+	The \assu{ass:smom}{Strong Moment} condition together with the \assu{ass:squad}{Strong Quadruple} condition imply that $Z_i$ integrable.
+	Let $(Z_1\pr, \dots, Z_n\pr)$ be an independent copy of $(Z_1, \dots, Z_n)$, where $(Y_1\pr, \dots, Y_n\pr)$ is an independent copy of $(Y_1, \dots, Y_n)$.
+	By \assu{ass:squad}{Strong Quadruple} it holds
+	\begin{align*}
+			&
+		n^2 \br{Z_i(q)-Z_i(p)-Z_i\pr(q)+Z_i\pr(p)}^2 
+		\\&= 
+		\br{\frac{\olc{Y_i}q-\olc{Y_i}m-\olc{Y_i\pr}q+\olc{Y_i\pr}m}{\mf l(m,q)^\xi}-\frac{\olc{Y_i}p-\olc{Y_i}m-\olc{Y_i\pr}p+\olc{Y_i\pr}m}{\mf l(m,p)^\xi}}^2
+		\\&\leq 
+		\mf b_m(q,p)^2 \mf a(Y_i,Y_i\pr)^2
+		\eqfs
+	\end{align*}
+	Furthermore,
+	\begin{equation*}
+		\Ex*{\br{\frac1n\sum_{i=1}^n \mf a(Y_i, Y_i\pr)^2}^{\frac\zeta2}} \leq \mf M(\zeta)
+	\end{equation*}
+	with $\mf M(\zeta) < \infty$ due to the assumption \assu{ass:smom}{Strong Moment}.
+	Thus, \autoref{chaining:empproc} (appendix \autoref{app:chaining}) implies
+	\begin{equation*}
+		\Ex*{\sup_{q\in\mc Q} \abs{X(q)}^\zeta} \leq c n^{-\frac\zeta2} \mf M(\zeta) \min\brOf{\entrn(\mc Q, \mf b_m), \gamma_2(\mc Q, \mf b_m)}^\zeta \eqfs
+	\end{equation*}
+	\assu{ass:sent}{Strong Entropy} together with \autoref{lmm:chaining:rate} (appendix \autoref{app:chaining}) yield
+	\begin{equation*}
+		\Ex*{\sup_{q\in\mc Q} \abs{X(q)}^\zeta} \leq C \mf M(\zeta) \br{D \eta_{n,\beta}}^\zeta
+\end{equation*}
+	for a constant $C > 0$ depending only on $\beta, \zeta, c_{\ms e}$.
+\end{proof}
+%
+\begin{proof}[of \autoref{thm:abstr_rate_exp}]
+	%Use $H_n := \sup_{q\in\mc Q} \abs{X(q)}$ and $\zeta := \frac{\kappa}{\gamma-\xi}$ with \autoref{lmm:strong:growth} and \autoref{lmm:strong:close}.
+	Using $H_n := \sup_{q\in\mc Q} \abs{X(q)}$ in \autoref{lmm:strong:growth} fulfills the \assu{ass:clo}{Closeness} condition by definition of $X$. Next, apply  \autoref{lmm:strong:close} with $\zeta := \frac{\kappa}{\gamma-\xi}$ to conclude the proof.
+\end{proof}
+%
+%
+%
+\subsection{Proof of \autoref{thm:abstr_weak_strong}}
+%
+\begin{lemma}\label{lmm:entropyuse}
+	The condition \assu{ass:se}{Small Entropy} implies
+	\begin{equation*}
+		\entrn(\ball_{R}(o, \mf b), \mf b^{1-\xi})
+		\leq 
+		c R^{1-\xi} (1-\xi)^{-\beta}
+	\end{equation*}
+	for $\xi \in (0,1)$, where $c > 0$ depends only on $\beta, c_{\ms e}$.
+\end{lemma}
+\begin{proof}
+	Obviously, it holds
+	\begin{equation*}
+		\entrn(Q, \mf b^{1-\xi}) \leq \int_0^\infty \sqrt{\log N(Q, \mf b^{1-\xi}, r)} \dl r
+	\end{equation*}
+	for any set $Q \subset \mc Q$. Furthermore,
+	\begin{equation*}
+		N(Q, \mf b^{1-\xi}, r) = N(Q, \mf b, r^{\frac1{1-\xi}})
+		\eqcm
+	\end{equation*}
+	which yields
+	\begin{equation*}
+		\int_0^\infty \sqrt{\log N(Q, \mf b^{1-\xi}, r)} \dl r
+		=
+		(1-\xi) \int_0^\infty s^{-\xi} \sqrt{\log N(Q, \mf b, s)} \dl s
+	\end{equation*}
+	Thus, for $Q := \ball_{R}(o, \mf b)$, we obtain, using the \assu{ass:se}{Small Entropy} condition,
+	\begin{equation*}
+		\entrn(Q, \mf b^{1-\xi})
+		\leq 
+		c_{\ms e} (1-\xi) \int_0^R r^{-\xi} \log\brOf{\frac{R}{r}}^\beta \dl r
+		\eqfs
+	\end{equation*}
+	To calculate the integral, we substitute $s := \frac rR$ and get
+	\begin{equation*}
+		\int_0^R r^{-\xi} \log\brOf{\frac{R}{r}}^\beta \dl r
+		=
+		R^{1-\xi} \int_0^1 s^{-\xi} \log\brOf{\frac{1}{s}}^\beta \dl s
+		\eqfs
+	\end{equation*}
+	For general $a\in(0,1),b>0$ it holds
+	\begin{equation*}
+		\int_0^1 x^{-a} \log\brOf{\frac1x}^b \dl x = (1-a)^{-b-1} \Gamma(b+1)
+		\eqcm
+	\end{equation*}
+	where $\Gamma(\cdot)$ is the Gamma function.
+	Thus,
+	\begin{equation*}
+		\int_0^1 s^{-\xi} \log\brOf{\frac{1}{s}}^\beta \dl s \leq c_\beta (1-\xi)^{-\beta-1}
+	\end{equation*}
+	for a constant $c_\beta > 0$ depending only on $\beta$.
+	Putting everything together, we obtain
+	\begin{equation*}
+		\entrn(Q, \mf b^{1-\xi})
+		\leq 
+		c R^{1-\xi} (1-\xi)^{-\beta}
+		\eqfs
+	\end{equation*}
+\end{proof}
+%
+\begin{lemma}\label{lmm:seqbound}
+	Set $\xi_n := 1 - \log(n)^{-1}$. Then
+	\begin{equation*}
+		\br{n^{-\frac12} \br{1-\xi_n}^{-\beta}}^{\frac{1}{\gamma-\xi_n}} 
+		\leq
+		c_\gamma n^{-\frac1{2(\gamma-1)}} \log(n)^{\frac{\beta}{\gamma-1}}
+	\end{equation*}
+	where $c_\gamma > 0$ is a constant depending only on $\gamma$.
+\end{lemma}
+%
+\begin{proof}
+	We have
+	\begin{align*}
+		\br{n^{-\frac12} \br{1-\xi_n}^{-\beta}}^{\frac{1}{\gamma-\xi_n}} 
+		&= 
+		\br{n^{-\frac{1}{2(\gamma-\xi_n)}}} \log(n)^{\frac{\beta}{\gamma-\xi_n}} 
+		\\&= 
+		\br{n^{-\frac{1}{2\br{z+\frac1{\log(n)}}}}} \log(n)^{\frac{\beta}{z+\frac1{\log(n)}}} 
+		\eqcm
+	\end{align*}
+	where $z = \gamma-1$. We use
+	\begin{equation*}
+		\log(n)^{\frac{\beta}{z+\frac1{\log(n)}}} 
+		\leq
+		\log(n)^{\frac{\beta}{z}}
+		\eqcm
+	\end{equation*}
+	\begin{equation*}
+		n^{-\frac{1}{2(z+\frac1{\log(n)})}}
+		=
+		n^{-\frac{\log(n)}{2z\log(n)+2}}
+		=
+		\exp\brOf{-\frac{\log(n)^2}{2z\log(n)+2}+\frac{\log(n)}{2z}} n^{-\frac1{2z}}
+		\eqcm
+	\end{equation*}
+	and
+	\begin{align*}
+		-\frac{\log(n)^2}{2z\log(n)+2}+\frac{\log(n)}{2z}
+		&=
+		\frac{\log(n)}{2z (z\log(n)+1)}
+		\\&\leq
+		\frac1{2z^2}
+		\eqcm
+	\end{align*}
+	to obtain
+	\begin{equation*}
+		\br{n^{-\frac12} \br{1-\xi_n}^{-\beta}}^{\frac{1}{\gamma-\xi_n}} 
+		\leq
+		\exp\brOf{\frac1{2z^2}} n^{-\frac1{2z}} \log(n)^{\frac{\beta}{z}}
+		\eqfs
+	\end{equation*}
+\end{proof}
+%
+\begin{proof}[of \autoref{thm:abstr_weak_strong}]
+	For $n\in\N, n\geq 3$, set $\xi_n := 1 - \log(n)^{-1}$, $Q_n := \ball_{R_n}(o, \mf b)$, and $R_n := n$.
+	For $n$ large enough, the \assu{ass:ex2}{Existence'} condition implies the existence of $m^{Q_n}_n \in \argmin_{q\in Q_n} F_n(q)$ and $m^{Q_n}\in\argmin_{q\in Q_n} F(q)$.
+	
+	\autoref{thm:abstr_rate_exp} implies
+	\begin{equation*}
+		\Ex*{\mf b(m^{Q_n}, m^{Q_n}_n)^{\kappa}} \leq C n^{-\frac{\kappa}{2(\gamma-\xi_n)}} \entrn(Q_n, \mf b^{1-\xi_n})^{\frac{\kappa}{\gamma-\xi_n}}\, \mf M\brOf{\frac{\kappa}{\gamma-\xi_n}}
+		\eqcm
+	\end{equation*}
+	for $n$ large enough.
+	Note, that $C>0$ can be chosen independently of $n$ (even for $\xi_n$ depending on $n$).
+	
+	In \assu{ass:smom}{Strong Moment} we require $\kappa \geq \gamma-1$, because then $x\mapsto x^{\frac{\kappa}{\gamma-1}}$ is convex, which is needed for the symmetrization argument in the proof of \autoref{thm:abstr_rate_exp}. But, if $\kappa = \gamma-1$, then $\frac{\kappa}{\gamma-\xi_n} < 1$, and \autoref{thm:abstr_rate_exp} cannot be applied directly. For this technical reason, we assumed $\kappa > \gamma-1$, so that $\kappa \geq \gamma-\xi_n$ for $n$ large enough.	
+	
+	By \assu{ass:se}{Small Entropy} and \autoref{lmm:entropyuse} there is $c_\beta>0$ such that for $n\in\N$ large enough, it holds 
+	\begin{equation*}
+		\entrn(\Ball{R_n}{o}{\mf b}, \mf b^{1-\xi_n}) \leq c_\beta R_n^{1-\xi_n} \br{{1-\xi_n}}^{-\beta}
+		\eqfs
+	\end{equation*}
+	Using $R_n^{1-\xi_n} = n^{\frac1{\log(n)}} = \exp(1)$ together with \autoref{lmm:seqbound}, we obtain
+	\begin{equation*}
+		\Ex*{\mf b(m^{Q_n}, m^{Q_n}_n)^\kappa} \leq C\pr \br{n^{-\frac12} \log(n)^\beta}^{-\frac{\kappa}{\gamma-1}} \, \mf M\brOf{\frac{\kappa}{\gamma-\xi_n}}
+		\eqfs
+	\end{equation*}
+	As $\lim_{n\to\infty}\mf M\brOf{\frac{\kappa}{\gamma-\xi_n}} = \mf M\brOf{\frac{\kappa}{\gamma-1}}$, we have 
+	\begin{equation*}
+		\Ex*{\mf b(m^{Q_n}, m^{Q_n}_n)^{\kappa}} \leq C\prr n^{-\frac{\kappa}{2(\gamma-\xi_n)}} \br{R_n^{1-\xi_n} \br{{1-\xi_n}}^{-\beta}}^{\frac{\kappa}{\gamma-\xi_n}}\, \mf M\brOf{\frac{\kappa}{\gamma-1}}
+		\eqfs
+	\end{equation*}
+	Finally, there is a $n_0\in\N$ such that for all $n\geq n_0$ it holds $m \in Q_n$, which implies $m = m^{Q_n}$. Thus,
+	\begin{equation*}
+		\Ex*{\mf b(m, m^{Q_n}_n)^\kappa} = \bigO\brOf{\br{n^{-\frac12} \log(n)^\beta}^{-\frac{\kappa}{\gamma-1}}}
+		\eqfs
+	\end{equation*}
+\end{proof}
+%
+%
+%
+\section{Stability of Quadruple Inequalities} \label{app:quad_stab}
+%
+%
+We present some trivial stability results for quadruple inequalities. The notation we use here is introduced in the beginning of \autoref{sec:quadruple}.
+%
+\begin{itemize}
+\item[]
+	\hspace*{-0.5cm}\textbf{Subsets:}\\
+	If $(\mc Q, \mc Y, \mf c, \mf a, \mf b)$ fulfills the weak quadruple inequality, then so does \linebreak$(\mc Q\pr, \mc Y\pr, \mf c, \mf a, \mf b)$ with $\mc Q\pr \subset \mc Q$, $\mc Y\pr \subset \mc Y$.
+\item[]
+	\hspace*{-0.5cm}\textbf{Images:}\\
+	Assume $(\mc Q, \mc Y, \mf c, \mf a, \mf b)$ fulfills the weak quadruple inequality and $f\colon\mc Y\pr\to\mc Y$, $g\colon\mc Q\pr\to\mc Q$. Then $(\mc Q\pr, \mc Y\pr, \mf c\pr, \mf a\pr, \mf b\pr)$ fulfills the weak quadruple inequality with $\mf c\pr(y,q) = \mf c(f(y), g(q))$, $\mf a\pr(y,z) = \mf a(f(y), f(z))$, $\mf b\pr(q,p) = \mf b(g(q), g(p))$.
+\item[]
+	\hspace*{-0.5cm}\textbf{Limits:}\\
+	Let $(\mc Q, \mc Y, \mf c_i, \mf a_i, \mf b_i)$ fulfill the weak quadruple inequality for $i \in \N$ and assume for all $q,p\in\mc Q$ and $y,z\in\mc Y$ the point-wise limits 
+	\begin{align*}
+		\mf a(y,z) &:= \lim_{i\to\infty} \mf a_i(y,z)\\
+		\mf b(q,p) &:= \lim_{i\to\infty} \mf b_i(q,p)\\
+		\mf c(y,q) &:= \lim_{i\to\infty} \mf c_i(y,q)
+	\end{align*}
+	exist. Then $(\mc Q, \mc Y, \mf c, \mf a, \mf b)$ also fulfills the weak quadruple inequality.
+\end{itemize}
+Similar results hold for the strong quadruple inequality. For the following results it may not be so easy to obtain an analog for the strong quadruple inequality.
+\begin{itemize}
+\item[] \hspace*{-0.5cm}\textbf{Product Spaces:}\\
+	If $(\mc Q_i, \mc Y_i, \mf c_i, \mf a_i, \mf b_i)$ fulfill the weak quadruple inequality for all $i \in \N$, then so does
+	$(\mc Q, \mc Y, \mf c, \mf a, \mf b)$ where $\mc Q = \bigtimes_{i\in \N} \mc Q_i$, $\mc Y = \bigtimes_{i\in \N} \mc Y_i$, $\mf c = \sum_{i=1}^\infty \mf c_i$, $\mf a = \normof{(\mf a_i)_{i\in\N}}_{\ell^2}$, $\mf b = \normof{(\mf b_i)_{i\in\N}}_{\ell^2}$.	
+	\begin{proof}
+		It holds
+		\begin{align*}
+			\olc yq- \olc zq -\olc yp+\olc zp 
+			&= 
+			\sum_{i=1}^\infty \br{
+			\leftidx{^{\mf c_i}}{\ol {y_i}{q_i}}
+			- \leftidx{^{\mf c_i}}{\ol {z_i}{q_i}} 
+			- \leftidx{^{\mf c_i}}{\ol {y_i}{p_i}}
+			+\leftidx{^{\mf c_i}}{\ol {z_i}{p_i}}}
+			\\&\leq 
+			\sum_{i=1}^\infty \mf a_i(y_i, z_i) \mf b_i(q_i, p_i)
+			\\&\leq 
+			 \mf a(y,z) \mf b(q,p)
+			\eqcm
+		\end{align*}
+		using the Cauchy--Schwartz inequality.
+	\end{proof}
+\item[] \hspace*{-0.5cm}\textbf{Measure Spaces:}\\
+	Let $(\Omega, \mc A, \mu)$ be a measure space.
+	Assume $(\mc Q, \mc Y, \mf c(\omega), \mf a(\omega), \mf b(\omega))$ fulfills the weak quadruple inequality for every $\omega \in \Omega$. Let $s,t>0$ with $\frac1s+\frac1t=1$. 
+	Let $L(\Omega, \mc Q)$ be the set of measurable functions from $\Omega$ to $\mc Q$,  define $L(\Omega, \mc Y)$ analogously.
+	For $q,p \in L(\Omega, \mc Q)$, $y,z \in L(\Omega, \mc Y)$, let
+	\begin{align*}
+		\mf C(y, q) &:= \int\!\! \mf c(\omega, y(\omega), q(\omega)) \, \dl \mu(\omega) \eqcm\\
+		\mf A(y, z) &:= \br{\int\!\! \mf a(\omega; y(\omega),z(\omega))^t \, \dl \mu(\omega)}^{\frac1t} \eqcm \\
+		\mf B(q, p) &:= \br{\int\!\! \mf b(\omega; q(\omega),p(\omega))^s \, \dl \mu(\omega)}^{\frac1s}
+		\eqcm
+	\end{align*}
+	where we implicitly assume that the necessary measurablity and integrability conditions are fulfilled. Then
+	\begin{equation*}
+		\br{L(\Omega, \mc Q), L(\Omega, \mc Y), \mf C, \mf A, \mf B}
+	\end{equation*}
+	also fulfills the quadruple inequality.
+	\begin{proof}
+		It holds
+		\begin{align*}
+			&\mf C(y,q) - \mf C( z,q) -\mf C(y,p)+\mf C(z,p)
+			\\&= 
+			\int \mf c(\omega; y(\omega),q(\omega)) -  \mf c(\omega; y(\omega),p(\omega))\\
+			 &\qquad- \mf c(\omega; z(\omega),q(\omega)) + \mf c(\omega; z(\omega),p(\omega))\dl \mu(\omega)
+			\\&\leq 
+			\int \mf a(\omega; y(\omega),z(\omega)) \mf b(\omega; q(\omega),p(\omega))\dl \mu(\omega)
+			\\&\leq 
+			\mf A(y,z) \mf B(q, p)
+			\eqcm
+		\end{align*}
+		by Hölder's inequality.
+	\end{proof}
+\item[]\hspace*{-0.5cm}\textbf{Minima:}\\
+	Let $(\mc Q, \mc Y, \mf c, \mf a, \mf b)$ fulfill the weak quadruple inequality. Let $\tilde{\mc Y} \subset 2^{\mc Y}$. Define the cost function $\mf C \colon \tilde{\mc Y} \times \mc Q \to \R$ by $\mf C(\mo y, q) = \inf_{y\in\mo y} \mf c(y,q)$ and
+	$\mf A(\mo y,\mo z) = \sup_{y\in\mo y,z\in\mo z} \mf a(y,z)$ assuming the infinma and suprema are finite. Then $(\mc Q, \tilde{\mc Y}, \mf C, \mf A, \mf b)$ fulfills the weak quadruple inequality.
+	%
+	\begin{proof}
+	Let $\mo y,\mo z\in \tilde{\mc Y}$ and  $q ,p\in \mc Q$.
+	Assume there are $y_q, y_p \in \mo y, z_q, z_p \in \mo z$ such that $\mf C(\mo y,q) = \olc {y_{q}}{q}$, $\mf C(\mo y,p) = \olc {y_{p}}{p}$, $\mf C(\mo z,q) = \olc {z_{q}}{q}$, and $\mf C(\mo z,p) = \olc {z_{p}}{p}$. Then
+	\begin{align*}
+		\mf C(\mo y,q) - \mf C(\mo y,p) - \mf C(\mo z,q) + \mf C(\mo z,p)
+		&=
+		\olc {y_{q}}{q} - \olc {y_{p}}{p} - \olc {z_{q}}{q} + \olc {z_{p}}{p}
+		\\&\leq
+		\olc {y_{p}}{q} - \olc {y_{p}}{p} - \olc {z_{q}}{q} + \olc {z_{q}}{p}
+		\\&\leq
+		\mf a(y_{p},z_{q}) \mf b(q, p) 
+		\\&\leq
+		\mf A(\mo y,\mo z) \mf b(q,p)
+		\eqfs
+	\end{align*}
+	If the infima are not attained, one can follow the same proof with minimizing sequences.
+	\end{proof} 
+	%
+	In many interesting problems the setting is opposite to what was described before, i.e., $\mf C \colon \mc Y \times \tilde{\mc Q} \to \R ,\, (y, \mo q) \mapsto \inf_{q\in\mo q} \mf c(y,q)$, where $\tilde{\mc Q} \subset 2^{\mc Q}$: the elements of the descriptor space are subsets and the elements of data space are points. Examples are $k$-means, where $\tilde{\mc Q}$ consists of $k$-tuples of points in $\mc Q$, or fitting hyperplanes. A quadruple inequality with $\sup_{q\in\mo q,p\in\mo p} \mf b(q,p)$ as the descriptor distance can be established. Unfortunately, this is usually not useful, as the entropy condition cannot be fulfilled with distances of this type. The framework described in this article can still be applied using inequalities as for bounded spaces, see section \ref{ssec:bounded}. But we cannot directly use the advantage of quadruple inequalities over Lipschitz-continuity.
+\end{itemize}
+%
+%
+%
+%
+%
+%
+%
+\section{Proof of \autoref{lmm:weak_implies_strong_power}} \label{app:power_metric_bound}
+%
+We first state and prove two simple lemmas for some simple arithmetic expressions and then use those for the proof of \autoref{lmm:weak_implies_strong_power}.
+%
+\begin{lemma}\label{lmm:fraction_bound}
+	Let $A,B \in \R$, $a,b,c,r\geq 0$, $s,t>0$.
+	Assume $t \geq s \ \Leftrightarrow\  b\geq a$.
+	Assume $|A| \leq ra$, $|B| \leq rb$, $|A-B| \leq rc$ .
+	Then
+	\begin{equation*}
+		\abs{\frac As -\frac Bt} \leq  r \frac{\min(s,t)c+|s-t|\min(a,b)}{st}
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof}
+	For $t \geq s$, using the bound on $A$ and on $A-B$ implies $\frac As -\frac Bt \leq  r \frac{(t-s)a+sc}{st}$. Similarly,
+	for $s \geq t$, we get $\frac As -\frac Bt \leq  r \frac{tc+(s-t)b}{st}$ by using the bound on $B$ and $A-B$.
+	Together, we obtain
+	\begin{equation*}
+		\frac As -\frac Bt \leq  r \frac{\min(s,t)c+|s-t|\min(a,b)}{st}
+		\eqfs
+	\end{equation*}
+	We finish the proof by pointing out the symmetry between $(A,a,s)$ and $(B,b,t)$.
+\end{proof}
+%
+%
+\begin{lemma}\label{lmm:abc_beta_bound}
+	Let $a,b,c > 0$, $\beta \in [0,1]$. Assume $a\leq b$, $b \leq a+c$, $c \leq a+b$.
+	Then 
+	\begin{equation*}
+		\frac{c a^\beta+\br{b^\beta-a^\beta}a}{a^\beta b^\beta} \leq 2^{\beta} c^{1-\beta}
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof}
+The statement is trivial for $\beta\in \{0,1\}$. So let $\beta\in(0,1)$.\\
+\underline{Case I, $c \leq a$:}
+Define $f(x) = 1-x-(1+x)^\beta(1-x^{1-\beta})$. Then $f(0)=f(1)=0$ and $f\prr(x) = -(1-\beta) \beta x^{-\beta - 1} (x + 1)^{\beta - 2} (1-x^{\beta + 1})\leq 0$ for $x\in(0,1)$. Thus, $f(x) \geq 0$ for $x\in[0,1]$. In particular
+$f\brOf{\frac{c}{a}} \geq 0$, which implies $a-c \geq (a+c)^\beta(a^{1-\beta} - c^{1-\beta}) \geq b^\beta(a^{1-\beta} - c^{1-\beta})$. Thus,
+\begin{equation*}
+\frac{c a^\beta+\br{b^\beta-a^\beta}a}{a^\beta b^\beta} \leq  c^{1-\beta}\eqfs
+\end{equation*}
+\underline{Case II, $c \geq a$:}
+As $1-\beta \leq 1$ and $c-a \geq 0$, we have
+$(c-a)^{1-\beta} + a^{1-\beta} \leq 2^\beta c^{1-\beta}$. Multiplying by $(c-a)^\beta$ and using $c-a \leq b$, we get
+$c-a \leq b^{\beta} \br{2^\beta c^{1-\beta} - a^{1-\beta}}$. Thus,
+\begin{align*}
+\frac{c a^\beta+\br{b^\beta-a^\beta}a}{a^\beta b^\beta} \leq 2^{\beta} c^{1-\beta}
+\eqfs
+\end{align*}
+\end{proof}
+%
+\begin{proof}[of \autoref{lmm:weak_implies_strong_power}]
+Applying \autoref{lmm:fraction_bound} to the left hand side of equation \eqref{eq:strquadpowerbound}, yields
+\begin{align*}
+	\frac{\olc yq - \olc ym - \olc zq + \olc zm}{\mf b(q,m)^{\xi}}
+	-
+	\frac{\olc yp - \olc ym - \olc zp + \olc zm}{\mf b(p,m)^{\xi}}
+	\leq
+	\mf a(y,z)\, \tilde {\mf b}_{m,\xi}(q,p)
+\end{align*}
+where
+\begin{equation*}
+	\tilde {\mf b}_{m,\xi}(q,p) = \frac{\min(\olb qm, \olb pm)^\xi\, \olb qp + \abs{\olb qm^\xi - \olb pm^\xi}\min(\olb qm, \olb pm)}{\olb qm^\xi\, \olb pm^\xi}
+\end{equation*}
+with the short notation $\olb qp := \mf b(q,p)$,
+for all $y,z,q,p,m \in \mc Q$. Applying \autoref{lmm:abc_beta_bound} yields $\tilde {\mf b}_{m,\xi}(q,p) \leq 2^\xi \mf b(q,p)^{1-\xi}$.
+\end{proof}
+%
+%
+%
+%
+\section{Projection Metric Counter Example} \label{app:dproj}
+%
+We take a tripod $(\mc Q, d)$ as a simple example of a non-Euclidean Hadamard space, see \cite[Example 3.2]{sturm03}, and show that it does not fulfill the strong quadruple inequality with the projection metric 
+\begin{equation*}
+	d_{m}^{\ms{proj}}(q,p) := \sqrt{\frac{\ol qp^2 - \br{\ol qm - \ol pm}^2}{\ol qm\, \ol pm}}
+	\eqfs
+\end{equation*}  
+%
+Let $r > \varepsilon > 0$ and define $y,z,q,p,o$ on a tripod as in \autoref{fig:tripod}.
+%
+\begin{figure}
+	\begin{center}
+	\fbox{\begin{tabular}{c|ccccc}
+	 & $y$ & $z$ & $q$ & $p$ & $m$ \\ 
+	\hline 
+	pod number& 1 & 1 & 2 & 1 & 3 \\ 
+	distance from center& $\varepsilon$ & 0 & $r$ & $\varepsilon$ & $r$
+	\end{tabular}}\\
+	\fbox{\begin{tikzpicture}[every path/.style={thick}, baseline=(current bounding box.center)]
+		\coordinate[label=left:{$p=y$}] (x) at (-1,0); 
+		\coordinate[label=above:{$z$}] (m) at (0,0); 
+		\coordinate[label=right:{$q$}] (y) at (3,-1); 
+		\coordinate[label=right:{$m$}] (z) at (3,1); 
+		\draw (x)--(m) node[midway, above] {$\varepsilon$} node[midway, below] {pod 1};
+		\draw (y)--(m) node[midway, above] {$r$} node[midway, below] {pod 3};
+		\draw (z)--(m) node[midway, above] {$r$} node[midway, below] {pod 2};
+		\draw[fill] (x) circle [radius=0.06]; 
+		\draw[fill] (m) circle [radius=0.06]; 
+		\draw[fill] (y) circle [radius=0.06]; 
+		\draw[fill] (z) circle [radius=0.06]; 
+	\end{tikzpicture} }
+	\caption{Tripod counter-example for the strong quadruple inequality}
+	\label{fig:tripod}
+	\end{center}
+\end{figure}
+%
+We take $\mf c = d^2$, $\xi=1$, $\mf l = d$, $\mf a = K d$, and $\mf b_m = d_{m}^{\ms{proj}}$.
+Then 
+\begin{align*}
+	\frac{\olc yq - \olc ym - \olc zq + \olc zm}{\mf l(q,m)}
+	-
+	\frac{\olc yp - \olc ym - \olc zp + \olc zm}{\mf l(p,m)}
+	&=
+	2 \varepsilon\eqcm
+	\\
+	\mf a(y,z) \mf b_m(q,p) = K \varepsilon \sqrt{2\frac{\varepsilon}{r+\varepsilon}}
+	\eqfs
+\end{align*}
+If the strong quadruple inequality holds, then
+\begin{equation*}
+	K  \geq \sqrt{2\frac{r+\varepsilon}{\varepsilon}} \xrightarrow{\varepsilon\searrow0} \infty
+	\eqfs
+\end{equation*}
+Thus, $d_{m}^{\ms{proj}}$ is not a suitable candidate for the strong quadruple distance in general Hadamard spaces.
+%
+%
+%
+%
+\section{Optimality of Power Inequality}\label{app:power_inequ_opti}
+%
+We show that $8\alpha2^{-2\alpha}$ is the optimal constant, and that we cannot extend \autoref{thm:power_inequ} to $\alpha > 1$ or $\alpha < \frac12$.
+Let $\epsilon\in(0,1)$ and $(\mc Q, d)$ be a metric space with $q,p,y,z\in\mc Q$ such that for each case below the distances have the values written down in \autoref{tbl:dists}. One can easily show that in all three cases the necessary triangle inequalities and the nice quadruple inequality hold.
+%
+\begin{table}
+\begin{center}
+\begin{tabular}{c||c|c|c|c|c|c}
+	 Case&$\ol yq$ & $\ol yp$ & $\ol zq$ & $\ol zp$ & $\ol yz$ & $\ol qp$  \\ 
+	\hline 
+	\hline 
+	 (a) &$1-\epsilon$ & $1-3\epsilon$ & $1-2\epsilon$ & $1$ & $2-3\epsilon$ & $2\epsilon$\\
+	 \hline 
+	 (b) & $1$ & $\epsilon$ & $1-\epsilon$ & $2\epsilon$ & $2\epsilon$ & $1$\\
+	 \hline 
+	 (c) & $2\epsilon$ & $\epsilon$ & $1$ & $1$ & $1$ & $\epsilon$ \\
+\end{tabular}
+\caption{Distances of four points $y,z,q,p\in\mc Q$ for showing lower bounds of the constant in \autoref{thm:power_inequ}.}
+\label{tbl:dists}
+\end{center}
+\end{table}
+%
+\begin{enumerate}[label=(\alph*)]
+\item 
+	For $\alpha \in [\frac12,1]$ it holds
+	\begin{align*}
+	&\lim_{\epsilon\searrow0}\frac{\ol yq^{2\alpha} - \ol yp^{2\alpha} - \ol zq^{2\alpha} + \ol zp^{2\alpha}}{ \ol yz^{2\alpha-1}\, \ol qp} 
+	\\&= 
+	\lim_{\epsilon\searrow0}\frac{(1-\epsilon)^{2\alpha} - (1-3\epsilon)^{2\alpha} - (1-2\epsilon)^{2\alpha} + 1}{ (2\epsilon)(2-3\epsilon)^{2\alpha-1}}
+	\\&=
+	\lim_{\epsilon\searrow0} 2\alpha\frac{-(1-\epsilon)^{2\alpha-1} +3(1-2\epsilon)^{2\alpha-1} +2(1-3\epsilon)^{2\alpha-1}}{ 2(2-3\epsilon)^{2\alpha-1}+2\epsilon(2\alpha-1)(2-3\epsilon)^{2\alpha-2}}
+	\\&=8\alpha2^{-2\alpha}
+	\eqfs
+	\end{align*}
+	Thus, the constant $8\alpha2^{-2\alpha}$ in \autoref{thm:power_inequ} is optimal.
+\item	
+	For $\alpha >1$ it holds
+	\begin{align*}
+	&\lim_{\epsilon\searrow0}\frac{\ol yq^{2\alpha} - \ol yp^{2\alpha} - \ol zq^{2\alpha} + \ol zp^{2\alpha}}{ \ol yz^{2\alpha-1}\, \ol qp} 
+	\\&= 
+	\lim_{\epsilon\searrow0}\frac{ - 2\epsilon^{2\alpha-1} + 2(1-\epsilon)^{2\alpha-1} + 2(2\epsilon)^{2\alpha-1}}{ 2^{2\alpha-1}\epsilon^{2\alpha-2}}
+	\\&=
+	\infty
+	\eqfs
+	\end{align*}
+	Thus, there is no power inequality in the form of \autoref{thm:power_inequ} for $\alpha > 1$.
+\item
+	For $\alpha \in (0,\frac12)$ it holds
+	\begin{align*}
+	\lim_{\epsilon\searrow0}\frac{\ol yq^{2\alpha} - \ol yp^{2\alpha} - \ol zq^{2\alpha} + \ol zp^{2\alpha}}{ \ol yz^{2 \alpha-1}\, \ol qp} 
+	&= 
+	\lim_{\epsilon\searrow0}\frac{(2\epsilon)^{2\alpha} - \epsilon^{2\alpha} - 1 + 1}{2\epsilon} 
+	\\&=
+	\lim_{\epsilon\searrow0} \frac12(2^{2\alpha}-1)\epsilon^{2\alpha-1}
+	\\&=\infty
+	\eqfs
+	\end{align*}
+	Thus, there is no power inequality in the form of \autoref{thm:power_inequ} for $\alpha < \frac12$.
+\end{enumerate}
+%
+%
+%
+\section{Chaining}\label{app:chaining}
+%
+Recall the measures of entropy $\gamma_2$ and $\entrn$ defined in \autoref{chaining:def_entropy}. We add another useful entry to this list.
+\begin{definition}[Bernoulli Bound]\label{chaining:entropy}
+	For $T \subset \R^n$ define
+	\begin{equation*}
+		b(T) := \inf\cbOf{\sup_{t\in T_1} \normof{t}_1 + \gamma_2(T_2)\,\colon\, T_1, T_2 \subset \R^n, T \subset T_1+T_2}
+		\eqcm
+	\end{equation*}
+	where $\gamma_2(T_2) = \gamma_2(T_2, d_2)$ for the Euclidean metric $d_2$ on $\R^n$, $\normof{t}_1 = \sum_{i=1}^n \abs{t_i}$, and $T_1 + T_2 = \cb{t_1 + t_2 \colon t_1 \in T_1, t_2 \in T_2}$.
+\end{definition}
+%
+We write down the Bernoulli bound for powers of the Bernoulli process. \cite{bednorz14} show that the bound can be reversed (up to an universal constant). Thus, this step can be regarded as optimal.
+%
+\begin{theorem}[Bernoulli bound]\label{chaining:bernoulli}
+	Let $\sigma_1, \dots, \sigma_n$ be independent random signs, i.e., $\Prof{\sigma_i = \pm1} =\frac12$.
+	For $t\in R^n$ set $\tilde X_t :=\sum_{i=1}^n \sigma_i t_i$. Let $T \subset \R^n$.
+	Let $\kappa \geq 1$.
+	Then 
+	\begin{equation*}
+		\Ex*{\sup_{t\in T} \abs{\tilde X_t}^\kappa} \leq c_\kappa b(T)^\kappa
+		\eqcm
+	\end{equation*}
+	where $c_\kappa$ depends only on $\kappa$.
+\end{theorem}
+%
+\begin{proof}
+Let $T_1, T_2 \subset \R^n$ such that $T \subset T_1 + T_2$.
+As $(a+b)^\kappa \leq 2^{\kappa-1}\br{a^\kappa + b^\kappa}$ for all $a,b\geq 0$, we can split the supremum into two parts,
+\begin{align*}
+\Ex*{\sup_{t\in T} \abs{\tilde X_t}^\kappa} 
+\leq
+2^{\kappa-1} \br{\Ex*{\sup_{t\in T_1} \abs{\tilde X_t}^\kappa}  + \Ex*{\sup_{t\in T_2} \abs{\tilde X_t}^\kappa}}
+\eqfs
+\end{align*}
+The first term is bounded using the 1-norm,
+$\Ex*{\sup_{t\in T_1} \abs{\tilde X_t}^\kappa} \leq \sup_{t\in T_1} \normof{t}_1^\kappa$. For the second we use Talagrand's generic chaining bound for the supremum of the subgaussian process $\Ex*{\sup_{t\in T_2} \abs{\tilde X_t}^\kappa} \leq c_\kappa\pr \gamma_2(T_2)^\kappa$, see \cite{talagrand14}. We obtain
+\begin{align*}
+\Ex*{\sup_{t\in T} \abs{\tilde X_t}^\kappa} 
+&\leq 
+c_\kappa \br{\sup_{t\in T_1} \normof{t}_1^\kappa + \gamma_2(T_2)^\kappa}
+\\&\leq 
+c_\kappa \br{\sup_{t\in T_1} \normof{t}_1 + \gamma_2(T_2)}^\kappa
+\eqfs
+\end{align*}
+\end{proof}
+%
+\begin{lemma}[Lipschitz connection]\label{chaining:lipschitz}
+Let $(\mc Q, b)$ be a pseudo-metric space.
+Assume there are function $f_i \colon \mc Q \to \R$ such that $\abs{f_i(q) - f_i(p)} \leq a_i b(q,p)$.
+Let $T := \cb{(f_i(q))_{i=1,\dots,n} \colon q\in\mc Q}$. Set $a = (a_1, \dots, a_n)$.
+Then
+\begin{equation*}
+	b(T) \leq C \normof{a}_2 \min\brOf{\entrn(\mc Q, b), \gamma_2(\mc Q, b)}
+	\eqcm
+\end{equation*}
+where $C>0$ is an universal constant.
+\end{lemma}
+%
+\begin{proof}
+	For $\epsilon>0$, choose $\mc Q_2$ to be an $\epsilon$-covering of $\mc Q$ with respect to $b$, i.e., for all $q \in \mc Q$ there is a $p_q \in \mc Q_2$ such that $b(q,p_q) \leq \epsilon$. For $q\in\mc Q$ denote $t_q := (f_i(q))_{i=1,\dots,n} \in \R^n$. Define $T_2 := \cb{t_p \colon p\in\mc Q_2}$ and $T_1 := \cb{t_q - t_{p_q} \colon q\in Q}$. Then $T \subset T_1 + T_2$.
+		The Lipschitz-condition implies $\normof{t_q-t_p}_2 \leq \normof{a}_2 b(q,p)$ for all $q,p\in\mc Q$.
+		Thus, 
+		\begin{equation*}
+			\sup_{t\in T_1} \normof{t}_1 \leq \sup_{q \in \mc Q} \sqrt{n}\normof{t_q-t_{p_q}}_2 \leq \epsilon \sqrt{n} \normof{a}_2 
+			\eqfs
+		\end{equation*}
+		By the properties of $\gamma_2$, see \cite{talagrand14}, we obtain
+		\begin{equation*}
+			\gamma_2(T_2) \leq c \normof{a}_2 \gamma_2(\mc Q_2, b) \leq c\pr \normof{a}_2  \int_{\epsilon}^\infty \!\! \sqrt{\log N(Q, b, r)} \dl r
+		\end{equation*}
+		for universal constants $c, c\pr>0$. Applying the two inequalities to the definition of $b(T)$ concludes the proof.
+\end{proof}
+%
+\begin{lemma}[Symmetrization]\label{lmm:symm}
+	Let $\mc Q$ be set. Let $Z_1, \dots, Z_n$ be centered, independent, and integrable stochastic processes indexed by $\mc Q$. Let $\Phi\colon \R\to\R$ be a convex, non-decreasing function. Let $(Z_1\pr, \dots, Z_n\pr)$ be an independent copy of $(Z_1, \dots, Z_n)$. Let $\varepsilon_1, \dots, \varepsilon_n$ be iid with $\Prof{\varepsilon_1 = \pm1} = \frac12$.
+	Then
+	\begin{equation*}
+		\Ex*{\sup_{q\in\mc Q} \Phi\brOf{\sum_{i=1}^nZ_i(q)}} \leq
+		\Ex*{\sup_{q\in\mc Q} \Phi\brOf{\sum_{i=1}^n\varepsilon_i\br{Z_i(q) - Z_i\pr(q)}}}
+		\eqcm
+	\end{equation*}
+	assuming measurability of the involved terms.
+\end{lemma}
+%
+The symmetrization lemma is well-known. The statement here is an intermediate step of from the proof of \cite[2.3.6 Lemma]{vaart96}.
+%
+\begin{theorem}[Empirical process bound]\label{chaining:empproc}
+	Let $(\mc Q, b)$ be a separable pseudo-metric space. Let $Z_1, \dots, Z_n$ be centered, independent, and integrable stochastic processes indexed by $\mc Q$ with a $q_0 \in \mc Q$ such that $Z_i(q_0) = 0$ for $i=1,\dots, n$.
+	Let $(Z_1\pr, \dots, Z_n\pr)$ be an independent copy of $(Z_1, \dots, Z_n)$.
+	Assume the following Lipschitz-property: There is a random vector $A$ with values in $\R^n$ such that
+	\begin{equation*}
+		\abs{Z_i(q)-Z_i(p)-Z_i\pr(q)+ Z_i\pr(p)} \leq A_i b(q,p)
+	\end{equation*} 
+	for $i = 1,\dots, n$ and all $q,p\in\mc Q$.
+	Let $\kappa \geq 1$.
+	Then
+	\begin{equation*}
+		\Ex*{\sup_{q\in\mc Q} \abs{\sum_{i=1}^nZ_i(q)}^\kappa} \leq C\, \Ex*{\normof{A}_2^\kappa} \, 
+		\min\brOf{\entrn(\mc Q, b), \gamma_2(\mc Q, b)}^\kappa
+		\eqcm
+	\end{equation*}
+	where $C > 0$ is an universal constant.
+\end{theorem}
+%
+\begin{proof}
+	Use \autoref{lmm:symm}. Then apply \autoref{chaining:bernoulli} and \autoref{chaining:lipschitz} conditionally on $Z_1, \dots, Z_n$.
+\end{proof}
+%
+\begin{lemma}\label{lmm:chaining:rate}
+Let $(\mc Q, b)$ be a pseudo-metric space.
+Let $D >0 $ such that $\diam(\mc Q, b) \leq D < \infty$.
+Let $\beta > 0$. Assume 
+\begin{equation*}
+	\sqrt{\log(N(\mc Q, b , r))} \leq c_{\ms e} \br{\frac{D}{r}}^\beta
+\end{equation*}
+for all $0 < r < D$.
+\begin{enumerate}[label=\environmentEnumerateLabel]
+	\item If $\beta < 1$ then $\entrn(\mc Q, b) \leq \frac{c_{\ms e}D}{1-\beta}$.
+	\item If $\beta = 1$ then $\entrn(\mc Q, b) \leq c_{\ms e}\pr D \log(n+1)$, where $c\pr>0$ depends only on $c_{\ms e}$.
+	\item If $\beta > 1$ then $\entrn(\mc Q, b) \leq c_{\ms e}^{\frac1\beta} \frac\beta{\beta-1} n^{-\frac1{2\beta}+\frac12}$.
+\end{enumerate}
+In particular
+\begin{equation*}
+	n^{-\frac12} \,\entrn(\mc Q, b) \ \leq\  c \, D\, \eta_{\beta,n} \eqcm
+\end{equation*}
+where $c$ depends only on $c_{\ms e}$ and $\beta$ and
+\begin{equation*}
+	\eta_{\beta,n} := 
+	\begin{cases} 
+		n^{-\frac12} & \text{ for }\beta < 1\eqcm\\
+		n^{-\frac12} \log(n+1) & \text{ for } \beta = 1\eqcm\\
+		n^{-\frac1{2\beta}} & \text{ for } \beta > 1\eqfs
+	\end{cases} 
+\end{equation*}
+\end{lemma}
+The proof consists of calculating the entropy integral with the given bound on the covering numbers and, for $\beta \geq 1$, choosing the minimizing starting point of the integral $\epsilon>0$.
+%
+%
+%
+%
+%
+%
+%
+\section{Proof of the Power Inequality, \autoref{thm:power_inequ}}\label{app:power_inequality}
+%
+\input{power_inequality}
+%

@@ -1,0 +1,445 @@
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+%
+%
+\newcommand*{\todo}[1]{[\textbf{\color{red} Todo:} \textit{#1}]}
+\newcommand*{\note}[1]{[\textbf{\color{blue} Note:} \textit{#1}]}
+%
+%
+%
+% Math modes can be tested for: \ifmmode is true in display and non-display math mode, and \ifinner is true in non-display mode, but not in display mode.
+%\edef\modedef{This macro was defined in \ifvmode vertical\else \ifmmode math \else horizontal\fi\fi' mode}
+%
+%
+\renewcommand{\subset}{\subseteq}
+%
+%
+% brackets
+\newcommand{\lcb}{\left\lbrace} % '{' Left Curly Bracket
+\newcommand{\rcb}{\right\rbrace} % '}' Right Curly Bracket
+\newcommand{\cb}[1]{\lcb #1 \rcb} % Curly Brackets
+\newcommand{\cbOf}[1]{\mathopen{}\lcb #1 \rcb\mathclose{}} % Curly Brackets
+\newcommand{\lab}{\left[} %'[' Left square/Angular Bracket
+\newcommand{\rab}{\right]} %']' Right square/Angular Bracket
+\newcommand{\ab}[1]{\lab #1 \rab} % Brackets
+\newcommand{\abOf}[1]{\!\ab{#1}} % Brackets
+\newcommand{\lb}{\left(} %'(' Left (round) Bracket
+\newcommand{\rb}{\right)} %')' Right (round) Bracket
+\newcommand{\br}[1]{\lb #1 \rb} % Brackets
+\newcommand{\brOf}[1]{\!\br{#1}} % Brackets
+\newcommand{\abs}[1]{\left| #1 \right|} % Brackets
+%
+% MathOperators
+\newcommand*{\E}{\mathbb{E}} % expectation
+\newcommand*{\ent}{\mathsf{Ent}} % entropy
+\newcommand*{\V}{\mathbb{V}} % expectation
+\newcommand*{\cov}{\mathbb{COV}} % expectation
+\let\Pr\relax% Set equal to \relax so that LaTeX thinks it's not defined
+\newcommand*{\Pr}{\mathbb{P}} % probability
+\newcommand*{\powset}{\mathfrak{P}} % power set
+% *Of (inserts brackets, mathopen/-close used for correct spacing)
+\newcommand{\sizedMid}[2]{#1 \, \kern-\nulldelimiterspace\mathopen{}\left| \vphantom{#1}\,#2\right.\mathclose{}\kern-\nulldelimiterspace}
+\newcommand{\EOf}[1]{\E\abOf{#1}}
+\newcommand{\Eof}[1]{\E[#1]}
+\newcommand{\entOf}[1]{\ent\brOf{#1}}
+\newcommand{\entof}[1]{\ent(#1)}
+\newcommand{\Vof}[1]{\V[#1]}
+\newcommand{\VOf}[1]{\V\abOf{#1}}
+\newcommand{\covof}[1]{\cov[#1]}
+\newcommand{\ECondOf}[2]{\EOf{\sizedMid{#1}{#2}}}
+\newcommand{\ECondof}[2]{\E[#1\mid #2]}
+\newcommand{\PrOf}[1]{\Pr\mathopen{}\lb #1 \rb\mathclose{}}
+\newcommand{\Prof}[1]{\Pr(#1)}
+\newcommand{\PrCondOf}[2]{\PrOf{\sizedMid{#1}{#2}}}
+\newcommand{\PrCondof}[2]{\Pr(#1\mid #2)}
+\newcommand{\powsetOf}[1]{\powset\mathopen{}\lb #1 \rb\mathclose{}}
+\newcommand{\eventAnd}{,\,} %eventAnd
+\newcommand{\setByEle}[2]{\cb{\sizedMid{#1}{#2}}}
+\newcommand{\setByEleInText}[2]{\{#1 \mid #2\}}
+\DeclareMathOperator{\diam}{\mathsf{diam}}
+\DeclareMathOperator{\card}{\mathsf{card}}
+\DeclareMathOperator{\ball}{\mathrm{B}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\restrict}[1]{_{\mkern 1mu \vrule height 2ex\mkern2mu {#1}}}
+%
+\providecommand\given{} % so it exists
+\newcommand\SetSymbol[1][]{
+	\nonscript\,#1\vert \allowbreak \nonscript\,\mathopen{}}
+\DeclarePairedDelimiterX\Set[1]{\lbrace}{\rbrace}%
+{ \renewcommand\given{\SetSymbol[\delimsize]} #1 }
+%
+%\newcommand\myEx[1][]{\nonscript\,#1\vert \allowbreak \nonscript\,\mathopen{}}
+%\DeclarePairedDelimiterX{\myexpectarg}[1]{\lbrace}{\rbrace}{\renewcommand\given{\myEx[\delimsize]} #1 }
+%
+\newcommand{\Ex}{\E\expectarg}
+\DeclarePairedDelimiterX{\expectarg}[1]{[}{]}{%
+	\ifnum\currentgrouptype=16 \else\begingroup\fi
+	\activatebar#1
+	\ifnum\currentgrouptype=16 \else\endgroup\fi
+}
+\newcommand{\innermid}{\nonscript\;\delimsize\vert\nonscript\;}
+\newcommand{\activatebar}{%
+	\begingroup\lccode`\~=`\|
+	\lowercase{\endgroup\let~}\innermid 
+	\mathcode`|=\string"8000
+}
+%
+% cardinality of a set: |A|
+\newcommand{\cardOf}[1]{\left\vert{#1}\right\vert}
+\newcommand{\cardof}[1]{\vert{#1}\vert}
+%
+% image of a map
+\newcommand*{\im}{\mathrm{im}}
+% 
+\newcommand*{\mc}[1]{\mathcal{#1}}
+\newcommand*{\mb}[1]{\mathbb{#1}}
+\newcommand*{\mr}[1]{\mathrm{#1}}
+\newcommand*{\ms}[1]{\mathsf{#1}}
+\newcommand*{\mo}[1]{\mathbf{#1}}
+\newcommand*{\mf}[1]{\mathfrak{#1}}
+%
+% natural numbers
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Nn}{\mathbb{N}_0}
+% real numbers
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rp}{\R_+} % [0, \infty)
+\newcommand{\Ra}{\bar\R} % extended reals
+
+% borel
+\DeclareMathOperator{\borel}{\mathcal{B}}
+\newcommand{\borelof}[1]{\borel(#1)}
+%
+% C
+\newcommand{\C}[2]{\mathcal{C}^{#1}\br{#2}}
+% 
+% derivative
+\newcommand{\derive}[1]{#1^\prime}
+%
+\newcommand{\transpose}{\!^\top\!}
+\newcommand{\tr}{\transpose}
+%
+\newcommand{\pr}{^\prime}
+\newcommand{\prr}{^{\prime\prime}}
+\newcommand{\prrr}{^{\prime\prime\prime}}
+% 
+% [0, 1]
+\newcommand{\normIntervall}{\lab 0, 1 \rab} %
+%
+% Integral
+%\newcommand{\intOf}[4]{\int_{#1}^{#2} \! #3 \mathrm{d}#4} %
+\def\integral from #1to #2of #3by #4;{\int_{#1}^{#2} \! #3 \mathrm{d}#4} %
+\def\integralMeasure in #1of #2by #3of #4;{\int_{#1} \! #2{#4} #3{\mathrm{d}#4}} %
+%
+% Functiondefintion
+%\newcommand{\mapping}[3]{#1 \colon #2 \rightarrow #3}
+\def\mapping #1from #2to #3;{#1 \colon #2 \rightarrow #3}
+\def\mappingDef #1from #2to #3maps #4to #5;{#1 \colon #2 \rightarrow #3,\ #4 \mapsto #5}
+%
+% Sequence (Folge)
+\def\seq #1by #2;{\br{#1}_{#2\in\N}}
+\def\seqInText #1by #2;{(#1)_{#2\in\N}}
+%
+%
+\newcommand{\innerProduct}[2]{\left\langle#1\,,\, #2\right\rangle}
+\newcommand{\ip}[2]{\innerProduct{#1}{#2}}
+%
+%
+\newcommand{\lebesgue}{\mathcal{L}}
+\newcommand{\lebesguePow}[1]{\lebesgue^{#1}}
+\newcommand{\lebesgueOf}[1]{\lebesgue\brOf{#1}}
+%
+%
+\newcommand{\invert}[1]{#1^{-1}}
+%
+\newcommand{\sgn}{\mathsf{sgn}} % signum
+\newcommand{\supp}{\overline{\mathsf{supp}}} % support
+\newcommand{\median}{\mathsf{median}} % median
+%
+\newcommand{\dl}{\mathrm{d}}
+%
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+%
+%
+\def\converges for #1to #2;{\xrightarrow{#1} #2}
+\def\convergesAlmostSurely for #1to #2;{\xrightarrow{#1}_{\mathsf{fs}} #2}
+\def\convergesInProbability for #1to #2;{\xrightarrow{#1}_{\mathsf{p}} #2}
+\def\convergesInL #1for #2to #3;{\xrightarrow{#2}_{\lebesguePow{#1}} #3}
+\newcommand{\as}{\mathsf{a.s.}}
+%
+% Indicator
+\newcommand{\ind}{\mathds{1}}% indicator function
+\newcommand{\indOf}[1]{\ind_{\!#1}}% 
+\newcommand{\indOfOf}[2]{\ind_{\!#1}\!\brOf{#2}}% 
+\newcommand{\indOfEvent}[1]{\indOf{\cbOf{#1}}}% 
+\newcommand{\indOfEventOf}[2]{\indOf{\cbOf{#1}}\!\brOf{#2}}% 
+%
+% complement of a set
+%\newcommand{\complOf}[1]{#1^\complement}% 
+%\newcommand{\complOf}[1]{\inSpace\setminus#1}% 
+\newcommand{\compl}{^\mathsf{c}}% 
+%
+% Landau symbols
+\DeclareMathOperator{\landauO}{\mathcal{O}}%
+\newcommand{\landauOOf}[1]{\landauO\brOf{#1}}% 
+\DeclareMathOperator{\landauOmega}{\Omega}%
+\newcommand{\landauOmegaOf}[1]{\landauOmega\brOf{#1}}% 
+\DeclareMathOperator{\landauTheta}{\Theta}%
+\newcommand{\landauThetaOf}[1]{\landauTheta\brOf{#1}}% 
+%
+% norm
+\newcommand{\norm}{\left\Vert \cdot \right\Vert}
+\newcommand{\normof}[1]{\Vert #1 \Vert}
+\newcommand{\normOf}[1]{\left\Vert #1 \right\Vert}
+%
+% ditributions
+\newcommand{\unif}[1]{\mathsf{Unif}\brOf{#1}}
+%
+%
+\newcommand{\equationFullstop}{\, .}
+\newcommand{\eqfs}{\equationFullstop}
+\newcommand{\equationComma}{\, ,}
+\newcommand{\eqcm}{\equationComma}
+\newcommand{\eqand}{\qquad\text{and}\qquad}
+%
+%
+\newcommand{\sigmaAlg}{\mathrm{\sigma}}
+\newcommand{\sigmaAlgof}[1]{\sigmaAlg(#1)}
+\newcommand{\sigmaAlgOf}[1]{\sigmaAlg\brOf{#1}}
+%
+%
+\newcommand{\euler}{\mathrm{e}}
+%
+%
+%
+\newcommand{\T}{^{T}}
+%
+%
+%\newcommand*{\argmin}{\arg\min}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+%
+%
+%
+%
+%
+% Theorem, Lemma, Definition, Bemerkung
+\def\betweenBoxHook{\vskip-2.0ex}
+\def\postBoxSkip{1.0ex}
+\def\postBoxSkipCmd{\vskip\postBoxSkip}
+\def\preBoxSkip{1.0ex}
+\def\preBoxSkipCmd{\vskip\preBoxSkip}
+%
+\declaretheoremstyle[
+	bodyfont=\normalfont,
+%	headformat={\S\NUMBER\ \NAME \NOTE},
+	postfoothook={\postBoxSkipCmd},
+	preheadhook={\preBoxSkipCmd},
+	mdframed={
+		backgroundcolor = black!2,
+		startcode={\def\environmentEnumerateLabel{(\roman*)}},
+	%	innerbottommargin = 10pt,
+}]{ruledBoxStyle}
+%
+\declaretheoremstyle[
+	bodyfont=\normalfont,
+%	headformat={\S\NUMBER\ \NAME \NOTE},
+	postfoothook={\postBoxSkipCmd},
+	preheadhook={\preBoxSkipCmd},
+	mdframed={
+		backgroundcolor=white,
+		%startcode={\def\environmentEnumerateLabel{(\roman*)}},
+	%	innerbottommargin = 10pt,
+}]{ruledBoxStyleWhite}
+%
+\declaretheoremstyle[
+	bodyfont=\normalfont,
+%	headformat={\S\NUMBER\ \NAME \NOTE},
+	postfoothook={\postBoxSkipCmd},
+	preheadhook={\preBoxSkipCmd},
+	mdframed={
+		backgroundcolor=black!2,
+		linecolor = black!2,
+		tikzsetting = {
+			draw = black,
+			line width = 2pt,%
+			dashed,%
+			dash pattern = on 10pt off 3pt
+		},
+}]{dashedBoxStyle}
+%
+\declaretheoremstyle[
+	bodyfont=\normalfont,
+%	headformat={\S\NUMBER\ \NAME \NOTE},
+	postfoothook={\postBoxSkipCmd},
+	preheadhook={\preBoxSkipCmd},
+	mdframed={
+		%backgroundcolor=black!2,
+		linecolor = white,
+		startcode={\def\environmentEnumerateLabel{(\roman*)}},
+		tikzsetting = {
+			draw = black,
+			line width = 1pt,%
+			loosely dotted,
+			%dash pattern = on 1pt off 10pt,
+		},
+	}
+]{dashedStyle}
+%
+\declaretheoremstyle[
+	bodyfont=\normalfont,
+	headformat={\NAME \NOTE},
+	postfoothook={\postBoxSkipCmd},
+	preheadhook={\preBoxSkipCmd},
+	mdframed={
+		%backgroundcolor=black!2,
+		linecolor = white,
+		startcode={\def\environmentEnumerateLabel{(\roman*)}},
+		tikzsetting = {
+			draw = black,
+			line width = 1pt,%
+			loosely dotted,
+			%dash pattern = on 1pt off 10pt,
+		},
+	}
+]{dashedStyle2}
+%
+\declaretheoremstyle[
+	bodyfont=\normalfont,
+%	headformat={\S\NUMBER\ \NAME \NOTE},
+	postfoothook={\postBoxSkipCmd},
+	preheadhook={\preBoxSkipCmd},
+	mdframed={
+		%backgroundcolor=black!2,
+		linecolor = black,
+		innerlinewidth=1pt,outerlinewidth=1pt,
+		middlelinewidth=1pt,
+		linecolor=black,middlelinecolor=white,
+		startcode={\def\environmentEnumerateLabel{(\roman*)}},
+	}
+]{doubleStyle}
+%
+\declaretheoremstyle[
+	bodyfont=\normalfont,
+%	headformat={\S\NUMBER\ \NAME \NOTE},
+	postfoothook={\postBoxSkipCmd},
+	preheadhook={\preBoxSkipCmd},
+	mdframed={
+		backgroundcolor = black!4,
+		linecolor = black!4,
+		startcode={\def\environmentEnumerateLabel{(\alph*)}},
+}]{boxStyle}
+%
+\declaretheoremstyle[
+	headfont=\normalfont\itshape, 
+	notefont=\normalfont\itshape, 
+	notebraces={}{},
+	bodyfont=\normalfont,
+	qed=\qedsymbol,
+	numbered=no,
+%	headformat={\NAME},
+	headindent=0pt,
+	postheadspace=1ex,
+	name={Proof},
+	postheadhook={\def\environmentEnumerateLabel{(\roman*)}},
+	mdframed={
+		hidealllines = true,
+		innerrightmargin = 0pt,
+		innerleftmargin = 0pt,
+		innertopmargin = 0pt,
+		innerbottommargin = 0pt,
+		leftmargin = 0pt,
+		rightmargin = 0pt,
+		%endinnercode={\qed}
+	}
+]{proofStyle}
+%
+\declaretheoremstyle[
+	%headformat={\S\NUMBER\ \NAME \NOTE},
+	bodyfont=\normalfont,
+	postfoothook={\postBoxSkipCmd},
+	preheadhook={\preBoxSkipCmd},
+	mdframed={
+		backgroundcolor = white,
+		linecolor = black,
+		startcode={\def\environmentEnumerateLabel{(\alph*)}},
+		%		topline = false,
+		%		bottomline = false,
+		leftline = false,
+		rightline = false,
+}]{tobBottomStyle}
+%
+%
+\declaretheoremstyle[
+bodyfont=\normalfont,
+% postfoothook={\vskip50pt},
+% preheadshook={\preBoxSkipCmd},
+%	mdframed={
+%		innertopmargin = 5pt,
+%		innerbottommargin = 5pt,
+%		innerrightmargin = 10pt,
+%		innerleftmargin = 10pt,
+%		skipabove = 0pt,
+%		%skipbelow = 0pt,
+%		leftmargin = 0pt,
+%		rightmargin = 0pt,
+%		roundcorner = 0pt,
+%		topline = true,
+%		bottomline = true,
+%		leftline = true,
+%		rightline = true,
+%		hidealllines = false,
+%		linewidth = 0pt,
+%		innerlinewidth = 0pt,
+%		middlelinewidth = 0pt,	
+%		outerlinewidth = 0pt,
+%		backgroundcolor = white,
+%		linecolor = white,
+%		innerlinecolor = white,
+%		middlelinecolor = white,	
+%		outerlinecolor = white,
+%		fontcolor = black,
+%		font = ?,
+%		shadow = false,
+%		shadowsize = 8pt,
+%		shadowcolor = black!50,
+%		frametitle = {Title},
+%		frametitle<Option...>,
+%		%\mdfsubtitle{SubTitle}
+%		subtitle<Option...>,
+%		tikzsetting = {},
+%		align =center,
+%		extra = {},			
+]{standardStyle}
+%
+%\declaretheorem[style=ruledBoxStyle,name=Definition,numberwithin=subsection]{definition}
+\declaretheorem[style=ruledBoxStyle,name=Definition]{definition}
+\declaretheorem[style=ruledBoxStyle,name=Lemma]{lemma}
+\declaretheorem[style=ruledBoxStyle,name=Proposition]{proposition}
+\declaretheorem[style=ruledBoxStyle,name=Theorem]{theorem}
+\declaretheorem[style=ruledBoxStyle,name=Corollary]{corollary}
+\declaretheorem[style=ruledBoxStyle,name=Theorem,numbered=no]{theorem*}
+\declaretheorem[style=boxStyle,name=Remark]{remark}
+\declaretheorem[style=boxStyle,name=Notation]{notation}
+\declaretheorem[style=dashedStyle,name=Example]{example}
+\declaretheorem[style=dashedStyle,name=Assumption]{assumption}
+\declaretheorem[style=dashedStyle2,name=Assumptions]{assumptions}
+\declaretheorem[style=dashedStyle,name=Conjecture]{conjecture}
+\makeatletter
+\let\proof\@undefined
+\let\endproof\@undefined
+\makeatother
+\declaretheorem[style=proofStyle]{proof}
+\def\theoremContentInNewLine{\text{}}
+\def\environmentEnumerateLabel{(\roman*)}
+%
+%
+%
+%
+\newcounter{subExample}%
+\renewcommand{\thmcontinues}[1]{Teil \arabic{subExample}} % only for subExample
+%
+%
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
