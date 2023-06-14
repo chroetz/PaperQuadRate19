@@ -46,7 +46,7 @@ Results similar to following Lemma are well known in the M-estimation literature
 		\eqfs
 	\end{equation*}
 	Let $s>0$. 
-	For $k\in \N_0$, set $a_k := s 2^{k}$. It holds
+	For $k\in \N_0$, set $a_k := s 2^{k}$. We have
 	\begin{align*}
 		&\PrOf{\mf l(m,m_n) \geq s}
 		\\&\leq 
@@ -107,7 +107,7 @@ Results similar to following Lemma are well known in the M-estimation literature
 	Thus, $\Delta_n(\delta) = \sup_{q\in\ball_\delta(m, \mf l)}\sum_{i=1}^n Z_i(q)$.
 	The \assu{ass:mom}{Moment} condition together with the \assu{ass:wquad}{Weak Quadruple} condition imply that $Z_i$ are integrable.
 	Let $(Z_1\pr, \dots, Z_n\pr)$ be an independent copy of $(Z_1, \dots, Z_n)$, where $(Y_1\pr, \dots, Y_n\pr)$ is an independent copy of $(Y_1, \dots, Y_n)$.
-	By \assu{ass:wquad}{Weak Quadruple} it holds
+	By \assu{ass:wquad}{Weak Quadruple}, we have
 	\begin{align*}
 		&
 		n^2\br{Z_i(q)-Z_i(p)-Z_i\pr(q) +Z_i\pr(p)}^2 
@@ -264,7 +264,7 @@ Define
 	Thus, $X(q) = \sum_{i=1}^n Z_i(q)$.
 	The \assu{ass:smom}{Strong Moment} condition together with the \assu{ass:squad}{Strong Quadruple} condition imply that $Z_i$ integrable.
 	Let $(Z_1\pr, \dots, Z_n\pr)$ be an independent copy of $(Z_1, \dots, Z_n)$, where $(Y_1\pr, \dots, Y_n\pr)$ is an independent copy of $(Y_1, \dots, Y_n)$.
-	By \assu{ass:squad}{Strong Quadruple} it holds
+	By \assu{ass:squad}{Strong Quadruple}, we have
 	\begin{align*}
 			&
 		n^2 \br{Z_i(q)-Z_i(p)-Z_i\pr(q)+Z_i\pr(p)}^2 
@@ -309,7 +309,7 @@ Define
 	for $\xi \in (0,1)$, where $c > 0$ depends only on $\beta, c_{\ms e}$.
 \end{lemma}
 \begin{proof}
-	Obviously, it holds
+	Obviously, we have
 	\begin{equation*}
 		\entrn(Q, \mf b^{1-\xi}) \leq \int_0^\infty \sqrt{\log N(Q, \mf b^{1-\xi}, r)} \dl r
 	\end{equation*}
@@ -338,7 +338,7 @@ Define
 		R^{1-\xi} \int_0^1 s^{-\xi} \log\brOf{\frac{1}{s}}^\beta \dl s
 		\eqfs
 	\end{equation*}
-	For general $a\in(0,1),b>0$ it holds
+	For general $a\in(0,1),b>0$, we have
 	\begin{equation*}
 		\int_0^1 x^{-a} \log\brOf{\frac1x}^b \dl x = (1-a)^{-b-1} \Gamma(b+1)
 		\eqcm
@@ -425,7 +425,7 @@ Define
 	
 	In \assu{ass:smom}{Strong Moment} we require $\kappa \geq \gamma-1$, because then $x\mapsto x^{\frac{\kappa}{\gamma-1}}$ is convex, which is needed for the symmetrization argument in the proof of \autoref{thm:abstr_rate_exp}. But, if $\kappa = \gamma-1$, then $\frac{\kappa}{\gamma-\xi_n} < 1$, and \autoref{thm:abstr_rate_exp} cannot be applied directly. For this technical reason, we assumed $\kappa > \gamma-1$, so that $\kappa \geq \gamma-\xi_n$ for $n$ large enough.	
 	
-	By \assu{ass:se}{Small Entropy} and \autoref{lmm:entropyuse} there is $c_\beta>0$ such that for $n\in\N$ large enough, it holds 
+	By \assu{ass:se}{Small Entropy} and \autoref{lmm:entropyuse} there is $c_\beta>0$ such that for $n\in\N$ large enough, we have 
 	\begin{equation*}
 		\entrn(\Ball{R_n}{o}{\mf b}, \mf b^{1-\xi_n}) \leq c_\beta R_n^{1-\xi_n} \br{{1-\xi_n}}^{-\beta}
 		\eqfs
@@ -440,7 +440,7 @@ Define
 		\Ex*{\mf b(m^{Q_n}, m^{Q_n}_n)^{\kappa}} \leq C\prr n^{-\frac{\kappa}{2(\gamma-\xi_n)}} \br{R_n^{1-\xi_n} \br{{1-\xi_n}}^{-\beta}}^{\frac{\kappa}{\gamma-\xi_n}}\, \mf M\brOf{\frac{\kappa}{\gamma-1}}
 		\eqfs
 	\end{equation*}
-	Finally, there is a $n_0\in\N$ such that for all $n\geq n_0$ it holds $m \in Q_n$, which implies $m = m^{Q_n}$. Thus,
+	Finally, there is a $n_0\in\N$ such that for all $n\geq n_0$, we have $m \in Q_n$, which implies $m = m^{Q_n}$. Thus,
 	\begin{equation*}
 		\Ex*{\mf b(m, m^{Q_n}_n)^\kappa} = \bigO\brOf{\br{n^{-\frac12} \log(n)^\beta}^{-\frac{\kappa}{\gamma-1}}}
 		\eqfs
@@ -477,7 +477,7 @@ Similar results hold for the strong quadruple inequality. For the following resu
 	If $(\mc Q_i, \mc Y_i, \mf c_i, \mf a_i, \mf b_i)$ fulfill the weak quadruple inequality for all $i \in \N$, then so does
 	$(\mc Q, \mc Y, \mf c, \mf a, \mf b)$ where $\mc Q = \bigtimes_{i\in \N} \mc Q_i$, $\mc Y = \bigtimes_{i\in \N} \mc Y_i$, $\mf c = \sum_{i=1}^\infty \mf c_i$, $\mf a = \normof{(\mf a_i)_{i\in\N}}_{\ell^2}$, $\mf b = \normof{(\mf b_i)_{i\in\N}}_{\ell^2}$.	
 	\begin{proof}
-		It holds
+		We have
 		\begin{align*}
 			\olc yq- \olc zq -\olc yp+\olc zp 
 			&= 
@@ -511,7 +511,7 @@ Similar results hold for the strong quadruple inequality. For the following resu
 	\end{equation*}
 	also fulfills the quadruple inequality.
 	\begin{proof}
-		It holds
+		We have
 		\begin{align*}
 			&\mf C(y,q) - \mf C( z,q) -\mf C(y,p)+\mf C(z,p)
 			\\&= 

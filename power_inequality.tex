@@ -37,7 +37,7 @@ The advantage of using \autoref{con:ana} to prove \autoref{thm:power_inequ} is, 
 %
 \begin{proof}
 	Three points from an arbitrary metric space can be embedded in the Euclidean plane so that the distances are preserved.
-	Thus, the cosine formula of Euclidean geometry can be applied to the three points $y,p,q\in\mc Q$: It holds
+	Thus, the cosine formula of Euclidean geometry can be applied to the three points $y,p,q\in\mc Q$: We have
 	\begin{equation*}
 		\ol yq^2 = \ol yp^2 + \ol qp^2 - 2 s \,\ol yp\, \ol qp\eqcm
 	\end{equation*}
@@ -145,7 +145,7 @@ We have to distinguish the cases $|a-c|=\max(ra - sc, |a-c|)$ and $ra - sc=\max(
 	\end{align*}
 \end{lemma}
 \begin{proof}
-It holds
+We have
 	\begin{align*}
 	&
 		ra - sc \geq a-c
@@ -209,16 +209,16 @@ Note, neither $\partial_s^2 F(r,s) \geq 0$ nor $\partial_s^2 F(r,s) \leq 0$ for 
 		\ell(r,s) := a^{2\alpha}-c^{2\alpha}-\br{a^2-2rab+b^2}^\alpha+\br{c^2-2scb+b^2}^\alpha 
 		\eqfs
 	\end{equation*}
-	It holds
+	We have
 	\begin{align*}
 		\partial_r \ell(r,s) &= 2ab\alpha\br{a^2-2rab+b^2}^{\alpha-1}\eqfs
 	\end{align*}
-	Define $h(r,s) := 8 \alpha 2^{-2\alpha} b \br{ra - sc}^{2\alpha-1}$. It holds
+	Define $h(r,s) := 8 \alpha 2^{-2\alpha} b \br{ra - sc}^{2\alpha-1}$. We have
 	\begin{align*}
 		\partial_r h(r,s) &= 8 \alpha (2\alpha-1) 2^{-2\alpha} b a \br{ra - sc}^{2\alpha-2}\eqfs
 	\end{align*}
-	It holds $F(r,s) = \ell(r,s)-h(r,s)$.
-	It holds
+	We have $F(r,s) = \ell(r,s)-h(r,s)$.
+	We have
 	\begin{align*}
 		f(r) :=	 \frac{	\partial_r \ell(r,s)-\partial_r h(r,s)}{2ab\alpha} &= \br{a^2-2rab+b^2}^{\alpha-1} - (2\alpha-1) \br{\frac{ra - sc}{2}}^{2\alpha-2}
 	\end{align*}
@@ -230,11 +230,11 @@ Note, neither $\partial_s^2 F(r,s) \geq 0$ nor $\partial_s^2 F(r,s) \leq 0$ for 
 		- \frac12 a(2\alpha-1)(2\alpha-2) \br{\frac{ra - sc}{2}}^{2\alpha-3} 
 		\eqfs
 	\end{align*}
-	It holds $2ab \br{a^2-2rab+b^2}^{\alpha-2} \geq 0$ and $(\alpha-1) \leq 0$. Thus,
+	We have $2ab \br{a^2-2rab+b^2}^{\alpha-2} \geq 0$ and $(\alpha-1) \leq 0$. Thus,
 	\begin{equation*}
 		-2ab(\alpha-1) \br{a^2-2rab+b^2}^{\alpha-2} \geq 0\eqfs
 	\end{equation*}
-	It holds $\frac12 a(2\alpha-1) \br{\frac{ra - sc}{2}}^{2\alpha-3} \geq 0$ and  $(2\alpha-2)\leq 0$. Thus, $-\frac12 a(2\alpha-1)(2\alpha-2) \br{\frac{ra - sc}{2}}^{2\alpha-3} \geq 0$. Hence,	$\partial_r f(r) \geq 0$. Hence, $\partial_r^2 F(r,s) \geq 0$.
+	We have $\frac12 a(2\alpha-1) \br{\frac{ra - sc}{2}}^{2\alpha-3} \geq 0$ and  $(2\alpha-2)\leq 0$. Thus, $-\frac12 a(2\alpha-1)(2\alpha-2) \br{\frac{ra - sc}{2}}^{2\alpha-3} \geq 0$. Hence,	$\partial_r f(r) \geq 0$. Hence, $\partial_r^2 F(r,s) \geq 0$.
 \end{proof}
 %
 %
@@ -250,7 +250,7 @@ Define
 	\ell(r,s) := a^{2\alpha}-c^{2\alpha}-\br{a^2-2rab+b^2}^\alpha+\br{c^2-2scb+b^2}^\alpha 
 	\eqfs
 \end{equation*}
-It holds
+We have
 \begin{equation*}
 	\max_{s\geq s_0, r\leq r_0} \ell(r,s) = \ell(r_0,s_0)
 	\eqfs
@@ -413,7 +413,7 @@ Note that this result is slightly stronger than the application of the mean valu
 		\Rightarrow && (x+y)^a-(x-y)^a &\leq 2a x^{a-1} y
 		\eqfs
 	\end{align*}
-	It holds 
+	We have 
 	\begin{equation*}
 		f\pr(z) = \frac {g(z)}{z^2}
 		\eqcm
@@ -423,7 +423,7 @@ Note that this result is slightly stronger than the application of the mean valu
 		g(z) = az \br{(1+z)^{a-1}+(1-z)^{a-1}}-\br{(1+z)^{a}-(1-z)^{a}}
 		\eqfs
 	\end{equation*}
-	It holds
+	We have
 	\begin{equation*}
 		g\pr(z) = az(a-1)\br{(1+z)^{a-2}-(1-z)^{a-2}} \leq 0\eqfs
 	\end{equation*}
@@ -467,7 +467,7 @@ In many cases (i.e., with additional assumption on $a,b,c,r$ or $s$), we prove t
 %
 \begin{proof}
 	For $\tilde \alpha\geq 1$, the function $\R\to\R,\, x\mapsto |x|^{\tilde\alpha}-|x-1|^{\tilde\alpha}$ is increasing.
-	It holds $2\alpha\geq1$. Thus, if $a\leq c$, then
+	We have $2\alpha\geq1$. Thus, if $a\leq c$, then
 	\begin{equation*}
 		|a|^{2\alpha}-|a-b|^{2\alpha}\leq |c|^{2\alpha}-|c-b|^{2\alpha} 
 		\eqfs
@@ -479,7 +479,7 @@ In many cases (i.e., with additional assumption on $a,b,c,r$ or $s$), we prove t
 		g(b) :=  |q+b|^{2\alpha}-|c|^{2\alpha}-|q|^{2\alpha}+|c-b|^{2\alpha} - 2\br{\br{\frac{q-c}{2}+b}^{2\alpha}-\br{\frac{q-c}{2}}^{2\alpha}}
 		\eqfs
 	\end{equation*}
-	It holds $g(0)=0$
+	We have $g(0)=0$
 	and
 	\begin{equation*}
 		\frac{g\pr(b)}{2\alpha} = \sgn(q+b)|q+b|^{2\alpha-1}-\sgn(c-b)|c-b|^{2\alpha-1} -
@@ -561,7 +561,7 @@ In many cases (i.e., with additional assumption on $a,b,c,r$ or $s$), we prove t
 %
 \begin{proof}
 	The function $t \mapsto (t+1)^\alpha-t^\alpha$, $t\geq0$ is non-increasing for all $\alpha\in[0,1]$.
-	It holds $0\leq s^2c^2\leq c^2$ and $x := -2 s c b+b^2 \geq 0$. Thus,
+	We have $0\leq s^2c^2\leq c^2$ and $x := -2 s c b+b^2 \geq 0$. Thus,
 	\begin{equation*}
 		\br{c^2+x}^\alpha-\br{c^2}^\alpha \leq \br{(sc)^2+x}^\alpha-\br{(sc)^2}^\alpha
 		\eqfs
@@ -721,7 +721,7 @@ The following lemma covers  $\frac12 b \leq sc$  under the additional restrictio
 		+ \br{\frac{\delta - s c}{2}}^{2\alpha-1}
 		\eqfs
 	\end{equation*}
-	It holds
+	We have
 	\begin{align*}
 		\delta+b &\geq  \delta\eqcm\\
 		\frac{\delta - s c}{2} &\leq  \frac{\delta - s c}{2} + b\eqcm\\
@@ -760,7 +760,7 @@ The following lemma covers  $\frac12 b \leq sc$  under the additional restrictio
 		(x+b)^{2\alpha-1}-x^{2\alpha-1}-b(c^2 - 2 x b + b^2)^{\alpha -1}
 		\eqfs
 	\end{align*}
-	It holds
+	We have
 	\begin{equation*}
 		h\pr(x)
 		=
@@ -770,7 +770,7 @@ The following lemma covers  $\frac12 b \leq sc$  under the additional restrictio
 	As $2\alpha-2 \leq 0$ and $2\alpha-1 \geq 0, (2\alpha-1)(x+b)^{2\alpha-2}-(2\alpha-1)x^{2\alpha-2}\leq 0$.
 	As $\alpha-1\leq0$, $2(\alpha -1) b^2(c^2 - 2 x b + b^2)^{\alpha -2} \leq 0$.
 	Thus, $h\pr(x)\leq0$. \\
-	It holds $x\geq x_{\ms{min}} := \max(\frac b2, c-b)$. For checking $h(x_{\ms{min}}) \leq 0$ and $g(x_{\ms{min}}) \leq 0$, we distinguish $x_{\ms{min}} = c-b$ and $x_{\ms{min}} = \frac b2$.\\
+	We have $x\geq x_{\ms{min}} := \max(\frac b2, c-b)$. For checking $h(x_{\ms{min}}) \leq 0$ and $g(x_{\ms{min}}) \leq 0$, we distinguish $x_{\ms{min}} = c-b$ and $x_{\ms{min}} = \frac b2$.\\
 	\underline{Case 1, $c-b\leq\frac b2$:}\\
 	If $c-b\leq\frac b2$, then $c\leq \frac32 b \leq (1+\sqrt{3})b$, $c^2 -2cb-2b^2\leq0$, and
 	\begin{align*}
@@ -1009,7 +1009,7 @@ We distinguish $\frac12 b \leq a-sc$ and $\frac12 b \geq a-sc$.
 		f(x) := a^{2\alpha}-c^{2\alpha}-(a-b)^{2\alpha}+(c^2 - 2 x b + b^2)^\alpha  - 2 b^\alpha (a-x)^{\alpha}
 		\eqfs
 	\end{equation*}
-	It holds
+	We have
 	\begin{equation*}
 		\frac{f\pr(x) }{2 \alpha b} = -(c^2 - 2 x b + b^2)^{\alpha-1}  + b^{\alpha-1} (a-x)^{\alpha-1}
 		\eqfs
@@ -1066,7 +1066,7 @@ We distinguish $\frac12 b \leq a-sc$ and $\frac12 b \geq a-sc$.
 		f(\alpha,x) = 1+\br{1+3x^2}^\alpha-\br{1+x}^{2\alpha}-\br{1-x}^{2\alpha}-2\br{\frac{x^2}2}^\alpha
 		\eqfs
 	\end{equation*}
-	It holds
+	We have
 	\begin{align*}
 		\frac{\partial_\alpha f(\alpha, x)}{\alpha} &= \br{1+3x^2}^\alpha \log\brOf{1+3x^2}-\br{1+x}^{2\alpha}\log\brOf{(1+x)^2}
 		\\&\hphantom{=}
@@ -1083,7 +1083,7 @@ We distinguish $\frac12 b \leq a-sc$ and $\frac12 b \geq a-sc$.
 		\\&=:h(x,\alpha)
 		\eqfs
 	\end{align*}
-	For $x\in[0,1]$, it holds $1+3x^2 \leq (1+x)^2$. Thus,
+	For $x\in[0,1]$, we have $1+3x^2 \leq (1+x)^2$. Thus,
 	\begin{equation*}
 		\br{\frac{1+3x^2}{(1+x)^2}}^\alpha \leq 1 \leq \br{\frac{\log\brOf{(1+x)^2}}{\log\brOf{1+3x^2}}}^2
 		\eqfs
@@ -1204,7 +1204,7 @@ We distinguish $\frac12 b \leq a-sc$ and $\frac12 b \geq a-sc$.
 		f(a,b,y,w) := a^{2\alpha}-(y+a)^{2\alpha}-(b-a)^{2\alpha}+((y+a)^2 - 2 w b + b^2)^\alpha - 2 b (a-w)^{2\alpha-1}
 		\eqfs
 	\end{equation*}
-	It holds
+	We have
 	\begin{equation*}
 		\partial_y f(a,b,y,w) = -2\alpha(y+a)^{2\alpha-1}+\alpha\br{2(y+a)}\br{(y+a)^2 - 2 w b + b^2}^{\alpha-1}
 		\eqfs
@@ -1215,7 +1215,7 @@ We distinguish $\frac12 b \leq a-sc$ and $\frac12 b \geq a-sc$.
 		\eqfs
 	\end{equation*}
 	Thus $\partial_y f(a,b,y,w) \geq 0$.
-	Thus, for $y\in[0,a-w]$, it holds $f(a,b,y,w) \leq f(a,b,a-w,w)$. It holds
+	Thus, for $y\in[0,a-w]$, we have $f(a,b,y,w) \leq f(a,b,a-w,w)$. We have
 	\begin{align*}
 		&f(a,b,a-w,w) 
 		\\&= a^{2\alpha}-(2a-w)^{2\alpha}-(b-a)^{2\alpha}+((2a-w)^2 - 2 w b + b^2)^\alpha - 2 b (a-w)^{2\alpha-1} 
@@ -1232,7 +1232,7 @@ We distinguish $\frac12 b \leq a-sc$ and $\frac12 b \geq a-sc$.
 		h(a,b,w) = -(b-a)^{2\alpha-1}+(b-w)((2a-w)^2 - 2 w b + b^2)^{\alpha-1} -  (a-w)^{2\alpha-1}
 		\eqfs
 	\end{equation*}
-	The conditions $0\leq a-w \leq \frac b2 \leq w$ and $a \leq b$ imply $w \leq a \leq b$. It holds,
+	The conditions $0\leq a-w \leq \frac b2 \leq w$ and $a \leq b$ imply $w \leq a \leq b$. We have,
 	\begin{align*}
 		&\partial_a^2 h(a,b,w) \\= &-(2\alpha-1)(2\alpha-2)(b-a)^{2\alpha-3}\\&+4(\alpha-1)(\alpha-2)(2a-w)^2(b-w)((2a-w)^2 - 2 w b + b^2)^{\alpha-3} \\&-  (2\alpha-1)(2\alpha-2)(a-w)^{2\alpha-3} \\\geq&0
 		\eqcm
@@ -1261,15 +1261,15 @@ We distinguish $\frac12 b \leq a-sc$ and $\frac12 b \geq a-sc$.
 		a^{2\alpha}-(2a-w)^{2\alpha}+(5 a^2 - 6 a w + w^2)^\alpha - 2 a (a-w)^{2\alpha-1}
 		\eqfs
 	\end{align*}
-	Set $w = a - y$, $y\in[0,a]$. It holds
+	Set $w = a - y$, $y\in[0,a]$. We have
 	\begin{align*}
 		\ell(a,y) &:= a^{2\alpha}+(5 a^2 - 6 a (a-y) + (a-y)^2)^\alpha - (a+y)^{2\alpha} - 2 a y^{2\alpha-1}
 		\\&= 
 		a^{2\alpha}+(4 a y + y^2)^\alpha - (a+y)^{2\alpha} - 2 a y^{2\alpha-1}
 		\eqfs
 	\end{align*}
-	It holds $g(a,a,w) = \ell(a,y)$.
-	Under the condition $0 \leq y \leq a$, it holds$\ell(a,y) \leq 0$, cf next lemma.
+	We have $g(a,a,w) = \ell(a,y)$.
+	Under the condition $0 \leq y \leq a$, we have $\ell(a,y) \leq 0$, cf next lemma.
 \end{proof}
 %
 \begin{lemma}
@@ -1290,7 +1290,7 @@ We distinguish $\frac12 b \leq a-sc$ and $\frac12 b \geq a-sc$.
 		g(a,y) := 2a^{2\alpha-1} + 4^\alpha y^\alpha a^{\alpha-1} - 2(a+y)^{2\alpha-1} - 2y^{2\alpha-1}
 		\eqfs
 	\end{equation*}
-	It holds
+	We have
 	\begin{equation*}
 		\partial_a g(a,y) = 2(2\alpha-1)a^{2\alpha-2} + 4^\alpha(\alpha-1) y^\alpha a^{\alpha-2} - 2(2\alpha-1)(a+y)^{2\alpha-2}
 		\eqcm
@@ -1332,7 +1332,7 @@ We distinguish $\frac12 b \leq a-sc$ and $\frac12 b \geq a-sc$.
 		g(y,y) = \br{2 + 4^\alpha - 2^{2\alpha} - 2}y^{2\alpha-1} = 0
 		\eqfs
 	\end{equation*}
-	Thus,  $g(a,y) \leq 0$. It holds
+	Thus,  $g(a,y) \leq 0$. We have
 	\begin{align*}
 		&a^{2\alpha} + (4 a y + y^2)^\alpha - (a+y)^{2\alpha} - 2 a y^{2\alpha-1}
 		\\&\leq 
@@ -1418,12 +1418,12 @@ We distinguish $\frac12 b \leq a-sc$ and $\frac12 b \geq a-sc$.
 			- 2 b (a-w)^{2\alpha-1}
 			\eqfs
 	\end{equation*} 
-	It holds
+	We have
 	\begin{equation*}
 		\partial_c f(a,b,c,w) =2\alpha\br{-c^{2\alpha-1}+c(c^2 - 2 w b + b^2)^{\alpha-1}}
 		\eqfs
 	\end{equation*} 
-	Because of $2w \geq b$, it holds $\partial_c f(a,b,c,w) \leq 0$.
+	Because of $2w \geq b$, we have $\partial_c f(a,b,c,w) \leq 0$.
 	\begin{equation*}
 		f(a,b,a,w) = -(a-b)^{2\alpha}+(a^2 - 2 w b + b^2)^\alpha - 2 b (a-w)^{2\alpha-1}
 		\eqfs
@@ -1434,12 +1434,12 @@ We distinguish $\frac12 b \leq a-sc$ and $\frac12 b \geq a-sc$.
 		g(x,b,w) := -(x+w-b)^{2\alpha}+((x+w)^2 - 2 w b + b^2)^\alpha - 2 b x^{2\alpha-1}
 		\eqfs
 	\end{equation*}
-	It holds
+	We have
 	\begin{equation*}
 		\partial_w g(x,b,w) =-2\alpha(x+w-b)^{2\alpha-1}+2\alpha(x+w-b)((x+w)^2 - 2 w b + b^2)^{\alpha-1} 
 		\eqfs
 	\end{equation*}
-	It holds
+	We have
 	\begin{equation*}
 		(x+w-b)^2 - \br{(x+w)^2 - 2 w b + b^2} = -2 b x \leq 0
 		\eqfs
@@ -1450,7 +1450,7 @@ We distinguish $\frac12 b \leq a-sc$ and $\frac12 b \geq a-sc$.
 		\eqfs
 	\end{equation*}
 	As $a \geq b$ and thus $x+w-b \geq 0$, $\partial_w g(x,b,w) \leq 0$.
-	It holds $w \geq b-x \geq \frac b2$ and 
+	We have $w \geq b-x \geq \frac b2$ and 
 	\begin{equation*}
 		g(x,b,b-x)
 		=
@@ -1530,7 +1530,7 @@ This lemma follows from the next two lemmas, which split the proof of this inequ
 		\eqfs
 	\end{align*}
 	Thus, 	$g\prr(c) \geq 0$.
-	It holds $0 \leq c \leq \delta$ and
+	We have $0 \leq c \leq \delta$ and
 	\begin{equation*}
 		g(0) =
 		(\delta+2b)^{2\alpha-1}- (\delta+2b)^{2\alpha-1}-0=0
@@ -1557,7 +1557,7 @@ This lemma follows from the next two lemmas, which split the proof of this inequ
 	h\pr(\delta) \leq 0
 	\eqfs
 	\end{equation*}
-	It holds
+	We have
 	\begin{equation*}
 		h(0) = (2b)^{2\alpha-1}- (2b)^{2\alpha-1} - 0 = 0
 		\eqfs
@@ -1586,13 +1586,13 @@ This lemma follows from the next two lemmas, which split the proof of this inequ
 \end{lemma}
 %
 \begin{proof}
-	As $b\geq a-c$ and $2\alpha-1 \in[0,1]$, it holds $b^{2\alpha-1} (a-c) \leq b (a-c)^{2\alpha-1}$.
+	As $b\geq a-c$ and $2\alpha-1 \in[0,1]$, we have $b^{2\alpha-1} (a-c) \leq b (a-c)^{2\alpha-1}$.
 	Define
 	\begin{equation*}
 		f(a) := a^{2\alpha}-c^{2\alpha}-\br{(a-b)^2+4cb}^{\alpha}+(c+b)^{2\alpha}  -2 b^{2\alpha-1} (a-c)
 		\eqfs
 	\end{equation*}
-	It holds
+	We have
 	\begin{align*}
 		f\pr(a) &= 	2\alpha a^{2\alpha-1}-2\alpha (a-b)\br{(a-b)^2+4cb}^{\alpha-1}-2 b^{2\alpha-1}
 		\\ {\scriptstyle a \geq b,c \text{ and } 2\alpha-2\leq 0} \qquad&\leq
@@ -1647,7 +1647,7 @@ This lemma follows from the next two lemmas, which split the proof of this inequ
 We need two further lemmas before we prove this inequality.
 %
 \begin{lemma}\label{lmm:slogs}
-	For $s\in[0,\frac12]$ it holds
+	For $s\in[0,\frac12]$, we have
 	\begin{equation*}
 		\frac{1-s}{s} \leq \frac{\log(s)}{\log(1-s)}
 		\eqfs
@@ -1666,7 +1666,7 @@ We need two further lemmas before we prove this inequality.
 		\eqfs
 	\end{equation*}
 	Thus, $f\prr(s) \geq 0$ for $s\leq\frac12$.
-	It holds $f(0)=f(\frac12)=0$.
+	We have $f(0)=f(\frac12)=0$.
 	Thus, $f(s) \leq 0$. Thus,
 	\begin{equation*}
 		s\log(s) \leq (1-s)\log(1-s)
@@ -1696,7 +1696,7 @@ We need two further lemmas before we prove this inequality.
 \end{lemma}
 %
 \begin{proof}
-	It holds
+	We have
 	\begin{equation*}
 		f\prr(x) = \br{a+b}^{-x} \br{a^x \log\brOf{\frac{a}{a+b}}^2 - b^x \log\brOf{\frac{b}{a+b}}^2}
 		\eqfs
@@ -1743,7 +1743,7 @@ We need two further lemmas before we prove this inequality.
 	\end{equation*}
 	The condition $x\geq y$ can be dropped because of symmetry.
 	It remains to show that $f(z) \leq 4^\alpha-2$ is indeed true.
-	It holds $f(1) = 4^\alpha-2$. To finish the proof, we will show $f\pr(z) \leq 0$. Define
+	We have $f(1) = 4^\alpha-2$. To finish the proof, we will show $f\pr(z) \leq 0$. Define
 	\begin{equation*}
 		g(z) := (z^2-1)(z+2)^{2\alpha}-(z+1)^2(z^{2\alpha}-1)
 		\eqfs

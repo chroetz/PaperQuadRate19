@@ -15,16 +15,16 @@ We write $\olc yq :=\mf c(y,q)$.
 \begin{enumerate}[label=(\alph*)]
 \item 
 The tuple $(\mc Q, \mc Y, \mf c, \mf a, \mf b)$ fulfills the \emph{(weak) quadruple inequality}
-	if and only if
-	for all $p,q\in\mc Q$, $y,z\in\mc Y$ it holds
+	if and only if,
+	for all $p,q\in\mc Q$, $y,z\in\mc Y$, we have
 	\begin{equation*}
 		\olc yq- \olc zq -\olc yp+\olc zp \leq \mf a(y,z) \mf b(q,p)
 		\eqfs
 	\end{equation*}
 \item	
 	The tuple $(\mc Q, \mc Y, \mf c, \mf l^\xi, \mf a, \mf b_m)$ fulfills the \emph{strong quadruple inequality} at $m\in\mc Q$ 
-	if and only if
-	for all $p,q\in\dot{\mc Q}$, $y,z\in\mc Y$ it holds
+	if and only if,
+	for all $p,q\in\dot{\mc Q}$, $y,z\in\mc Y$, we have
 	\begin{equation*}
 		\frac{\olc yq- \olc ym- \olc zq + \olc zm}{\mf l(m,q)^\xi} - \frac{\olc yp- \olc ym- \olc zp + \olc zm}{\mf l(m,p)^\xi} \leq \mf a(y,z) \mf b_m(q,p)
 		\eqfs
@@ -145,10 +145,10 @@ A metric space is called \textit{geodesic}, if any two points $q,p\in\mc Q$ can 
 A \textit{midpoint} of two points $q,p\in\mc Q$ is a point $m\in \mc Q$ such that $\ol qm = \ol pm = \frac12 \ol qp$.
 A complete metric space is a geodesic space if and only if all pairs of points have a midpoint, see \cite[Proposition 1.2]{sturm03}.
 Now, let $(\mc Q, d)$ be a geodesic metric space.
-For any triple of points $a,b,c\in\mc Q$ one can construct a \textit{comparison triangle} in the Euclidean plane with corners $a\pr, b\pr, c\pr \in \R^2$, such that $\ol ab = \normof{b\pr - a\pr}$, $\ol ac = \normof{c\pr - a\pr}$, and $\ol bc = \normof{c\pr - b\pr}$. A geodesic metric space  $(\mc Q, d)$ is called \textit{CAT(0)} if and only if for every triple of points $a,b,c\in\mc Q$ with comparison triangle $(a\pr, b\pr, c\pr)$ following condition holds: For every point $d$ on a geodesic connecting $a$ and $b$, it holds $\ol dc \leq \normof{c\pr - d\pr}$, where $d\pr \in \R^2$ is the point on the edge of the comparison triangle between $a\pr$ and $b\pr$ such that $\normof{d\pr- a\pr} = \ol ad$.
+For any triple of points $a,b,c\in\mc Q$ one can construct a \textit{comparison triangle} in the Euclidean plane with corners $a\pr, b\pr, c\pr \in \R^2$, such that $\ol ab = \normof{b\pr - a\pr}$, $\ol ac = \normof{c\pr - a\pr}$, and $\ol bc = \normof{c\pr - b\pr}$. A geodesic metric space  $(\mc Q, d)$ is called \textit{CAT(0)} if and only if for every triple of points $a,b,c\in\mc Q$ with comparison triangle $(a\pr, b\pr, c\pr)$ following condition holds: For every point $d$ on a geodesic connecting $a$ and $b$, we have $\ol dc \leq \normof{c\pr - d\pr}$, where $d\pr \in \R^2$ is the point on the edge of the comparison triangle between $a\pr$ and $b\pr$ such that $\normof{d\pr- a\pr} = \ol ad$.
 A complete CAT(0)-space is called \textit{Hadamard space} or \textit{global NPC space} (\textbf{n}on\textbf{p}ositive \textbf{c}urvature).
 
-A metric space $(\mc Q, d)$ is said to fulfill the \textit{NPC-inequality} if and only if for all $y_1, y_2 \in \mc Q$ there exists a point $m\in\mc Q$ such that for all $q \in \mc Q$ it holds
+A metric space $(\mc Q, d)$ is said to fulfill the \textit{NPC-inequality} if and only if for all $y_1, y_2 \in \mc Q$ there exists a point $m\in\mc Q$ such that for all $q \in \mc Q$, we have
 $\ol mq^2 \leq \frac12 \ol{y_1}q^2 + \frac12 \ol{y_2}q^2 - \frac14 \ol{y_1}{y_2}^2$. Then $m$ is the midpoint of $y_1$ and $y_2$.
 
 A characterization of CAT(0)-spaces can be found in \cite[Section 2]{sturm03}:
@@ -260,7 +260,7 @@ Recall the definition of the objective function $F(q) = \Ex{\olc Yq}$ and the em
 \theoremContentInNewLine
 	\begin{enumerate}[label=\environmentEnumerateLabel]
 	\assitem{ass:ex2}{Existence'}
-		It holds $\Ex*{\abs{\mf c(Y, q)}} < \infty$ for all $q\in\mc Q$.
+		We have $\Ex*{\abs{\mf c(Y, q)}} < \infty$ for all $q\in\mc Q$.
 		Let $o\in\mc Q$. Define $R_n := n$ and $\mc Q_n := \Ball{R_n}{o}{\mf b}$.
 		There are $m^{Q_n}_n \in \argmin_{q\in \mc Q_n} F_n(q)$ measurable and $m\in\argmin_{q\in\mc Q} F(q)$.
 		\index[inot]{$o$}
@@ -277,7 +277,7 @@ Recall the definition of the objective function $F(q) = \Ex{\olc Yq}$ and the em
 	\end{enumerate}
 \end{assumptions}
 %
-Note that the \assu{ass:se}{Small Entropy} condition is much stronger than \assu{ass:ent}{Entropy}, which we assumed in \autoref{thm:abstr_rate_prob}. In Euclidean subspaces $\mc Q \subset \R^b$, it holds \begin{equation*}
+Note that the \assu{ass:se}{Small Entropy} condition is much stronger than \assu{ass:ent}{Entropy}, which we assumed in \autoref{thm:abstr_rate_prob}. In Euclidean subspaces $\mc Q \subset \R^b$, we have \begin{equation*}
 N(r,\Ball{\delta}{0}{d},d) \leq \br{\frac{3 \delta}{r}}^b
 \end{equation*} for all $R>r>0$ \cite[section 4]{pollard90}. Thus, \assu{ass:se}{Small Entropy} is fulfilled in Euclidean spaces.
 %

@@ -42,7 +42,7 @@ We denote the "closed" ball with center $o\in\mc Q$ of radius $r>0$ in the set $
 \theoremContentInNewLine
 \begin{enumerate}[label=\environmentEnumerateLabel]
 \assitem{ass:ex}{Existence}
-	It holds $\Ex*{\abs{\mf c(Y, q)}} < \infty$ for all $q\in\mc Q$.
+	We have $\Ex*{\abs{\mf c(Y, q)}} < \infty$ for all $q\in\mc Q$.
 	There are $m_n\in\argmin_{q\in\mc Q} F_n(q)$ measurable and $m\in\argmin_{q\in\mc Q} F(q)$.
 \assitem{ass:gr}{Growth}
 	There are constants $\gamma > 0$ and $c_{\ms g}>0$ such that 
@@ -50,7 +50,7 @@ We denote the "closed" ball with center $o\in\mc Q$ of radius $r>0$ in the set $
 	\index[inot]{$\gamma$}\index[inot]{$c_{\ms g}$}
 \assitem{ass:wquad}{Weak Quadruple}
 	There are a function $\mf a \colon \mc Y \times \mc Y \to [0,\infty)$ measurable and a pseudo-metric $\mf b \colon \mc Q \times \mc Q \to [0,\infty)$, such that,
-	for all $p,q\in\mc Q$, $y,z\in\mc Y$, it holds
+	for all $p,q\in\mc Q$, $y,z\in\mc Y$, we have
 	\begin{equation*}
 		\olc yq- \olc zq -\olc yp+\olc zp \ \leq \ \mf a(y,z)\, \mf b(q,p)
 		\eqcm
@@ -68,7 +68,7 @@ We denote the "closed" ball with center $o\in\mc Q$ of radius $r>0$ in the set $
 			\Ex*{\mf a(Y\pr,Y)^2}^{\frac{\zeta}{2}}\eqcm &\text{ if } \zeta\leq 2\eqcm
 		\end{cases}
 	\end{equation*}
-	where $Y\pr$ is an independent copy of $Y$. It holds $\mf M(\zeta)  < \infty$.
+	where $Y\pr$ is an independent copy of $Y$. We have $\mf M(\zeta)  < \infty$.
 	\index[inot]{$\mf M(\zeta)$}
 	\index[inot]{$\zeta$}
 	\index[inot]{$Y\pr$}
@@ -111,7 +111,7 @@ As $m$ is the mid-point between $y_1$ and $y_2$, we obtain
 \end{equation*}
 This inequality implies that the space $(\mc Q, d)$ has nonpositive curvature \cite[Definition 2.1]{sturm03}. Such spaces are called \textit{Hadamard spaces}. Aside from the \assu{ass:gr}{Growth} condition they also fulfill the quadruple inequality, which we discuss in section \ref{ssse:quad:npc}.
 
-The \assu{ass:wquad}{Weak Quadruple}-condition will be discussed in detail in \autoref{sec:quadruple}. Among other things, we will show that it holds in a nice way in all Hadamard spaces, which include the Euclidean spaces.
+The \assu{ass:wquad}{Weak Quadruple}-condition will be discussed in detail in \autoref{sec:quadruple}. Among other things, we will show that we have in a nice way in all Hadamard spaces, which include the Euclidean spaces.
 
 The following theorem states rates of convergence for the estimator $m_n$ to the true value $m$ measured with respect to the loss function $\mf l$.
 %
@@ -129,7 +129,7 @@ The following theorem states rates of convergence for the estimator $m_n$ to the
 		\end{cases} 
 		\index[inot]{$\eta_{\beta,n}$}
 	\end{equation*}
-	Then, for all $t > 0$, it holds
+	Then, for all $t > 0$, we have
 	\begin{equation*}
 		\PrOf{\eta_{\beta,n}^{-\frac{1}{\gamma-\frac{\alpha}{\beta}}} \mf l (m, m_n) \geq t} \leq 
 		c \, \mf M(\zeta)\, t^{-\zeta(\gamma-\frac\alpha\beta)}
@@ -189,7 +189,7 @@ For obtaining rates in expectation directly, we need slightly modified, stronger
 	\assitem{ass:squad}{Strong Quadruple}
 		Define $\dot{\mc Q} := \mc Q \setminus \ball_0(m, \mf l) = \cb{q\in\mc Q\colon \mf l(m, q) > 0}$.\index[inot]{$\dot{\mc Q}$}\index[inot]{$\ball_0(m, \mf l)$}
 		There are functions $\mf b_m \colon \dot{\mc Q} \times \dot{\mc Q} \to [0,\infty)$ (possibly depending on $m$) and $\mf a \colon \mc Y \times \mc Y \to [0,\infty)$ with $\mf a$ measurable and $\xi\in(0,\gamma)$, such that,
-		for all $p,q\in\dot{\mc Q}$, $y,z\in\mc Y$, it holds
+		for all $p,q\in\dot{\mc Q}$, $y,z\in\mc Y$, we have
 		\begin{equation*}
 			\frac{\olc yq- \olc ym- \olc zq + \olc zm}{\mf l(m,q)^\xi} - \frac{\olc yp- \olc ym- \olc zp + \olc zm}{\mf l(m,p)^\xi} \leq \mf a(y,z) \, \mf b_m(q,p)
 			\eqcm
@@ -212,7 +212,7 @@ For obtaining rates in expectation directly, we need slightly modified, stronger
 		Let $\kappa\geq \gamma-\xi$ and assume $\mf M\brOf{\frac{\kappa}{\gamma-\xi}} < \infty$.
 		\index[inot]{$\kappa$}
 	\assitem{ass:sent}{Strong Entropy}
-		It holds $D := \diam(\dot{\mc Q}, \mf b_m) < \infty$ and there is $\beta > 0$ such that
+		We have $D := \diam(\dot{\mc Q}, \mf b_m) < \infty$ and there is $\beta > 0$ such that
 		\begin{equation*}
 			\sqrt{\log N(\dot{\mc Q}, \mf b_m, r)} \leq c_{\ms e} \br{\frac{D}{r}}^\beta
 		\end{equation*}
@@ -263,7 +263,7 @@ Items (i) and (ii) are basic definitions form \cite{talagrand14}. Item (iii) is 
 \begin{theorem}[Convergence rate in expectation]\label{thm:abstr_rate_exp}
 	In the \textit{Abstract Setting} of section \ref{ssec:ares:generalsetting}, assume that following conditions hold:
 	\assu{ass:ex}{Existence}, \assu{ass:gr}{Growth}, \assu{ass:squad}{Strong Quadruple}, \assu{ass:smom}{Strong Moment}.
-	Then, it holds
+	Then, we have
 	\begin{equation*}
 		\Ex*{\mf l(m ,m_n)^\kappa}
 		\ \leq \ 
