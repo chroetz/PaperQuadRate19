@@ -7,7 +7,7 @@ In this section, we prove rates of convergence for the Fréchet mean in a very g
 \subsection{Setting}\label{ssec:ares:generalsetting}
 %
 %
-Here we define an \textit{Abstract Setting} in which we will state our most general results. This setting of the generalized Fréchet mean is similar to what is used in \cite{huckemann11, huckemann18}.
+Here we define an \textit{Abstract Setting} in which we will state our most general results. This setting of the generalized Fréchet mean is similar to what is used in \cite{huckemann11, eltzner19}.
 
 Let $\mc Q$ be a set, which is called \textit{descriptor space}. Let $(\mc Y, \Sigma_{\mc Y})$ be a measurable space, which is called \textit{data space}. Let $Y$ be a $\mc Y$-valued random variable. Let $\mf c \colon \mc Y \times \mc Q \to \R$ be a function such that $y\to \mf c (y,q)$ is measurable for every $q\in\mc Q$. We call $\mf c$ \emph{cost function}. Define $F \colon \mc Q \to \R\eqcm q\mapsto \Ex*{\mf c(Y, q)}$, assuming that $\Ex*{\abs{\mf c(Y, q)}} < \infty$ for all $q\in\mc Q$. The function $F$ is called \textit{objective function}. 
 Let $n\in\N$. Let $Y_1, \dots, Y_n$ be independent copies of $Y$. Define $F_n \colon \mc Q \to \R\eqcm q\mapsto \frac1n \sum_{i=1}^n \mf c(Y_i, q)$. We call $F_n$ \textit{empirical objective function}. Let $\mf l \colon \mc Q \times \mc Q \to [0,\infty)$ be a function such that $\mf l(m,q)$ measures the \textit{loss} of choosing $q$ given that the true value is $m$. 
