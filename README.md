@@ -9,7 +9,7 @@ LaTeX repository for the paper
  BibTex:
 
  ```
- @article{10.1214/19-EJS1618,
+ @article{schoetz19convergence,
     author = {Christof Sch{\"o}tz},
     title = {{Convergence rates for the generalized Fréchet mean via the quadruple inequality}},
     volume = {13},
