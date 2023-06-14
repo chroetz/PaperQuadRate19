@@ -811,7 +811,7 @@ The following lemma covers  $\frac12 b \leq sc$  under the additional restrictio
 		h\brOf{\frac b2} 
 		&= 
 		\br{\frac32 b}^{2\alpha-1}-\br{\frac12 b}^{2\alpha-1}-b(c^2)^{\alpha -1}
-		\\&\leq 
+		\\&=
 		\br{\br{\frac32}^{2\alpha-1}-\br{\frac12}^{2\alpha-1}} b^{2\alpha-1}-b(c^2)^{\alpha -1}
 		\\&\leq 
 		b^{2\alpha-1}-b(c^2)^{\alpha -1}
@@ -825,8 +825,8 @@ The following lemma covers  $\frac12 b \leq sc$  under the additional restrictio
 		&=
 		\br{\frac32b}^{2\alpha}-c^{2\alpha}-\br{\frac12b}^{2\alpha}+c^{2\alpha}
 				- 2 b^{2\alpha} 
-		\\&\leq 
-		\br{\br{\frac94}^\alpha-\br{\frac12}^\alpha-2} b^{2\alpha}
+		\\&=
+		\br{\br{\frac94}^\alpha-\br{\frac14}^\alpha-2} b^{2\alpha}
 		\\&\leq 
 		0
 		\eqfs
@@ -1304,11 +1304,19 @@ We distinguish $\frac12 b \leq a-sc$ and $\frac12 b \geq a-sc$.
 	 \frac{\partial_y \partial_a g(a,y)}{a^{2\alpha-3}} =  (\alpha-1) \br{4^\alpha \alpha z^{\alpha-1} - 4(2\alpha-1)(1+z)^{2\alpha-3}}
 	 \eqfs
 	\end{equation*}
+	The function $z \mapsto \frac{\br{1+z}^{2\alpha-3}}{z^{\alpha-1}}$ is maximized in $[0,1]$ at $\frac{1-\alpha}{2-\alpha}$ with maximum 
+	\begin{equation*}
+		\frac{\br{1+\frac{1-\alpha}{2-\alpha}}^{2\alpha-3}}{\br{\frac{1-\alpha}{2-\alpha}}^{\alpha-1}}
+		=
+		\frac{\br{3-2\alpha}^{2\alpha-3} \br{2-\alpha}^{2-\alpha}}{\br{1-\alpha}^{\alpha-1}} 
+		\eqfs
+	\end{equation*}
 	One can show
 	\begin{equation*}
-		\frac{4^\alpha \alpha}{4(2\alpha-1)} \geq 1 \geq \frac{\br{1+z}^{2\alpha-3}}{z^{\alpha-1}}
-		\eqcm
+		\frac{4^\alpha \alpha}{4(2\alpha-1)} \geq \alpha \geq \frac{\br{3-2\alpha}^{2\alpha-3} \br{2-\alpha}^{2-\alpha}}{\br{1-\alpha}^{\alpha-1}} 
+		\eqfs
 	\end{equation*}
+	Thus,
 	\begin{equation*}
 		4^\alpha \alpha z^{\alpha-1} \geq 4(2\alpha-1) \br{1+z}^{2\alpha-3}
 		\eqfs
@@ -1332,12 +1340,12 @@ We distinguish $\frac12 b \leq a-sc$ and $\frac12 b \geq a-sc$.
 	\end{align*}
 	\begin{equation*}
 		\partial_a f(a,y) = 2\alpha a^{2\alpha-1} + 4^\alpha \alpha y^\alpha a^{\alpha-1} - 2\alpha(a+y)^{2\alpha-1} - 2y^{2\alpha-1}
-		\leq \alpha g(a,y) \leq 0
+		= \alpha g(a,y) \leq 0
 		\eqfs
 	\end{equation*}
 	Thus,
 	\begin{equation*}
-		f(a,y) \leq f(y,y) = \br{1+5^\alpha-4^\alpha-2} y^{2\alpha} \leq 0
+		f(a,y) \leq f(y,y) = \br{1+4^\alpha+1-4^\alpha-2} y^{2\alpha} = 0
 		\eqfs
 	\end{equation*}
 \end{proof}
