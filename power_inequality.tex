@@ -1311,7 +1311,8 @@ We distinguish $\frac12 b \leq a-sc$ and $\frac12 b \geq a-sc$.
 		\frac{\br{3-2\alpha}^{2\alpha-3} \br{2-\alpha}^{2-\alpha}}{\br{1-\alpha}^{\alpha-1}} 
 		\eqfs
 	\end{equation*}
-	One can show
+	The function $\alpha\mapsto \frac{4^\alpha}{4(2\alpha-1)}$ is decreasing on $[\frac12, 1]$ and equal to $1$ at $\alpha=1$. 
+	Thus, using \autoref{lmm:alphaFraction} below, 
 	\begin{equation*}
 		\frac{4^\alpha \alpha}{4(2\alpha-1)} \geq \alpha \geq \frac{\br{3-2\alpha}^{2\alpha-3} \br{2-\alpha}^{2-\alpha}}{\br{1-\alpha}^{\alpha-1}} 
 		\eqfs
@@ -1321,9 +1322,10 @@ We distinguish $\frac12 b \leq a-sc$ and $\frac12 b \geq a-sc$.
 		4^\alpha \alpha z^{\alpha-1} \geq 4(2\alpha-1) \br{1+z}^{2\alpha-3}
 		\eqfs
 	\end{equation*}
-	Thus, $\partial_y \partial_a g(a,y) \leq 0$. Thus, $\partial_a g(a,y) \leq \partial_a g(a,0)$
+	Thus, $\partial_y \partial_a g(a,y) \leq 0$. Thus, $\partial_a g(a,y) \leq \partial_a g(a,0)$ and
 	\begin{equation*}
 		\partial_a  g(a,0) = 2(2\alpha-1)a^{2\alpha-2} - 2(2\alpha-1)(a)^{2\alpha-2} = 0
+		\eqfs
 	\end{equation*}
 	Thus, $\partial_a g(a,y) \leq 0$. Thus, $g(a,y) \leq g(y,y)$, and
 	\begin{equation*}
@@ -1348,6 +1350,47 @@ We distinguish $\frac12 b \leq a-sc$ and $\frac12 b \geq a-sc$.
 		f(a,y) \leq f(y,y) = \br{1+4^\alpha+1-4^\alpha-2} y^{2\alpha} = 0
 		\eqfs
 	\end{equation*}
+\end{proof}
+%
+\begin{lemma}\label{lmm:alphaFraction}
+	Let $x\in[\frac12,1 ]$. Then
+	\begin{equation*}
+		\frac{\br{3-2x}^{2x-3} \br{2-x}^{2-x}}{\br{1-x}^{x-1}} \leq x
+		\eqfs
+	\end{equation*}
+\end{lemma}
+%
+\begin{proof}
+	Define 
+	\begin{equation*}
+		f(x) := x \log(2-x) + 3 \log(3-2x) - 2x\log(3-2x) - 2\log(2-x) + \log(x)
+		\eqfs
+	\end{equation*}
+	Then 
+	\begin{align*}
+		f\pr(x) &= \frac1x - 2 \log(3 - 2 x) + \log(2 - x) - 1\eqcm\\
+		f\prr(x) &= -\frac1{x^2} - \frac1{2 - x} + \frac4{3 - 2 x}\eqcm\\
+		f\prrr(x) &= \frac2{x^3} - \frac1{(2 - x)^2} + \frac8{(3 - 2 x)^2}\eqfs
+	\end{align*}
+	As $8(2 - x)^2 \geq  (3 - 2 x)^2$ for $x \leq \frac52 - \frac1{\sqrt2}$, we have
+	\begin{equation*}
+		\frac1{(2 - x)^2} \leq \frac8{(3 - 2 x)^2}
+	\end{equation*}
+	and, therefore, $f\prrr(x) \geq 0$ for $x\in[\frac12,1]$. Hence, $f\pr$ is convex. We have $f\pr(1) = 0$. Thus, between $\frac12$ and $1$, $f\pr$ could be nonnegative, nonpositive or swap signs from positive to negative. In all cases, the minimum of $f$ is attained at the borders of the interval. As $f(1) = 0$ and $f(\frac12) = \frac12\log(2^5/3^3) \geq 0$, we have shown $f(x) \geq 0$ for all $x\in [\frac12, 1]$. Thus,
+	\begin{equation*}
+		x \log\brOf{\frac{2-x}{(3-2x)^2}} \geq \log\brOf{\frac{(2-x)^2}{x(3-2x)^3}}
+		\eqfs
+	\end{equation*}
+	Applying the exponential function yields
+	\begin{equation*}
+		\br{\frac{2-x}{(3-2x)^2}}^x \geq \frac{(2-x)^2}{x(3-2x)^3}
+		\eqfs
+	\end{equation*}
+	As $(1-x)^x \geq 1-x$, we obtain
+	\begin{equation*}
+		x(1-x)^x(3-2x)^3(2-x)^x \geq (1-x)(2-x)^2(3-2x)^{2x}\eqfs
+	\end{equation*}
+	Reordering the factors yields the desired inequality.
 \end{proof}
 %
 \begin{lemma}[$\frac12 b\geq a-sc$ and $a \geq b$]\label{lmm:bgeqascandageqb}
