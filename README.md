@@ -4,7 +4,7 @@ LaTeX repository for the paper
 
  arXiv: https://arxiv.org/abs/1812.08037
 
- If you find any mistakes, errors, or typos in the paper, feel free to [contact me](mailto:math@christof-schoetz.de) or create an [Issue](https://github.com/chroetz/PaperQuadRate19/issues).
+ If you find any mistakes, errors, or typos in the paper, feel free to [contact me](mailto:math@christof-schoetz.de) or create an [Issue](https://github.com/chroetz/PaperQuadRate19/issues). Other comments are also welcome :)
 
  BibTex:
 
